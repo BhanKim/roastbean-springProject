@@ -9,5 +9,10 @@ public class MainController {
 	public String index()throws Exception{
 		return "index";
 	}
-
+	
+	@RequestMapping("/beans_that_fit_me")
+	public String boardnList()throws Exception{
+		return "beans_that_fit_me";
+		
+	}
 }
