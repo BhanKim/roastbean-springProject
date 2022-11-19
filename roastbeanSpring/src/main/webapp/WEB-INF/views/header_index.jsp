@@ -57,7 +57,7 @@
 							<li><a href="qna_question_by_user.do">QnA</a></li>
 						</ul>
 					<li>&emsp;&emsp;</li>
-					<li><a class="nav-link scrollto" href="login.jsp"><font color="#F2BCBB" style="font-size: 1.1em">Get Started</font></a></li>
+					<li><a class="nav-link scrollto" href="login"><font color="#F2BCBB" style="font-size: 1.1em">Get Started</font></a></li>
 				</ul>
 			</c:if>	
 			
