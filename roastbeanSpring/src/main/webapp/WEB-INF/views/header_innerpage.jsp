@@ -41,12 +41,12 @@
 						<ul>
 							<li><a href="companyinfo.jsp">Information</a></li>
 							<li><a href="companylocation.jsp">Location</a></li>
-							<li><a href="beans_that_fit_me.jsp">Coffee That Suits Me</a></li>
+							<li><a href="beans_that_fit_me">Coffee That Suits Me</a></li>
 						</ul>
 					<li class="dropdown"><a href="#COMMUNITY"><span>COMMUNITY</span></a>
 						<ul>
 							<li><a href="list.do?page=1">COMMUNITY</a></li>
-							<li><a href="cboardnotice.do">Community Notice</a></li>
+							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
 						</ul>
 					<li><a class="nav-link scrollto" href="beaninfo.do">BEAN INFORMATION</a></li>
 					<li><a class="nav-link scrollto" href="productList.do">COFFEE SHOP</a></li>
@@ -68,12 +68,12 @@
 						<ul>
 							<li><a href="companyinfo.jsp">Information</a></li>
 							<li><a href="companylocation.jsp">Location</a></li>
-							<li><a href="beans_that_fit_me.jsp">Coffee That Suits Me</a></li>
+							<li><a href="beans_that_fit_me">Coffee That Suits Me</a></li>
 						</ul>
 					<li class="dropdown"><a href="#COMMUNITY"><span>COMMUNITY</span></a>
 						<ul>
 							<li><a href="list.do?page=1">COMMUNITY</a></li>
-							<li><a href="cboardnotice.do">Community Notice</a></li>
+							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
 						</ul>
 					<li><a class="nav-link scrollto" href="beaninfo.do">BEAN INFORMATION</a></li>
 					<li><a class="nav-link scrollto" href="productList.do?page=1">COFFEE SHOP</a></li>
