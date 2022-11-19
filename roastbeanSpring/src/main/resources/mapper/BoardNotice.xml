@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rb.base.dao.BoardNoticeDao">
+	
+	<select id="cboardnotice.do" resultType="com.springlec.base.model.BoardDto">
+		
+		select * from community as c, `user` as u where community_name = 'admin' and 
+		c.community_name = u.user_id and 
+		community_deletedate is null
+		order by community_initdate desc;
+	
+	</select>
+</mapper>
