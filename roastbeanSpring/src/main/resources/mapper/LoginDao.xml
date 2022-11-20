@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rb.base.dao.LoginDao">
+
+	<select id="loginCheck" resultType="com.rb.base.model.LoginDto">
+		select count(*), user_nick from user where user_id = #{user_id} and user_pw = #{user_pw} and user_deletedate is null 
+	</select>
+	
+	<select id="loginCheck2" resultType="int">
+		select count(*) from user where user_id = #{user_id} and user_pw = #{user_pw} and user_deletedate is null 
+	</select>
+	
+	<select id="loginCheckAdmin" resultType="int">
+		select count(*) from admin where admin_id = #{admin_id} and admin_pw = #{admin_pw} 
+	</select>
+	
+	
+		
+</mapper>

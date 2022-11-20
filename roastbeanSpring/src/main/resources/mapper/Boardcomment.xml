@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rb.base.dao.BoardcommentDao">
+		
+		<!-- comment list select -->
+		<select id="cList" resultType="com.rb.base.model.BoardcommentDto">
+	<!-- 	SELECT co.community_comment_cono, co.community_id, u.user_nick, co.community_comment_content, co.community_comment_codate 
+		FROM community_comment as co, community as c, `user` as u 
+		where co.community_comment_name = c.community_name and c.community_name = u.user_id 
+		and co.community_id = #{community_id} group by co.community_comment_cono order by co.community_comment_cono -->
+		select * from community_comment where community_id = ${community_id}
+		</select>
+		
+		
+	
+	
+</mapper>

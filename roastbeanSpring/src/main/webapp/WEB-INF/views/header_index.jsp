@@ -31,7 +31,7 @@
 	<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 		<div class="col-lg-4">
 			<h1>
-				<a href="index.jsp"><img src="assets/img/logo.png" alt="" class="img-fluid" width="320" height="72"></a>
+				<a href="index"><img src="assets/img/logo.png" alt="" class="img-fluid" width="320" height="72"></a>
 			</h1>
 		</div>
 		<nav id="navbar" class="navbar order-last order-lg-0">
@@ -39,14 +39,14 @@
 				<ul>
 					<li class="dropdown"><a href="#about"><span>ABOUT</span></a>
 						<ul>
-							<li><a href="companyinfo.jsp">Information</a></li>
-							<li><a href="companylocation.jsp">Location</a></li>
-							<li><a href="beans_that_fit_me">Coffee That Suits Me</a></li>
+							<li><a href="companyinfo">Information</a></li>
+							<li><a href="companylocation">Location</a></li>
+							<li><a href="beans_that_fit_me.jsp">Coffee That Suits Me</a></li>
 						</ul>
 					<li class="dropdown"><a href="#COMMUNITY"><span>COMMUNITY</span></a>
 						<ul>
-							<li><a href="list.do?page=1">COMMUNITY</a></li>
-							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
+							<li><a href="boardList">Community</a></li>
+							<li><a href="cboardnotice.do">Community Notice</a></li>
 						</ul>
 					<li><a class="nav-link scrollto" href="beaninfo">BEAN INFORMATION</a></li>
 					<li><a class="nav-link scrollto" href="productList.do?page=1">COFFEE SHOP</a></li>
@@ -68,12 +68,12 @@
 						<ul>
 							<li><a href="companyinfo.jsp">Information</a></li>
 							<li><a href="companylocation.jsp">Location</a></li>
-							<li><a href="beans_that_fit_me">Coffee That Suits Me</a></li>
+							<li><a href="beans_that_fit_me.jsp">Coffee That Suits Me</a></li>
 						</ul>
 					<li class="dropdown"><a href="#COMMUNITY"><span>COMMUNITY</span></a>
 						<ul>
 							<li><a href="list.do?page=1">COMMUNITY</a></li>
-							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
+							<li><a href="cboardnotice.do">Community Notice</a></li>
 						</ul>
 					<li><a class="nav-link scrollto" href="beaninfo">BEAN INFORMATION</a></li>
 					<li><a class="nav-link scrollto" href="productList.do?page=1">COFFEE SHOP</a></li>
