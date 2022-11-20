@@ -4,6 +4,18 @@
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.rb.base.dao.BoardDao">
+		
+		<!-- all select -->
+		<select id="boardList" resultType="com.rb.base.model.BoardDto">
+			SELECT * FROM community
+		</select>
+		
+		<!-- content view -->
+		<select id="contentView" resultType="com.rb.base.model.BoardDto">
+			SELECT * FROM community as c, `user` as u where c.community_name = u.user_id and community_id = #{community_id}
+		</select>
+		
+		
 	
 	
 </mapper>

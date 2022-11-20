@@ -9,5 +9,21 @@ public class MainController {
 	public String index()throws Exception{
 		return "index";
 	}
+	
+	@RequestMapping("/index")
+	public String mainpage()throws Exception{
+		return "index";
+	}
+	
+	// ABOUT
+	@RequestMapping("/companyinfo")
+	public String information() throws Exception{
+		return "companyinfo";
+	}
+	
+	@RequestMapping("/companylocation")
+	public String location()throws Exception{
+		return "companylocation";
+	}
 
 }
