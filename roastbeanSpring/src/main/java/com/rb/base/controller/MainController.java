@@ -15,4 +15,20 @@ public class MainController {
 		return "beans_that_fit_me";
 		
 	}
+	
+	@RequestMapping("/index")
+	public String mainpage()throws Exception{
+		return "index";
+	}
+	
+	// ABOUT
+	@RequestMapping("/companyinfo")
+	public String information() throws Exception{
+		return "companyinfo";
+	}
+	
+	@RequestMapping("/companylocation")
+	public String location()throws Exception{
+		return "companylocation";
+	}
 }
