@@ -31,7 +31,7 @@ public class BoardNoticeController {
 	@RequestMapping("/bSearch")
 	public String bSearch(HttpServletRequest request, Model model)throws Exception{
 		List<BoardDto> boardsearch=service.bSearch(request.getParameter("b_opt"), request.getParameter("keyword"));
-		model.addAttribute("boardnList",boardsearch);
-		return "cboardnotice";
+		model.addAttribute("boardList",boardsearch);
+		return "cboardlist";
 	}
 }
