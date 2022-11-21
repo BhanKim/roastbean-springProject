@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rb.base.dao.UserInfoDao">
+
+	<select id="userInfoList" resultType="com.rb.base.model.UserDto">
+		select * from user where user_id = #{user_id}
+	</select>
+	
+	<select id="userPwCheck" resultType="int">
+		select count(*) from user where user_id = #{user_id} and user_pw = #{user_pw} 
+	</select>
+	
+	<update id="userInfoUpdate">
+		update user set user_nick = #{user_nick}, user_telno = #{user_telno}, user_email = #{user_email}, user_addresszipcode = #{user_addresszipcode}, user_address1 = #{user_address1}, user_address2 = #{user_address2}, user_address3 = #{user_address3}, user_updatedate = now() where user_id = #{user_id}
+	</update>
+	
+</mapper>
