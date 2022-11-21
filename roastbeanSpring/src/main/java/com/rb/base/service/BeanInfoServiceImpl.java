@@ -32,7 +32,7 @@ public class BeanInfoServiceImpl implements BeanInfoService {
 		int cPage=0;
 		int pageLength=5;
 		int totalRows=0;
-		int rowLength=5;
+		int rowLength=6;
 		String tempPage=request.getParameter("page");
 		
 		
