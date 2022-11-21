@@ -48,7 +48,7 @@
 							<li><a href="boardList">COMMUNITY</a></li>
 							<li><a href="cboardnotice.do">Community Notice</a></li>
 						</ul>
-					<li><a class="nav-link scrollto" href="beaninfo.do">BEAN INFORMATION</a></li>
+					<li><a class="nav-link scrollto" href="beaninfo">BEAN INFORMATION</a></li>
 					<li><a class="nav-link scrollto" href="productList.do">COFFEE SHOP</a></li>
 					<li class="dropdown"><a href="notice_list.do"><span>CUSTOMER SERVICE</span></a>
 						<ul>
@@ -57,7 +57,7 @@
 							<li><a href="qna_question_by_user.do">QnA</a></li>
 						</ul>
 					<li>&emsp;&emsp;</li>
-					<li><a class="nav-link scrollto" href="login.jsp"><font color="#F2BCBB" style="font-size: 1.1em">Get Started</font></a></li>
+					<li><a class="nav-link scrollto" href="login"><font color="#F2BCBB" style="font-size: 1.1em">Get Started</font></a></li>
 				</ul>
 			</c:if>	
 			
@@ -66,16 +66,16 @@
 				<ul>
 					<li class="dropdown"><a href="#about"><span>ABOUT</span></a>
 						<ul>
-							<li><a href="companyinfo.jsp">Information</a></li>
-							<li><a href="companylocation.jsp">Location</a></li>
+							<li><a href="companyinfo">Information</a></li>
+							<li><a href="companylocation">Location</a></li>
 							<li><a href="beans_that_fit_me.jsp">Coffee That Suits Me</a></li>
 						</ul>
 					<li class="dropdown"><a href="#COMMUNITY"><span>COMMUNITY</span></a>
 						<ul>
-							<li><a href="list.do?page=1">COMMUNITY</a></li>
+							<li><a href="boardList">COMMUNITY</a></li>
 							<li><a href="cboardnotice.do">Community Notice</a></li>
 						</ul>
-					<li><a class="nav-link scrollto" href="beaninfo.do">BEAN INFORMATION</a></li>
+					<li><a class="nav-link scrollto" href="beaninfo">BEAN INFORMATION</a></li>
 					<li><a class="nav-link scrollto" href="productList.do?page=1">COFFEE SHOP</a></li>
 					
 					<c:if test="${ID != 'admin'}">

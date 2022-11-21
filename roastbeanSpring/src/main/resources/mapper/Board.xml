@@ -7,7 +7,7 @@
 		
 		<!-- all select -->
 		<select id="boardList" resultType="com.rb.base.model.BoardDto">
-			SELECT * FROM community
+			SELECT * FROM community where community_deletedate is null
 		</select>
 		
 		<!-- content view -->
@@ -15,7 +15,23 @@
 			SELECT * FROM community as c, `user` as u where c.community_name = u.user_id and community_id = #{community_id}
 		</select>
 		
+		<!-- Write -->
+		<insert id="boardwrite">
+			insert into community (community_name, community_title, community_content, community_hit, community_group, community_step, community_indent, community_cnt, community_initdate)
+    		values(#{community_name}, #{community_title}, #{community_content}, 0, (select * from(select max(community_id)+1 from community)a) ,0, 0, 0, now())
+		</insert>
 		
-	
+		<!-- Delete -->
+		<update id="communitydelete">
+			UPDATE community SET community_deletedate = now() where community_id = #{community_id}
+		</update>
+		<!-- Update view -->
+		<select id="modify_view" resultType="com.rb.base.model.BoardDto">
+			SELECT * FROM community where community_id = #{community_id}
+		</select>
+		<!-- Update -->
+		<update id="modify">
+			UPDATE community SET community_title = #{community_title}, community_content = #{community_content}, community_updatedate = now() where community_id = #{community_id}
+		</update>
 	
 </mapper>
