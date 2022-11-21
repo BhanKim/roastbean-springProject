@@ -7,8 +7,27 @@
 	
 	<select id="boardnList" resultType="com.rb.base.model.BoardDto">
 		
-select * from community as c, `user` as u where community_name = 'admin' 
-and c.community_name = u.user_id and community_deletedate is null
-order by community_initdate desc
+	select * from community as c, `user` as u where community_name = 'admin' 
+	and c.community_name = u.user_id and community_deletedate is null
+	order by community_initdate desc
+	</select>
+	
+	<select id="bSearch" resultType="com.rb.base.model.BoardDto">
+		<choose>
+	<when test="b_opt=='community_title'">
+	select * from community where ${b_opt} like #{keyword} order by community_initdate desc;
+	</when>
+	<when test="b_opt=='community_content'">
+	select * from community where ${b_opt} like #{keyword} order by community_initdate desc;
+	</when>
+	<when test="b_opt=='community_name'">
+<!-- 	select * from community where ${b_opt} like #{keyword} order by community_initdate desc; -->
+	select * from community as c, `user` as u where ${b_opt}=u.user_id and u.user_nick like #{keyword};
+	</when>
+	<otherwise>
+		select * from community where community_title like #{keyword} or 
+		community_content like #{keyword} order by community_initdate desc;
+	</otherwise>
+		</choose>
 	</select>
 </mapper>

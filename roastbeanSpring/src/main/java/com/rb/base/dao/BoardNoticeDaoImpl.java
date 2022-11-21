@@ -17,4 +17,9 @@ public class BoardNoticeDaoImpl implements BoardNoticeDao {
 		return sqlSession.selectList(nameSpace+".boardnList");
 	}
 
+	@Override
+	public List<BoardDto> bSearch(String b_opt, String keyword) throws Exception {
+		return sqlSession.selectList(nameSpace+".bSearch");
+	}
+
 }

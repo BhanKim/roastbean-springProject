@@ -53,7 +53,7 @@
                 <h2 class="animate__animated animate__fadeInDown"><span>Roast Bean</span> Information</h2>
                 <p class="animate__animated animate__fadeInUp"> 평상시 얻기 힘들었던 원두 정보를 저희 Roast Bean에서 <br>얻어가세요!!</p>
                 <div>
-                  <a href="beaninfo.do" class="btn-book animate__animated animate__fadeInUp scrollto">Information</a>
+                  <a href="beaninfo" class="btn-book animate__animated animate__fadeInUp scrollto">Information</a>
                 </div>
               </div>
             </div>

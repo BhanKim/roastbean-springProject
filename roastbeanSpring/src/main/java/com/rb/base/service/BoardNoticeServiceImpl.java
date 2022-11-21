@@ -14,8 +14,13 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
 	
 	@Override
 	public List<BoardDto> boardnList() throws Exception {
-		// TODO Auto-generated method stub
 		return dao.boardnList();
+	}
+
+	@Override
+	public List<BoardDto> bSearch(String b_opt, String keyword) throws Exception {
+		keyword='%'+keyword+'%';
+		return dao.bSearch(b_opt, keyword);
 	}
 
 }
