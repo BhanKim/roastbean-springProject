@@ -65,6 +65,13 @@
 			<optional>true</optional>
 		</dependency>
 		
+		<!-- 22-11-20 hosik- add gson -->
+		<!-- <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        	<version>2.9.1</version>
+            </dependency> --> 
+		
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rb.base.dao.AdminMainDao">
+		
+		
+		
+	<!-- ///////////////  /////////////// -->
+		
+		
+	<!-- /////////////// 1day /////////////// -->
+		
+	<!-- 오늘 하루 총 판매 금액 -->	
+	<select id="order_date_sales" resultType="String">
+		select sum(order_price) as order_date_sales from orders WHERE DATE_FORMAT (order_date, '%Y-%m-%d') = curdate();
+	</select> 
+		
+	<!-- 오늘 많이 팔린 상품이름, 가격, 갯수  -->	
+	<select id="order_date_sales_NQP" resultType="com.rb.base.model.ManageMainDto">
+		select p.product_name, sum(o.order_qty) as order_qty, sum(o.order_price) as order_price from orders o, product p where p.product_id = o.product_id and order_date=curdate() group by product_name order by order_qty desc limit 1;
+	</select>
+	
+	
+	
+	
+		
+	<!-- /////////////// 1week /////////////// -->
+	
+	<!-- 오늘로부터 1주일간 총 판매 금액 -->
+	<select id="order_week_sales" resultType="String">
+		select sum(order_price) as order_week_sales from orders WHERE order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate();
+	</select>
+		
+	<!-- 오늘부터 7일전까지 많은 매출을 낸  상품이름, 가격, 갯수 --> 	
+	<select id="week_order_product_info_price" resultType="com.rb.base.model.ProductDto">
+		select p.product_name ,sum(o.order_qty) as sum_quantity , sum(o.order_price) as sum_price from orders o, product p
+		where p.product_id=o.product_id and o.order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate() group by p.product_name order by sum_price desc limit 1; 
+	</select>
+	
+	<!-- 오늘부터 7일전까지 많이 팔린 상품이름, 가격, 갯수 --> 
+	<select id="week_order_product_info_quantity" resultType="com.rb.base.model.ProductDto">
+		select p.product_name ,sum(o.order_qty) as sum_quantity , sum(o.order_price) as sum_price from orders o, product p 
+		where p.product_id=o.product_id and o.order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate() group by p.product_name order by sum_quantity desc limit 1;
+	</select>
+
+	<!-- 월간 통계 -->
+	<select id="monthly_statistics" resultType="com.rb.base.model.ProductDto">
+		SELECT MONTH(`order_date`) AS `date`, sum(`order_price`) as month_total_salesPrice FROM orders GROUP BY `date` order by date ASC;
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+</mapper>

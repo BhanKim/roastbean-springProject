@@ -32,7 +32,7 @@
 		<div class="container text-center">
 			<div style="height: 100px;"></div>
 			<div align="center">
-				<a href="index.jsp"><img alt="" src="assets/img/logo.png" width="320" height="68"></a>
+				<a href="index"><img alt="" src="assets/img/logo.png" width="320" height="68"></a>
 			</div>
 			<div style="height: 40px;"></div>
 			<div class="row align-items-center">
@@ -40,7 +40,7 @@
 				<div class="col align-items-center">
 					<div class="col"
 						style="border-style: solid; border-radius: 12px; border-width: thin; border-color: #CFD4D9; padding: 40px;">
-						<form action="login_admin.do" method="post">
+						<form action="login_admin_action" method="post">
 							<div style="width: 380px;">
 								<div class="mb-3">
 									<input type="text" class="form-control" id="admin_id"
