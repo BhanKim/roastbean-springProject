@@ -15,9 +15,6 @@ public class AdminMainDaoImpl implements AdminMainDao {
 
 	@Override
 	public String order_date_sales(HttpServletRequest request) throws Exception { // 오늘 총 판매 금액
-		System.out.println("AdminMainDaoImpl's order+date+sales start");
-		String order_date_sales = (String) request.getAttribute("order_date_sales");
-		System.out.println("AdminMainDaoImpl's order_date_sales = "+order_date_sales);
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 
@@ -28,7 +25,6 @@ public class AdminMainDaoImpl implements AdminMainDao {
 
 	@Override
 	public String order_week_sales(HttpServletRequest request) throws Exception {// 오늘부터-7day 까지 매출금액
-		request.getAttribute("order_week_sales");
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 	

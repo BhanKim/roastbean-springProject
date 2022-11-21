@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import com.rb.base.dao.AdminMainDao;
 import com.rb.base.model.ManageMainDto;
@@ -16,10 +15,8 @@ public class AdminMainServiceImpl implements AdminMainService {
 	AdminMainDao AdminMainDao;
 
 	@Override
-	public String order_date_sales(HttpServletRequest request) throws Exception {
-		String order_date_sales = request.getParameter("order_date_sales");
-		System.out.println(order_date_sales);
-		return AdminMainDao.order_date_sales(request);
+	public void order_date_sales(HttpServletRequest request) throws Exception {
+		request.setAttribute("order_date_sales", AdminMainDao.order_date_sales(request));
 	}
 
 	@Override
@@ -28,10 +25,8 @@ public class AdminMainServiceImpl implements AdminMainService {
 	}
 
 	@Override
-	public String order_week_sales(HttpServletRequest request) throws Exception {// 오늘부터-7day 까지 매출금액
-		String order_week_sales = (String) request.getAttribute("order_week_sales");
-		System.out.println(order_week_sales);
-		return AdminMainDao.order_week_sales(request);
+	public void order_week_sales(HttpServletRequest request) throws Exception {// 오늘부터-7day 까지 매출금액
+		request.setAttribute("order_week_sales",AdminMainDao.order_week_sales(request));
 	}
 
 

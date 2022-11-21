@@ -121,7 +121,7 @@
 											 지난 1주일간 매출량 대비 상승률 , 가장 많은 매출상품  
 										</td>
 										<td width="400" height="100" style="text-align: center; vertical-align:middle; ">
-											지난 1주일간 총  판매금액 : <fmt:formatNumber value="${order_week_sum }" pattern="#,###"/>원
+											지난 1주일간 총  판매금액 : <fmt:formatNumber value="${order_week_sales }" pattern="#,###"/>원
 										</td>
 									</tr>
 									<tr>

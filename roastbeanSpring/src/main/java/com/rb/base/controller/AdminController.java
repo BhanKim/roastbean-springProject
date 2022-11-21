@@ -22,13 +22,13 @@ public class AdminController {
 	public String ManageMain(Model model, HttpServletRequest request)throws Exception{
 		
 		service.order_date_sales(request);
+		service.order_week_sales(request);
 		
 		ManageMainDto dateNQPDao = service.order_date_sales_NQP();
 		model.addAttribute("dateNQP_N",dateNQPDao.getProduct_name());
 		model.addAttribute("dateNQP_Q",dateNQPDao.getOrder_qty());
 		model.addAttribute("dateNQP_P",dateNQPDao.getOrder_price());
 		
-		//service.order_week_sales(request);
 		
 		
 		return "ManageMain";
