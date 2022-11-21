@@ -49,7 +49,7 @@
 							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
 						</ul>
 					<li><a class="nav-link scrollto" href="beaninfo">BEAN INFORMATION</a></li>
-					<li><a class="nav-link scrollto" href="productList.do?page=1">COFFEE SHOP</a></li>
+					<li><a class="nav-link scrollto" href="productList">COFFEE SHOP</a></li>
 					<li class="dropdown"><a href="notice_list.do"><span>CUSTOMER SERVICE</span></a>
 						<ul>
 							<li><a href="notice_list.do">NOTICE</a></li>
@@ -75,8 +75,8 @@
 							<li><a href="list.do?page=1">COMMUNITY</a></li>
 							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
 						</ul>
-					<li><a class="nav-link scrollto" href="beaninfo">BEAN INFORMATION</a></li>
-					<li><a class="nav-link scrollto" href="productList.do?page=1">COFFEE SHOP</a></li>
+					<li><a class="nav-link scrollto" href="beaninfo.do">BEAN INFORMATION</a></li>
+					<li><a class="nav-link scrollto" href="productList">COFFEE SHOP</a></li>
 					
 					<c:if test="${ID != 'admin'}">
 						<li class="dropdown"><a href="notice_list.do"><span>CUSTOMER SERVICE</span></a>

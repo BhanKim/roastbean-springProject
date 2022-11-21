@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="com.rb.base.dao.ProductDao">
+	
+	<select id="productList" resultType="com.rb.base.model.ProductDto">
+		select * from ( select row_number() over(order by product_id)
+		as rownum, p.product_id, p.product_name, p.product_weight, p.product_info, 
+		p.product_price, p.product_stock, p.product_image, c.category_type, c.category_acidity, c.category_aroma, c.category_body, c.category_sweet
+		from product as p, category as c
+		where p.product_id = c.product_id and c.category_type like #{category_type}) A
+		where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>
+	</select>
+	
+	<select id="productListRow" resultType="Integer">
+		select count(*) as totalCount from product as p, category as c where p.product_id = c.product_id and c.category_type like #{category_type}
+	</select>
+	
+</mapper>
