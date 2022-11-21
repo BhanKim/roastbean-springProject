@@ -49,7 +49,7 @@
 							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
 						</ul>
 					<li><a class="nav-link scrollto" href="beaninfo">BEAN INFORMATION</a></li>
-					<li><a class="nav-link scrollto" href="productList.do">COFFEE SHOP</a></li>
+					<li><a class="nav-link scrollto" href="productList">COFFEE SHOP</a></li>
 					<li class="dropdown"><a href="notice_list.do"><span>CUSTOMER SERVICE</span></a>
 						<ul>
 							<li><a href="notice_list.do">NOTICE</a></li>
@@ -76,7 +76,7 @@
 							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
 						</ul>
 					<li><a class="nav-link scrollto" href="beaninfo">BEAN INFORMATION</a></li>
-					<li><a class="nav-link scrollto" href="productList.do?page=1">COFFEE SHOP</a></li>
+					<li><a class="nav-link scrollto" href="productList">COFFEE SHOP</a></li>
 					
 					<c:if test="${ID != 'admin'}">
 						<li class="dropdown"><a href="notice_list.do"><span>CUSTOMER SERVICE</span></a>
@@ -100,15 +100,15 @@
 						</li>
 						<li>&emsp;&emsp;</li>
 						<li><a class="nav-link scrollto" href="mypage_info.do"><font color="#F2BCBB" style="font-size: 0.9em">${NICK}님</font></a></li>
-						<li><a class="nav-link scrollto" href="ManageMain.do"><font color="#F2BCBB" style="font-size: 0.9em">Manage</font></a></li>
+						<li><a class="nav-link scrollto" href="ManageMain"><font color="#F2BCBB" style="font-size: 0.9em">Manage</font></a></li>
 					</c:if>
 					
 					<c:choose>
 						<c:when test="${API eq null}">
-							<li><a class="nav-link scrollto" href="logout.do"><font style="font-size: 0.9em">Logout</font></a></li>
+							<li><a class="nav-link scrollto" href="logout_action"><font style="font-size: 0.9em">Logout</font></a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a class="nav-link scrollto" href="logout.do" onclick="signOut()"><font style="font-size: 0.9em">Logout</font></a></li>
+							<li><a class="nav-link scrollto" href="logout_action" onclick="signOut()"><font style="font-size: 0.9em">Logout</font></a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
