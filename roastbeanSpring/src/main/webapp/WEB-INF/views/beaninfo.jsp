@@ -89,59 +89,114 @@
 
 			</div>
 		</section>
-		<div align="center">
-			<c:choose>
-				<c:when test="${(page.curPage - 1) < 1 }">
-								[ 처음 ]
-							</c:when>
-				<c:otherwise>
-					<a href="beaninfo?page=1">[ 처음 ]</a>
-				</c:otherwise>
-			</c:choose>
-			<!-- 이전 -->
-			<c:choose>
-				<c:when test="${(page.curPage - 1) < 1 }">
-								[ 이전 ]
-							</c:when>
-				<c:otherwise>
-					<a href="beaninfo?page=${page.curPage - 1 }">[ 이전 ]</a>
-				</c:otherwise>
-			</c:choose>
+		
+		
+			<div class="container">
 
-			<!-- 개별 페이지 -->
-			<c:forEach var="fEach" begin="${page.startPage }"
-				end="${page.endPage }" step="1">
-				<c:choose>
-					<c:when test="${page.curPage == fEach}">
-									[ ${fEach } ] &nbsp;
-								</c:when>
-					<c:otherwise>
-						<a href="beaninfo?page=${fEach }">[ ${fEach } ]</a>&nbsp;
-								</c:otherwise>
-				</c:choose>
-			</c:forEach>
+				<div class="row">
+		
+				<c:set var="startPage" value="paging.startPage" /><!-- 초기 페이지를 startPage로 잡아준다. -->
+					<c:choose>
 
-			<!-- 다음 -->
-			<c:choose>
-				<c:when test="${(page.curPage + 1) > page.totalPage }">
-								[ 다음 ]
-							</c:when>
-				<c:otherwise>
-					<a href="beaninfo?page=${page.curPage + 1 }">[ 다음 ]</a>
-				</c:otherwise>
-			</c:choose>
-			<!-- 끝 -->
-			<c:choose>
-				<c:when test="${page.curPage == page.totalPage }">
-								[ 마지막 ]
-							</c:when>
-				<c:otherwise>
-					<a href="beaninfo?page=${page.totalPage }">[ 마지막 ]</a>
-				</c:otherwise>
-			</c:choose>
+						<c:when test="${paging.startPage eq '1'}">
+							<!-- if -->
+							<<a class="page-link" href="#"> [ 처음 ]<!-- 해당되는 링크 -->
+							</a>
+						</c:when>
+
+						<c:otherwise>
+							<!-- else -->
+							<a class="page-link"
+								href="beaninfo?page=${paging.startPage - 1}">Previous
+							</a>
+						</c:otherwise>
+
+					</c:choose>
+					<!-- int = startPage; i <= endPage; i++ -->
+					<c:forEach var="count" begin="${paging.startPage}"
+						end="${paging.endPage}">
+						<a class="page-link"
+							href="beaninfo?page=${count}">${count}<!-- 해당되는 갯수를 셈 -->
+						</a>
+					</c:forEach>
+
+					<c:choose>
+
+						<c:when test="${paging.totalPages eq paging.endPage}">
+							<!-- if -->
+							<a class="page-link" href="#">> </a>
+						</c:when>
+
+						<c:otherwise>
+							<!-- else -->
+							<a class="page-link"
+								href="beaninfo?page=${paging.endPage + 1}">Next
+							</a>
+						</c:otherwise>
+
+					</c:choose>
+		</div>
 		</div>
 		<hr>
 		<br>
+		
+		
+		
+		
+		
+		
+<%-- 			<c:choose> --%>
+			
+			<!-- 기존 페이징 -->
+<%-- 				<c:when test="${(paging.curPage - 1) < 1 }"> --%>
+<!-- 								[ 처음 ] -->
+<%-- 							</c:when> --%>
+<%-- 				<c:otherwise> --%>
+<!-- 					<a href="beaninfo?page=1">[ 처음 ]</a> -->
+<%-- 				</c:otherwise> --%>
+<%-- 			</c:choose> --%>
+<!-- 			<!-- 이전 --> -->
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test="${(page.curPage - 1) < 1 }"> --%>
+<!-- 								[ 이전 ] -->
+<%-- 							</c:when> --%>
+<%-- 				<c:otherwise> --%>
+<%-- 					<a href="beaninfo?page=${page.curPage - 1 }">[ 이전 ]</a> --%>
+<%-- 				</c:otherwise> --%>
+<%-- 			</c:choose> --%>
+
+<!-- 			<!-- 개별 페이지 --> -->
+<%-- 			<c:forEach var="fEach" begin="${page.startPage }" --%>
+<%-- 				end="${page.endPage }" step="1"> --%>
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${page.curPage == fEach}"> --%>
+<%-- 									[ ${fEach } ] &nbsp; --%>
+<%-- 								</c:when> --%>
+<%-- 					<c:otherwise> --%>
+<%-- 						<a href="beaninfo?page=${fEach }">[ ${fEach } ]</a>&nbsp; --%>
+<%-- 								</c:otherwise> --%>
+<%-- 				</c:choose> --%>
+<%-- 			</c:forEach> --%>
+
+<!-- 			<!-- 다음 --> -->
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test="${(page.curPage + 1) > page.totalPage }"> --%>
+<!-- 								[ 다음 ] -->
+<%-- 							</c:when> --%>
+<%-- 				<c:otherwise> --%>
+<%-- 					<a href="beaninfo?page=${page.curPage + 1 }">[ 다음 ]</a> --%>
+<%-- 				</c:otherwise> --%>
+<%-- 			</c:choose> --%>
+<!-- 			<!-- 끝 --> -->
+<%-- 			<c:choose> --%>
+<%-- 				<c:when test="${page.curPage == page.totalPage }"> --%>
+<!-- 								[ 마지막 ] -->
+<%-- 							</c:when> --%>
+<%-- 				<c:otherwise> --%>
+<%-- 					<a href="beaninfo?page=${page.totalPage }">[ 마지막 ]</a> --%>
+<%-- 				</c:otherwise> --%>
+<%-- 			</c:choose> --%>
+		
 
 	</main>
 	<!-- End #main -->
