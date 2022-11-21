@@ -19,12 +19,12 @@ public class BoardcommentController {
 	BoardcommentService service;
 	
 	// 자유게시판 리스트
-	@RequestMapping("/cList")
-	public String commentList(HttpServletRequest request, Model model)throws Exception{
-		System.out.println("community_id"+Integer.parseInt(request.getParameter("community_id")));
-		List<BoardcommentDto> commentList = service.cList(Integer.parseInt(request.getParameter("community_id")));
-		model.addAttribute("cList", commentList);
-		return "content_view";
-	}
+//	@RequestMapping("/cList")
+//	public String commentList(HttpServletRequest request, Model model)throws Exception{
+//		System.out.println("community_id"+Integer.parseInt(request.getParameter("community_id")));
+//		List<BoardcommentDto> commentList = service.cList(Integer.parseInt(request.getParameter("community_id")));
+//		model.addAttribute("cList", commentList);
+//		return "content_view";
+//	}
 	
 }
