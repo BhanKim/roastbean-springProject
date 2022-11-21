@@ -93,7 +93,7 @@
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 							<c:choose>
-								<c:when test="${(paging.cPage - 1) < 1 }">
+								<c:when test="${(page.curPage - 1) < 1 }">
 									<li class="page-item disabled"><a class="page-link">처음</a>
 									</li>
 								</c:when>
@@ -105,21 +105,21 @@
 							</c:choose>
 							<!-- 이전 -->
 							<c:choose>
-								<c:when test="${(paging.cPage - 1) < 1 }">
+								<c:when test="${(page.curPage - 1) < 1 }">
 									<li class="page-item disabled"><a class="page-link">이전</a>
 									</li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="beaninfo?page=${paging.cPage - 1 }">이전</a>
+										href="beaninfo?page=${page.curPage - 1 }">이전</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
 							<!-- 개별 페이지 -->
-							<c:forEach var="fEach" begin="${paging.startPage }"
-								end="${paging.endPage }" step="1">
+							<c:forEach var="fEach" begin="${page.startPage }"
+								end="${page.endPage }" step="1">
 								<c:choose>
-									<c:when test="${paging.cPage == fEach}">
+									<c:when test="${page.curPage == fEach}">
 										<li class="page-item disabled"><a class="page-link active">&nbsp;${fEach }&nbsp;</a>
 										</li>
 									</c:when>
@@ -133,25 +133,25 @@
 
 							<!-- 다음 -->
 							<c:choose>
-								<c:when test="${(paging.cPage + 1) > paging.totalPages }">
+								<c:when test="${(page.curPage + 1) > page.totalPage }">
 									<li class="page-item disabled"><a class="page-link">다음</a>
 									</li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="beaninfo?page=${paging.cPage + 1 }">다음</a>
+										href="beaninfo?page=${page.curPage + 1 }">다음</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
 							<!-- 끝 -->
 							<c:choose>
-								<c:when test="${paging.cPage == paging.totalPages }">
+								<c:when test="${page.curPage == page.totalPage }">
 									<li class="page-item disabled"><a class="page-link">마지막</a>
 									</li>
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="beaninfo?page=${paging.totalPages }">마지막</a>
+										href="beaninfo?page=${page.totalPage }">마지막</a>
 									</li>
 								</c:otherwise>
 							</c:choose>

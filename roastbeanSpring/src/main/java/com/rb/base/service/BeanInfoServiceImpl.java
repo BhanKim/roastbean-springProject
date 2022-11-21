@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import com.rb.base.dao.BeanInfoDao;
 import com.rb.base.model.BeanInfoDto;
 import com.rb.base.model.BeanInfoPagingDto;
+import com.rb.base.model.PageInfo;
+import com.rb.base.model.ProductDto;
 @Service
 public class BeanInfoServiceImpl implements BeanInfoService {
 	
@@ -33,6 +35,7 @@ public class BeanInfoServiceImpl implements BeanInfoService {
 		int pageLength=5;
 		int totalRows=0;
 		int rowLength=6;
+		int rowCount = 0;
 		String tempPage=request.getParameter("page");
 		
 		
@@ -47,14 +50,15 @@ public class BeanInfoServiceImpl implements BeanInfoService {
 		
 		
 		totalRows=dao.beaninfolistrow();
-		BeanInfoPagingDto dto= new BeanInfoPagingDto(cPage,totalRows,pageLength);
+		PageInfo dto= new PageInfo(cPage,totalRows,rowLength,pageLength);
 		
-		int start=(cPage-1)*rowLength;
+		int start=(cPage-1)*rowLength+ 1;
+		rowCount = rowLength * cPage;
 		
-		List<BeanInfoDto>dtos=dao.beaninfogetlist(cPage,rowLength,start);
+		List<BeanInfoDto>dtos=dao.beaninfogetlist(cPage,start,rowCount);
 		
 		
-		model.addAttribute("paging",dto);
+		model.addAttribute("page",dto);
 		model.addAttribute("list",dtos);
 		
 	}
