@@ -11,7 +11,7 @@ function handleCredentialResponse(response) {
     const responsePayload = decodeJwtResponse(response.credential);
     
     // 이메일값 넘겨주기
-	document.location = "login_api.do?api_email="+ responsePayload.email;
+	document.location = "login_api_action?api_email="+ responsePayload.email;
 }
 
 window.onload = function () {

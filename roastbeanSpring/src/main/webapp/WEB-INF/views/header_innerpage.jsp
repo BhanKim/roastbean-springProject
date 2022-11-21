@@ -105,10 +105,10 @@
 					
 					<c:choose>
 						<c:when test="${API eq null}">
-							<li><a class="nav-link scrollto" href="logout.do"><font style="font-size: 0.9em">Logout</font></a></li>
+							<li><a class="nav-link scrollto" href="logout_action"><font style="font-size: 0.9em">Logout</font></a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a class="nav-link scrollto" href="logout.do" onclick="signOut()"><font style="font-size: 0.9em">Logout</font></a></li>
+							<li><a class="nav-link scrollto" href="logout_action" onclick="signOut()"><font style="font-size: 0.9em">Logout</font></a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
