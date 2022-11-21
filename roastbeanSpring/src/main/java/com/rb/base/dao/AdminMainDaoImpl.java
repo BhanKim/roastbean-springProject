@@ -24,10 +24,13 @@ public class AdminMainDaoImpl implements AdminMainDao {
 	}
 
 	@Override //<!-- 오늘 많이 팔린 상품이름, 가격, 갯수  -->	
-	public ManageMainDto order_date_sales_NQP(HttpServletRequest request) throws Exception {// 오늘 많이 팔린 상품의 이름,갯수,가격
+	public ManageMainDto order_date_order_quantity_NQP(HttpServletRequest request) throws Exception {// 오늘 많이 팔린 상품의 이름,갯수,가격
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
-
+	@Override //<!-- 오늘 높은 매출 상품이름, 가격, 갯수  -->	
+	public ManageMainDto order_date_order_price_NQP(HttpServletRequest request) throws Exception {// 오늘 많이 팔린 상품의 이름,갯수,가격
+		return sqlSession.selectOne(nameSpace + ".ManageMain");
+	}
 	@Override //<!-- 오늘로부터 1주일간 총 판매 금액 -->
 	public String order_week_sales(HttpServletRequest request) throws Exception {// 오늘부터-7day 까지 매출금액
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
@@ -45,6 +48,26 @@ public class AdminMainDaoImpl implements AdminMainDao {
 
 	@Override //<!-- 오늘부터 대충 30일전까지, -1month 매출 -->
 	public String monthly_statistics(HttpServletRequest request) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".ManageMain");
+	}
+
+	@Override
+	public String todayNewQNA(HttpServletRequest request) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".ManageMain");
+	}
+
+	@Override
+	public String totalQNA(HttpServletRequest request) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".ManageMain");
+	}
+
+	@Override
+	public String doneanswerQNA(HttpServletRequest request) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".ManageMain");
+	}
+
+	@Override
+	public String today_sum_community(HttpServletRequest request) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 
