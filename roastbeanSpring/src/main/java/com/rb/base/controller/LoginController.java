@@ -36,7 +36,7 @@ public class LoginController {
 			String uuser_id = (String) session.getAttribute("ID");
 			UserDto dtos = service.cartCount(uuser_id);
 			session.setAttribute("CARTCOUNT", dtos);
-			
+
 			return "index";
 		}else {
 			return "login";

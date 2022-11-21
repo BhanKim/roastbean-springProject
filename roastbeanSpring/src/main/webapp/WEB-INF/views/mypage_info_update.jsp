@@ -90,7 +90,7 @@
 		<div class="col"></div>
 		<div class="col-4">
 			<form action="mypage_info_update_action" method="post" name="Member">
-			<input type="hidden" name="currentPage" value="mypage_info_update">
+			<input type="hidden" name="page" value="mypage_info_update">
 		  	<table class="table" >
 		  		<tr>
 					<td width="200">ID</td>	  		
@@ -112,7 +112,11 @@
 		  		</tr>
 		  		<tr>
 					<td>Tel Number</td>	
-					<td colspan="2"><input class="form-control" type="text" name="user_telno" value="${userinfo_list.user_telno}${user_telno}" placeholder="필수사항입니다." maxlength="41" style="height: 32px;"></td>
+					<td colspan="2">
+						<input class="form-control" type="text" name="user_telno1" value="${userinfo_list.user_telno.substring(0,3)}${user_telno1}" maxlength="3" style="height: 32px;">
+						<input class="form-control" type="text" name="user_telno2" value="${userinfo_list.user_telno.substring(3,7)}${user_telno2}" maxlength="4" style="height: 32px;">
+						<input class="form-control" type="text" name="user_telno3" value="${userinfo_list.user_telno.substring(7,11)}${user_telno3}" maxlength="4" style="height: 32px;">
+					</td>
 		  		</tr>
 		  		<tr>
 					<td>Address</td>
@@ -141,15 +145,15 @@
 		  	<div class="my-2" style="text-align: center;">
 				<!-- Nick Name -->
 				<c:if test="${checkNickDuplication == null}">
+					<input type="hidden" name="nickDuplication" value="-1">
+				</c:if>
+				<c:if test="${checkNickDuplication == 0 || NICK == user_nick}">
+					<span style="color: blue;">사용 가능한 Nick Name입니다.</span>
 					<input type="hidden" name="nickDuplication" value="0">
 				</c:if>
-				<c:if test="${checkNickDuplication == 0}">
-					<span style="color: blue;">사용 가능한 Nick Name입니다.</span>
-					<input type="hidden" name="nickDuplication" value="1">
-				</c:if>
-				<c:if test="${checkNickDuplication == 1}">
+				<c:if test="${checkNickDuplication == 1 && NICK != user_nick}">
 					<span style="color: red;">사용 불가능한 Nick Name입니다.</span>
-					<input type="hidden" name="nickDuplication" value="2">
+					<input type="hidden" name="nickDuplication" value="1">
 				</c:if>
 			</div>
 		  	<div align="right"><button class="form-control3" type="button" onclick="location='mypage_info_list'">뒤로가기</button>  <button class="form-control3" type="button" onclick="checkMember()">저장하기</button></div>
@@ -162,18 +166,10 @@
   </main><!-- End #main -->
   
   	<script type="text/javascript">
-	function checkId() {
-		var Member = document.Member;
-		
-		Member.action = "check_id_info.do";
-		Member.submit();
-		
-	}
-	
 	function checkNick() {
 		var Member = document.Member;
 		
-		Member.action = "check_nick_info.do";
+		Member.action = "check_nick";
 		Member.submit();
 		
 	}

@@ -17,11 +17,17 @@ public class MypageController {
 	UserInfoService service;
 	
 	@RequestMapping("/mypage_info_list")
-	public String mypage_info_action(HttpServletRequest request, Model model) throws Exception{
+	public String mypage_info_list(HttpServletRequest request, Model model) throws Exception{
 		UserDto dto = service.userInfoList(request);
 		model.addAttribute("userinfo_list", dto);
 		return "mypage_info";
 	}
+	
+	@RequestMapping("/mypage_info_pwcheck_btn")
+	public String mypage_info_pwcheck_btn()throws Exception{
+		return "mypage_info_pwcheck";
+	}
+		
 	
 	@RequestMapping("/mypage_info_pwcheck_action")
 	public String mypage_info_pwcheck_action(HttpServletRequest request) throws Exception{
@@ -41,9 +47,9 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/mypage_info_update_action")
-	public String mypage_info_update_action(HttpServletRequest request, Model model) throws Exception{
+	public String mypage_info_update_action(HttpServletRequest request) throws Exception{
 		service.userInfoUpdate(request);
-		return "mypage_info_list";
+		return "redirect:mypage_info_list";
 	}
 	
 	

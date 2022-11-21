@@ -76,6 +76,7 @@ public class SignupDaoServiceImpl implements SignupDaoService {
 		String user_address1 = request.getParameter("user_address1");
 		String user_address2 = request.getParameter("user_address2");
 		String user_address3 = request.getParameter("user_address3");
+		String user_birthday = request.getParameter("user_birthday");
 		String user_birthday1 = request.getParameter("user_birthday1");
 		String user_birthday2 = request.getParameter("user_birthday2");
 		String user_birthday3 = request.getParameter("user_birthday3");
@@ -99,6 +100,7 @@ public class SignupDaoServiceImpl implements SignupDaoService {
 		request.setAttribute("user_address1", user_address1);
 		request.setAttribute("user_address2", user_address2);
 		request.setAttribute("user_address3", user_address3);
+		request.setAttribute("user_birthday", user_birthday);
 		request.setAttribute("user_birthday1", user_birthday1);
 		request.setAttribute("user_birthday2", user_birthday2);
 		request.setAttribute("user_birthday3", user_birthday3);
@@ -114,7 +116,7 @@ public class SignupDaoServiceImpl implements SignupDaoService {
 		String user_name = request.getParameter("user_name");
 		String user_nick = request.getParameter("user_nick");
 		String user_pw = request.getParameter("user_pw");
-		String user_telno = request.getParameter("user_telno");
+		String user_telno = request.getParameter("user_telno1")+request.getParameter("user_telno2")+request.getParameter("user_telno3");
 		String user_email = request.getParameter("user_email");
 		String user_birthday = request.getParameter("user_birthday1") +"-"+ request.getParameter("user_birthday2") +"-"+ request.getParameter("user_birthday3");
 		String user_gender = request.getParameter("user_gender");
@@ -130,7 +132,7 @@ public class SignupDaoServiceImpl implements SignupDaoService {
 		String user_id = request.getParameter("user_email");
 		String user_name = request.getParameter("user_name");
 		String user_nick = request.getParameter("user_nick");
-		String user_telno = request.getParameter("user_telno");
+		String user_telno = request.getParameter("user_telno1")+request.getParameter("user_telno2")+request.getParameter("user_telno3");
 		String user_email = request.getParameter("user_email");
 		String user_birthday = request.getParameter("user_birthday1") +"-"+ request.getParameter("user_birthday2") +"-"+ request.getParameter("user_birthday3");
 		String user_gender = request.getParameter("user_gender");

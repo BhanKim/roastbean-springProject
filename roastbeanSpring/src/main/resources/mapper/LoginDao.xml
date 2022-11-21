@@ -18,7 +18,7 @@
 	</select>
 	
 	<select id="cartCount" resultType="com.rb.base.model.UserDto">
-		SELECT sum(cart_qty) as cartCount from cart where user_id = #{user_id}
+		SELECT IFNULL(sum(cart_qty), 0) as cartCount from cart where user_id = #{user_id}
 	</select>
 		
 </mapper>

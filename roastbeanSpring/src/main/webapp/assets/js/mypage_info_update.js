@@ -50,7 +50,7 @@ function checkMember(){
 	
 	var user_name = form.user_name.value
 	var user_nick = form.user_nick.value
-	var user_telno = form.user_telno.value
+	var user_telno = form.user_telno1.value + "-" + form.user_telno2.value + "-" + form.user_telno3.value
 	var user_email = form.user_email.value
 	
 	// Name
@@ -76,7 +76,7 @@ function checkMember(){
 		form.user_nick.select()
 		return
 	}
-	if(form.nickDuplication.value != 1){ /**************************/
+	if(form.nickDuplication.value != 0){ /**************************/
 		alert("닉네임 중복체크를 해주세요.")
 	    form.focus();
 		return

@@ -87,7 +87,7 @@
 							</ul>
 						</li>
 						<li>&emsp;&emsp;</li>
-						<li><a class="nav-link scrollto" href="mypage_info.do"><font color="#F2BCBB" style="font-size: 0.9em">${NICK}님</font></a></li>
+						<li><a class="nav-link scrollto" href="mypage_info_list"><font color="#F2BCBB" style="font-size: 0.9em">${NICK}님</font></a></li>
 						<li><a href="cartOrder.do"><i class="fa badge2 fa-lg" value="${CARTCOUNT.cartCount}" style="font-size: 1.5em">&#xf07a;</i></a></li>
 					</c:if>
 					<c:if test="${ID == 'admin'}">
@@ -99,7 +99,7 @@
 							</ul>
 						</li>
 						<li>&emsp;&emsp;</li>
-						<li><a class="nav-link scrollto" href="mypage_info.do"><font color="#F2BCBB" style="font-size: 0.9em">${NICK}님</font></a></li>
+						<li><a class="nav-link scrollto" href="mypage_info_list"><font color="#F2BCBB" style="font-size: 0.9em">${NICK}님</font></a></li>
 						<li><a class="nav-link scrollto" href="ManageMain"><font color="#F2BCBB" style="font-size: 0.9em">Manage</font></a></li>
 					</c:if>
 					

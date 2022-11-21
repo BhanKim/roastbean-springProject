@@ -113,7 +113,7 @@
 		  		</tr>
 		  	</table>
 	  		<c:if test="${API == null }">
-		  	<div align="right"><button class="form-control3" onclick="location.href='mypage_info_pwcheck'">수정하기</button></div>
+		  	<div align="right"><button class="form-control3" onclick="location.href='mypage_info_pwcheck_btn'">수정하기</button></div>
 		  	</c:if>
 		  	<c:if test="${API != null }">
 		  	<div align="right"><button class="form-control3" onclick="location.href='mypage_info_update_list'">수정하기</button></div>

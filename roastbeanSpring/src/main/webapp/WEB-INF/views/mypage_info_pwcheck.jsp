@@ -92,7 +92,7 @@
 			<div class="col"></div>
 				<div class="col-4">
 					<form action="mypage_info_pwcheck_action" method="post" name="Member">
-						<input type="hidden" name="currentPage" value="mypage_info_update">
+						<input type="hidden" name="page" value="mypage_info_update">
 						  	<table class="table" >
 						  		<tr>
 									<td width="200"> Password</td>
@@ -101,12 +101,15 @@
 						  	</table>
 					  	<div align="right"><button class="form-control3" type="submit">확인하기</button></div>
 					  	<c:if test="${userPwCheck == 0}">
-						    <script>
+							<script type="text/javascript">
+								alert('암호를 확인해주세요.')
+							</script>
+<%-- 						    <script>
 						        $(".form-control3").click(function() {
 						            alert("<%="암호를 확인해주세요."%>");
 						        });
 						    </script>
-					  	</c:if>
+ --%>					  	</c:if>
 				  	</form>
 				</div>
 			<div class="col"></div>
