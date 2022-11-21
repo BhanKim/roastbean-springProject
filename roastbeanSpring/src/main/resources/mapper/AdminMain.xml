@@ -7,9 +7,23 @@
 		
 		
 		
-	<!-- ///////////////  /////////////// -->
-		
-		
+	<!-- /////////////// QNA /////////////// -->
+	
+	<!-- 당일 들어온 Qna 문의수량 구하기  -->
+	<select id="todayNewQNA" resultType="int">
+		select count(qna_write_initdate) as todayNewQNA from qna_write where DATE_FORMAT(qna_write_initdate, '%Y-%m-%d') = curdate();
+	</select> 
+	<!-- CPOUNT totalQNA  -->
+	<select id="totalQNA" resultType="int">
+		select count(*) as totalQNA from qna_write; 
+	</select> 
+	<!-- done answer QNA  -->
+	<select id="notyetanswerQNA" resultType="int">
+		select count(*) as notyetanswerQNA from qna_write; 
+	</select> 
+	
+	
+	
 	<!-- /////////////// 1day /////////////// -->
 		
 	<!-- 오늘 하루 총 판매 금액 -->	
@@ -22,9 +36,9 @@
 		select p.product_name, sum(o.order_qty) as order_qty, sum(o.order_price) as order_price from orders o, product p where p.product_id = o.product_id and order_date=curdate() group by product_name order by order_qty desc limit 1;
 	</select>
 	
-	
-	
-	
+	<select id="count_new_users" resultType="String">
+		select count(user_initdate) as count_new_users from user where user_initdate=curdate();
+	</select>
 		
 	<!-- /////////////// 1week /////////////// -->
 	
@@ -33,26 +47,33 @@
 		select sum(order_price) as order_week_sales from orders WHERE order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate();
 	</select>
 		
-	<!-- 오늘부터 7일전까지 많은 매출을 낸  상품이름, 가격, 갯수 --> 	
-	<select id="week_order_product_info_price" resultType="com.rb.base.model.ProductDto">
-		select p.product_name ,sum(o.order_qty) as sum_quantity , sum(o.order_price) as sum_price from orders o, product p
-		where p.product_id=o.product_id and o.order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate() group by p.product_name order by sum_price desc limit 1; 
+	<!-- 오늘부터 7일전까지 많은 매출을 낸  상품이름, 가격, 갯수 --> 		
+	<select id="week_order_product_order_price_NQP" resultType="com.rb.base.model.ManageMainDto">
+		select p.product_name ,sum(o.order_qty) as order_qty , sum(o.order_price) as order_price from orders o, product p
+		where p.product_id=o.product_id and o.order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate() group by p.product_name order by order_price desc limit 1; 
 	</select>
 	
 	<!-- 오늘부터 7일전까지 많이 팔린 상품이름, 가격, 갯수 --> 
-	<select id="week_order_product_info_quantity" resultType="com.rb.base.model.ProductDto">
-		select p.product_name ,sum(o.order_qty) as sum_quantity , sum(o.order_price) as sum_price from orders o, product p 
-		where p.product_id=o.product_id and o.order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate() group by p.product_name order by sum_quantity desc limit 1;
+	<select id="week_order_product_order_quantity_NQP" resultType="com.rb.base.model.ManageMainDto">
+		select p.product_name ,sum(o.order_qty) as order_qty , sum(o.order_price) as order_price from orders o, product p 
+		where p.product_id=o.product_id and o.order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate() group by p.product_name order by order_qty desc limit 1;
 	</select>
 
-	<!-- 월간 통계 -->
-	<select id="monthly_statistics" resultType="com.rb.base.model.ProductDto">
-		SELECT MONTH(`order_date`) AS `date`, sum(`order_price`) as month_total_salesPrice FROM orders GROUP BY `date` order by date ASC;
+		<!-- /////////////// 1 Month /////////////// -->
+	
+	<!-- 한달 매출 -->
+	<select id="monthly_statistics" resultType="String">
+		select sum(`order_price`) as monthly_statistics FROM orders where order_date >= date_add(now(), interval -1 month) ;
 	</select>
 	
 	
 	
+		<!-- /////////////// All /////////////// -->
 	
+	<!-- 전체 매출액 -->
+	<select id="total_sales" resultType="String">
+		select sum(`order_price`) as total_sales FROM orders ;
+	</select>
 	
 	
 	

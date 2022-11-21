@@ -102,9 +102,9 @@
 									<tr>
 										<td width="400" height="100" style="text-align: center; vertical-align:middle; ">
 											금일 총 판매금액  :<b> <fmt:formatNumber value="${order_date_sales }" pattern="#,###"/></b>원<br>
-											금일 많이 팔린 상품 : ${dateNQP_N }<br>
-											팔린 갯수 : ${dateNQP_Q }<br>
-											${dateNQP_N }의 판매금액 : ${dateNQP_P }
+											금일 많이 팔린 상품 : ${order_date_sales_NQP_N }<br>
+											팔린 갯수 : ${order_date_sales_NQP_Q }<br>
+											${order_date_sales_NQP_N }의 판매금액 : ${order_date_sales_NQP_P }
 										</td>	
 										
 										<td width="400" height="100" style="text-align: center; vertical-align:middle; ">
@@ -122,20 +122,21 @@
 										</td>
 										<td width="400" height="100" style="text-align: center; vertical-align:middle; ">
 											지난 1주일간 총  판매금액 : <fmt:formatNumber value="${order_week_sales }" pattern="#,###"/>원
+											<br>지난 1달간 총  판매금액 : <fmt:formatNumber value="${monthly_statistics }" pattern="#,###"/>원
 										</td>
 									</tr>
 									<tr>
 										<td>
 											1주일간 가장 높은 매출 상픔 
-											<br>${order_week_bestprice_name }
-											<br>${order_week_price_quantity_sum } 개
-											<br><fmt:formatNumber value="${order_week_price_price_sum }" pattern="#,###"/>원
+											<br>${week_order_product_order_price_NQP_N }
+											<br>${week_order_product_order_price_NQP_Q } 개
+											<br><fmt:formatNumber value="${week_order_product_order_price_NQP_P }" pattern="#,###"/>원
 										</td>
 										<td>
 											1주일간 가장 많이 팔린 상픔 
-											<br>${order_week_bestqty_name }
-											<br>${order_week_qty_quantity_sum  } 개
-											<br><fmt:formatNumber value="${order_week_qty_price_sum }" pattern="#,###"/>원
+											<br>${week_order_product_order_quantity_NQP_N }
+											<br>${week_order_product_order_quantity_NQP_Q  } 개
+											<br><fmt:formatNumber value="${week_order_product_order_quantity_NQP_P }" pattern="#,###"/>원
 										</td>
 									</tr>
 									<tr>
@@ -144,6 +145,7 @@
 										
 										<c:forEach items="${chartMonth }" var="dtoMonth">
 										<tr>
+											<td>차트 잠정 미정. </td>
 											<td>${dtoMonth.month } </td>
 											<td>${dtoMonth.month_total_salesPrice } </td>
 										</tr>
