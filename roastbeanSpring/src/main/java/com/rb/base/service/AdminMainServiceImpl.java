@@ -15,6 +15,33 @@ public class AdminMainServiceImpl implements AdminMainService {
 	@Autowired
 	AdminMainDao AdminMainDao;
 	
+	
+	////////////////////////// New Community //////////////////////////
+	@Override
+	public void today_sum_community(HttpServletRequest request) throws Exception {
+		request.setAttribute("today_sum_community", AdminMainDao.today_sum_community(request));
+		
+	}
+		
+	//////////////////////////QNA   //////////////////////////
+	@Override
+	public void todayNewQNA(HttpServletRequest request) throws Exception {
+		request.setAttribute("todayNewQNA", AdminMainDao.todayNewQNA(request));
+	}
+	
+	@Override
+	public void totalQNA(HttpServletRequest request) throws Exception {
+		request.setAttribute("totalQNA", AdminMainDao.totalQNA(request));
+	}
+	
+	@Override
+	public void doneanswerQNA(HttpServletRequest request) throws Exception {
+		request.setAttribute("doneanswerQNA", AdminMainDao.doneanswerQNA(request));	
+	}
+		
+	
+	
+	
 	// 하루 매출액
 	@Override
 	public void order_date_sales(HttpServletRequest request) throws Exception {
@@ -30,14 +57,25 @@ public class AdminMainServiceImpl implements AdminMainService {
 	
 	// 하루동안 가장 많이 팔린 제품의 이름,수량,총 판매금액
 	@Override
-	public ManageMainDto order_date_sales_NQP(HttpServletRequest request) throws Exception { 
-		ManageMainDto order_date_sales_NQP = AdminMainDao.order_date_sales_NQP(request);
-		request.setAttribute("order_date_sales_NQP_N", order_date_sales_NQP.getProduct_name());
-		request.setAttribute("order_date_sales_NQP_Q", order_date_sales_NQP.getOrder_qty());
-		request.setAttribute("order_date_sales_NQP_P", order_date_sales_NQP.getOrder_price());
-		return AdminMainDao.order_date_sales_NQP(request);
+	public ManageMainDto order_date_order_quantity_NQP(HttpServletRequest request) throws Exception { 
+		ManageMainDto order_date_order_quantity_NQP = AdminMainDao.order_date_order_quantity_NQP(request);
+		request.setAttribute("order_date_order_quantity_NQP_N", order_date_order_quantity_NQP.getProduct_name());
+		request.setAttribute("order_date_order_quantity_NQP_Q", order_date_order_quantity_NQP.getOrder_qty());
+		request.setAttribute("order_date_order_quantity_NQP_P", order_date_order_quantity_NQP.getOrder_price());
+		return AdminMainDao.order_date_order_quantity_NQP(request);
 	}//order_date_sales_NQP END
 
+	// 하루동안 가장 높은 매출 제품의 이름,수량,총 판매금액
+	@Override
+	public ManageMainDto order_date_order_price_NQP(HttpServletRequest request) throws Exception { 
+		ManageMainDto order_date_order_price_NQP = AdminMainDao.order_date_order_price_NQP(request);
+		request.setAttribute("order_date_order_price_NQP_N", order_date_order_price_NQP.getProduct_name());
+		request.setAttribute("order_date_order_price_NQP_Q", order_date_order_price_NQP.getOrder_qty());
+		request.setAttribute("order_date_order_price_NQP_P", order_date_order_price_NQP.getOrder_price());
+		return AdminMainDao.order_date_order_quantity_NQP(request);
+	}//order_date_sales_NQP END
+	
+	
 	// 1주일간 가장 높은 매출 상픔의 이름,수량,판매금액
 	@Override
 	public ManageMainDto week_order_product_order_price_NQP(HttpServletRequest request) throws Exception { 
@@ -68,6 +106,12 @@ public class AdminMainServiceImpl implements AdminMainService {
 		request.setAttribute("count_new_users",AdminMainDao.count_new_users(request));
 		
 	}
+
+	
+
+	
+	
+	
 	
 	
 

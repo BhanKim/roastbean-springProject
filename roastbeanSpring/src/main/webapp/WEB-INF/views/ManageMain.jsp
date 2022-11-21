@@ -87,12 +87,12 @@
 									class="table table-sm table-hover">
 									<thead >
 									<tr>
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='ManageProductInsert.do'">PRODUCT INSERT</td>	
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='manage_chart.jsp'">CHART</td>
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='ManageProductInsert'">PRODUCT INSERT</td>	
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='manage_chart.jsp'">CHART'<준비중>'</td>
 									<!-- </tr>
 									<tr>	 -->
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='ManageOrdersList.do'">ORDERS LIST</td>
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='notice_list.do'">NOTICE</td>
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='ManageOrdersList'">ORDERS LIST</td>
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='notice_lis'">NOTICE</td>
 									</tr>
 								</thead>
 							</table>
@@ -100,59 +100,71 @@
 									class="table table-sm table-hover">
 									<thead >
 									<tr>
+										<td colspan="2" style="text-align: center; vertical-align:middle; "height="80">
+											금일 총 판매금액  :<b> <fmt:formatNumber value="${order_date_sales }" pattern="#,###"/></b> 원<br>
+										</td>
+									</tr>
+									<tr>
+										<td width="300" height="100" style="text-align: center; vertical-align:middle; ">
+											지난 1주일간 총  판매금액 :<b> <fmt:formatNumber value="${order_week_sales }" pattern="#,###"/></b> 원
+											
+										</td>
+										<td width="300" height="100" style="text-align: center; vertical-align:middle; ">
+											지난 1달간 총  판매금액 :<b> <fmt:formatNumber value="${monthly_statistics }" pattern="#,###"/></b> 원
+										</td>
+									</tr>	
+									 <tr>
 										<td width="400" height="100" style="text-align: center; vertical-align:middle; ">
-											금일 총 판매금액  :<b> <fmt:formatNumber value="${order_date_sales }" pattern="#,###"/></b>원<br>
-											금일 많이 팔린 상품 : ${order_date_sales_NQP_N }<br>
-											팔린 갯수 : ${order_date_sales_NQP_Q }<br>
-											${order_date_sales_NQP_N }의 판매금액 : ${order_date_sales_NQP_P }
+											<b>금일 많이 팔린 상품</b> 
+											<br>${order_date_order_quantity_NQP_N }
+											<br>팔린 갯수 : ${order_date_order_quantity_NQP_Q } 개
+											<br>판매금액 : <b><fmt:formatNumber value="${order_date_order_quantity_NQP_P }" pattern="#,###"/></b> 원
+										</td>
+										<td width="300" height="100" style="text-align: center; vertical-align:middle; ">
+											<b>금일 높은 매출 상품</b>
+											<br>${order_date_order_price_NQP_N }
+											<br>팔린 갯수 : ${order_date_order_price_NQP_Q } 개
+											<br>판매금액 : <b><fmt:formatNumber value="${order_date_order_price_NQP_P }" pattern="#,###"/></b> 원
 										</td>	
-										
-										<td width="400" height="100" style="text-align: center; vertical-align:middle; ">
+									</tr>	
+									<tr>
+										<td width="300" height="100" style="text-align: center; vertical-align:middle; ">
+											<b>1주일간 가장 많이 팔린 상품</b> 
+											<br>팔린 갯수 : ${week_order_product_order_quantity_NQP_N } 개
+											<br>${week_order_product_order_quantity_NQP_Q  } 개
+											<br><b><fmt:formatNumber value="${week_order_product_order_quantity_NQP_P }" pattern="#,###"/></b> 원
+										</td>
+										<td width="300" height="100" style="text-align: center; vertical-align:middle; ">
+											<b>1주일간 가장 높은 매출 상픔</b> 
+											<br>${week_order_product_order_price_NQP_N }
+											<br>팔린 갯수 : ${week_order_product_order_price_NQP_Q } 개
+											<br><b><fmt:formatNumber value="${week_order_product_order_price_NQP_P }" pattern="#,###"/></b> 원
+										</td>
+									</tr>
+									<tr>
+										<td width="300" height="100" style="text-align: center; vertical-align:middle; ">
 											금일 신규 회원 수 : ${count_new_users }
-											<br>금일 신규 Qna : ${qna_date_sum }
-											<br>답장을 기다리고 있는 Qna : ${qna_total_sum - finish_count}
 											<br>금일 신규 게시글 : ${today_sum_community }
 										</td>
-										
-									</tr>
-									<tr>
-										
-										<td width="400" height="100" style="text-align: center; vertical-align:middle; "> 
-											 지난 1주일간 매출량 대비 상승률 , 가장 많은 매출상품  
-										</td>
-										<td width="400" height="100" style="text-align: center; vertical-align:middle; ">
-											지난 1주일간 총  판매금액 : <fmt:formatNumber value="${order_week_sales }" pattern="#,###"/>원
-											<br>지난 1달간 총  판매금액 : <fmt:formatNumber value="${monthly_statistics }" pattern="#,###"/>원
+										<!--  -->
+										<td width="300" height="100" style="text-align: center; vertical-align:middle; ">
+											 금일 신규 Qna : ${todayNewQNA }
+											 <br>답장을 기다리고 있는 Qna : ${totalQNA-doneanswerQNA}
 										</td>
 									</tr>
-									<tr>
-										<td>
-											1주일간 가장 높은 매출 상픔 
-											<br>${week_order_product_order_price_NQP_N }
-											<br>${week_order_product_order_price_NQP_Q } 개
-											<br><fmt:formatNumber value="${week_order_product_order_price_NQP_P }" pattern="#,###"/>원
-										</td>
-										<td>
-											1주일간 가장 많이 팔린 상픔 
-											<br>${week_order_product_order_quantity_NQP_N }
-											<br>${week_order_product_order_quantity_NQP_Q  } 개
-											<br><fmt:formatNumber value="${week_order_product_order_quantity_NQP_P }" pattern="#,###"/>원
-										</td>
-									</tr>
-									<tr>
+									<%-- <tr>
 										<td colspan="2">
-										<table>	
-										
-										<c:forEach items="${chartMonth }" var="dtoMonth">
-										<tr>
-											<td>차트 잠정 미정. </td>
-											<td>${dtoMonth.month } </td>
-											<td>${dtoMonth.month_total_salesPrice } </td>
-										</tr>
-										</c:forEach>
-										</table>
+											<table>	
+												<c:forEach items="${chartMonth }" var="dtoMonth">
+													<tr>
+														<td>차트 잠정 미정. </td>
+														<td>${dtoMonth.month } </td>
+														<td>${dtoMonth.month_total_salesPrice } </td>
+													</tr>
+												</c:forEach>
+											</table>
 										</td>
-									</tr>
+									</tr> --%>
 								</thead>
 							</table>
 								
