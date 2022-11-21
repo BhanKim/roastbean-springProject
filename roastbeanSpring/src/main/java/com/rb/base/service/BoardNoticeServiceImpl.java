@@ -14,7 +14,6 @@ public class BoardNoticeServiceImpl implements BoardNoticeService {
 	
 	@Override
 	public List<BoardDto> boardnList() throws Exception {
-		// TODO Auto-generated method stub
 		return dao.boardnList();
 	}
 

@@ -31,7 +31,7 @@
 	<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 		<div class="col-lg-4">
 			<h1>
-				<a href="index.jsp"><img src="assets/img/logo.png" alt="" class="img-fluid" width="320" height="72"></a>
+				<a href="index"><img src="assets/img/logo.png" alt="" class="img-fluid" width="320" height="72"></a>
 			</h1>
 		</div>
 		<nav id="navbar" class="navbar order-last order-lg-0">
@@ -105,10 +105,10 @@
 					
 					<c:choose>
 						<c:when test="${API eq null}">
-							<li><a class="nav-link scrollto" href="logout.do"><font style="font-size: 0.9em">Logout</font></a></li>
+							<li><a class="nav-link scrollto" href="logout_action"><font style="font-size: 0.9em">Logout</font></a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a class="nav-link scrollto" href="logout.do" onclick="signOut()"><font style="font-size: 0.9em">Logout</font></a></li>
+							<li><a class="nav-link scrollto" href="logout_action" onclick="signOut()"><font style="font-size: 0.9em">Logout</font></a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
