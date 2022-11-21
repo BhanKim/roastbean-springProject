@@ -89,60 +89,75 @@
 
 			</div>
 		</section>
-		<div align="center">
-			<c:choose>
-				<c:when test="${(page.curPage - 1) < 1 }">
-								[ 처음 ]
-							</c:when>
-				<c:otherwise>
-					<a href="beaninfo?page=1">[ 처음 ]</a>
-				</c:otherwise>
-			</c:choose>
-			<!-- 이전 -->
-			<c:choose>
-				<c:when test="${(page.curPage - 1) < 1 }">
-								[ 이전 ]
-							</c:when>
-				<c:otherwise>
-					<a href="beaninfo?page=${page.curPage - 1 }">[ 이전 ]</a>
-				</c:otherwise>
-			</c:choose>
-
-			<!-- 개별 페이지 -->
-			<c:forEach var="fEach" begin="${page.startPage }"
-				end="${page.endPage }" step="1">
-				<c:choose>
-					<c:when test="${page.curPage == fEach}">
-									[ ${fEach } ] &nbsp;
+				<div class="container" align="center">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<c:choose>
+								<c:when test="${(paging.cPage - 1) < 1 }">
+									<li class="page-item disabled"><a class="page-link">처음</a>
+									</li>
 								</c:when>
-					<c:otherwise>
-						<a href="beaninfo?page=${fEach }">[ ${fEach } ]</a>&nbsp;
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="beaninfo?page=1">처음</a>
+									</li>
 								</c:otherwise>
-				</c:choose>
-			</c:forEach>
+							</c:choose>
+							<!-- 이전 -->
+							<c:choose>
+								<c:when test="${(paging.cPage - 1) < 1 }">
+									<li class="page-item disabled"><a class="page-link">이전</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="beaninfo?page=${paging.cPage - 1 }">이전</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+							<!-- 개별 페이지 -->
+							<c:forEach var="fEach" begin="${paging.startPage }"
+								end="${paging.endPage }" step="1">
+								<c:choose>
+									<c:when test="${paging.cPage == fEach}">
+										<li class="page-item disabled"><a class="page-link active">&nbsp;${fEach }&nbsp;</a>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link"
+											href="beaninfo?page=${fEach}">&nbsp;${fEach }&nbsp;</a>
+										</li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
 
-			<!-- 다음 -->
-			<c:choose>
-				<c:when test="${(page.curPage + 1) > page.totalPage }">
-								[ 다음 ]
-							</c:when>
-				<c:otherwise>
-					<a href="beaninfo?page=${page.curPage + 1 }">[ 다음 ]</a>
-				</c:otherwise>
-			</c:choose>
-			<!-- 끝 -->
-			<c:choose>
-				<c:when test="${page.curPage == page.totalPage }">
-								[ 마지막 ]
-							</c:when>
-				<c:otherwise>
-					<a href="beaninfo?page=${page.totalPage }">[ 마지막 ]</a>
-				</c:otherwise>
-			</c:choose>
-		</div>
-		<hr>
-		<br>
-
+							<!-- 다음 -->
+							<c:choose>
+								<c:when test="${(paging.cPage + 1) > paging.totalPages }">
+									<li class="page-item disabled"><a class="page-link">다음</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="beaninfo?page=${paging.cPage + 1 }">다음</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+							<!-- 끝 -->
+							<c:choose>
+								<c:when test="${paging.cPage == paging.totalPages }">
+									<li class="page-item disabled"><a class="page-link">마지막</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="beaninfo?page=${paging.totalPages }">마지막</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+						</ul>
+					</nav>
+				</div>
 	</main>
 	<!-- End #main -->
 
