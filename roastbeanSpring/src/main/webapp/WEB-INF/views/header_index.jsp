@@ -72,10 +72,10 @@
 						</ul>
 					<li class="dropdown"><a href="#COMMUNITY"><span>COMMUNITY</span></a>
 						<ul>
-							<li><a href="list.do?page=1">COMMUNITY</a></li>
+							<li><a href="list?page=1">COMMUNITY</a></li>
 							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
 						</ul>
-					<li><a class="nav-link scrollto" href="beaninfo.do">BEAN INFORMATION</a></li>
+					<li><a class="nav-link scrollto" href="beaninfo">BEAN INFORMATION</a></li>
 					<li><a class="nav-link scrollto" href="productList">COFFEE SHOP</a></li>
 					
 					<c:if test="${ID != 'admin'}">

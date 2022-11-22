@@ -18,4 +18,9 @@
 		select count(*) as totalCount from product as p, category as c where p.product_id = c.product_id and c.category_type like #{category_type}
 	</select>
 	
+	<select id="productDetail" resultType="com.rb.base.model.ProductDto">
+		select product_id, product_name, product_weight, product_info, product_price, product_stock, product_image 
+		from product where product_id = #{product_id}
+	</select>
+	
 </mapper>

@@ -9,7 +9,6 @@ public class PageInfo {
 	int pageCount;	// 하단에 보여줄 페이지 리스트의 수
 	int startPage;	// 시작 페이지
 	int endPage;	// 끝 페이지
-	int currentBlock;
 	int pageLength;
 	
 	public PageInfo() {
@@ -95,14 +94,6 @@ public class PageInfo {
 
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
-	}
-
-	public int getCurrentBlock() {
-		return currentBlock;
-	}
-
-	public void setCurrentBlock(int currentBlock) {
-		this.currentBlock = currentBlock;
 	}
 
 	public int getPageLength() {

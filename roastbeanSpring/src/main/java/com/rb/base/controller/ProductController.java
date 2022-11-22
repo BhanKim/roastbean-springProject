@@ -17,10 +17,16 @@ public class ProductController {
 	
 	@RequestMapping("/productList")
 	public String productList(HttpServletRequest request,Model model) throws Exception{
-		
 		service.productList(request,model);
 		
 		return "productList";
+	}
+	
+	@RequestMapping("/productDetail")
+	public String productDetail(HttpServletRequest request,Model model) throws Exception{
+		service.productDetail(request,model);
+		
+		return "productDetail";
 	}
 	
 }
