@@ -19,7 +19,7 @@
        		community_group, community_step, community_indent, community_cnt
      		FROM community as c, `user` as u  where community_deletedate is null and u.user_id != 'admin'
       		and u.user_id = c.community_name order by community_group desc, community_indent)A 
-      		where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>;
+      		where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>
 		</select>
 		
 		<!-- content view -->
@@ -73,8 +73,28 @@
 		<update id="replyshape">
 			update community set community_step = community_step + 1 where community_group = #{community_group} and community_step = #{community_step}
 		</update>
-	
-	
+		
+		<!-- notice list 3개 뽑기 -->
+		<select id="nList" resultType="com.rb.base.model.BoardDto">
+			    select * from community as c, `user` as u
+ 			   	where community_name = 'admin' and c.community_name = u.user_id and community_deletedate is null 
+    			order by community_initdate desc limit 3;
+		</select>
+		
+		<!-- My Board List paging -->
+		<select id="myboardlistrow" resultType="Integer">
+			SELECT count(*) as total from community where community_deletedate is null and community_name != 'admin' and community_name = #{community_name}
+		</select>
+		
+		<!-- My Board List -->
+		<select id="myboardlist" resultType="com.rb.base.model.BoardDto">
+		   select * from (select row_number() over(order by community_group, community_indent desc)	
+		   as rownum, community_id, u.user_nick, community_title, community_content, community_initdate, community_updatedate, community_deletedate, community_hit, community_group, community_step, community_indent, community_cnt
+		   from community as c, `user` as u  where community_deletedate is null and u.user_id != 'admin' and u.user_id = c.community_name and 
+		   c.community_name = #{community_name} 
+		   order by community_group desc, community_indent)A 
+		   where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>
+		</select>
 	
 	
 	
