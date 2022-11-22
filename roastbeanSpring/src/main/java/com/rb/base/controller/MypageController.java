@@ -1,5 +1,7 @@
 package com.rb.base.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,14 +9,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.rb.base.model.MyOrderListDto;
+import com.rb.base.model.QnaDto;
 import com.rb.base.model.UserDto;
-import com.rb.base.service.UserInfoService;
+import com.rb.base.service.MypageService;
 
 @Controller
 public class MypageController {
 
 	@Autowired
-	UserInfoService service;
+	MypageService service;
 	
 	@RequestMapping("/mypage_info_list")
 	public String mypage_info_list(HttpServletRequest request, Model model) throws Exception{
@@ -51,6 +55,23 @@ public class MypageController {
 		service.userInfoUpdate(request);
 		return "redirect:mypage_info_list";
 	}
+	
+	@RequestMapping("/mypage_order_list_")
+	public String mypage_order_list_(HttpServletRequest request, Model model) throws Exception{
+		List<MyOrderListDto> dtos = service.myOrderList(request);
+		System.out.println("oderL");
+		model.addAttribute("myOrderList", dtos);
+		return "mypage_order_list";
+	}
+	
+	@RequestMapping("/mypage_qna_list_")
+	public String mypage_qna_list_(HttpServletRequest request, Model model) throws Exception{
+		List<QnaDto> dtos = service.qnaList(request);
+		System.out.println("qnaL");
+		model.addAttribute("myQnaList", dtos);
+		return "mypage_qna_list";
+	}
+	
 	
 	
 //	command = new CommandUserinfo();

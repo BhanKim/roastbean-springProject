@@ -1,14 +1,18 @@
 package com.rb.base.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
+import com.rb.base.model.MyOrderListDto;
+import com.rb.base.model.QnaDto;
 import com.rb.base.model.UserDto;
 
-public class UserInfoDaoImpl implements UserInfoDao {
+public class MypageDaoImpl implements MypageDao {
 
 	SqlSession sqlSession;
 
-	public static String nameSpace = "com.rb.base.dao.UserInfoDao";
+	public static String nameSpace = "com.rb.base.dao.MypageDao";
 
 	@Override
 	public UserDto userInfoList(String user_id) throws Exception {
@@ -25,6 +29,16 @@ public class UserInfoDaoImpl implements UserInfoDao {
 			String user_addresszipcode, String user_address1, String user_address2, String user_address3)
 			throws Exception {
 		sqlSession.update(nameSpace + ".userInfoUpdate");
+	}
+
+	@Override
+	public List<MyOrderListDto> myOrderList(String user_id) throws Exception {
+		return sqlSession.selectList(nameSpace + ".myOrderList");
+	}
+
+	@Override
+	public List<QnaDto> qnaList(String user_id) throws Exception {
+		return sqlSession.selectList(nameSpace + ".qnaList");
 	}
 
 }

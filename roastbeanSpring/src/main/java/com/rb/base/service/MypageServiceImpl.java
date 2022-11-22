@@ -1,24 +1,27 @@
 package com.rb.base.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rb.base.dao.UserInfoDao;
+import com.rb.base.dao.MypageDao;
+import com.rb.base.model.MyOrderListDto;
+import com.rb.base.model.QnaDto;
 import com.rb.base.model.UserDto;
 
 @Service
-public class UserInfoServiceImpl implements UserInfoService {
+public class MypageServiceImpl implements MypageService {
 	
 	@Autowired
-	UserInfoDao dao;
-	HttpSession session;
+	MypageDao dao;
 
 	@Override
 	public UserDto userInfoList(HttpServletRequest request) throws Exception {
-		session = request.getSession();
+		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("ID");
 		
 		return dao.userInfoList(user_id);
@@ -26,14 +29,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public int userPwCheck(HttpServletRequest request) throws Exception {
-		session = request.getSession();
+		HttpSession session = request.getSession();
 
 		String user_id = (String) session.getAttribute("ID");
 		String user_pw = request.getParameter("user_pw");
 		
 		int userPwCheck = dao.userPwCheck(user_id, user_pw);
 		request.setAttribute("userPwCheck", userPwCheck);
-		System.out.println(userPwCheck);
 		
 		return userPwCheck;
 	}
@@ -52,8 +54,35 @@ public class UserInfoServiceImpl implements UserInfoService {
 		
 		dao.userInfoUpdate(user_id, user_nick, user_telno, user_email, user_addresszipcode, user_address1, user_address2, user_address3);
 		
-		session = request.getSession();
+		HttpSession session = request.getSession();
 		session.setAttribute("NICK", user_nick);
 	}
 
+	@Override
+	public List<MyOrderListDto> myOrderList(HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("ID");
+		
+		return dao.myOrderList(user_id);
+	}
+
+	@Override
+	public List<QnaDto> qnaList(HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("ID");
+		
+		return dao.qnaList(user_id);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

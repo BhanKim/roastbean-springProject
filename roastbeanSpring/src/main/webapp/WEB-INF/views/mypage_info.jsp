@@ -58,9 +58,9 @@
       <div class="container">
         <div class="d-flex justify-content-between align-items-center">
 			<a class="nav-link scrollto" href="mypage_info_list"><font color="8784D6" style="font-size: 1.4em; font-weight: bold;">My Information</font></a>
-			<a class="nav-link scrollto" href="mypage_order_list.do">My Order List</a>
-			<a class="nav-link scrollto" href="myboardlist.do?page=1">My Write</a>
-			<a class="nav-link scrollto" href="mypage_qna_list.do">My QnA</a>
+			<a class="nav-link scrollto" href="mypage_order_list_">My Order List</a>
+			<a class="nav-link scrollto" href="myboardlist">My Write</a>
+			<a class="nav-link scrollto" href="mypage_qna_list_">My QnA</a>
 			&emsp;&emsp;&emsp;
 			<ol>
 				<li><a href="index">Home</a></li>
