@@ -37,6 +37,14 @@ public class ManageController {
 	
 	
 	
+//	//UserList
+//	@RequestMapping("/UserList")
+//	public String UserList(HttpServletRequest request, Model model)throws Exception{
+//		service.userList(request,model);
+//		
+//		return "manage_UserList";
+//	}//UserList
+	
 	//UserList
 	@RequestMapping("/UserList")
 	public String UserList(HttpServletRequest request, Model model)throws Exception{
@@ -44,6 +52,4 @@ public class ManageController {
 		
 		return "manage_UserList";
 	}//UserList
-	
-	
 }//class end 

@@ -124,7 +124,7 @@
 								[ 처음 ]
 							</c:when>
 							<c:otherwise>
-								<a href="UserListSelect.do?page=1">[ 처음 ]</a>
+								<a href="UserList?page=1">[ 처음 ]</a>
 							</c:otherwise>
 							</c:choose>
 							<!-- 이전 -->
@@ -133,7 +133,7 @@
 								[ 이전 ]
 							</c:when>
 							<c:otherwise>
-								<a href="UserListSelect.do?page=${page.curPage - 1 }">[ 이전 ]</a>
+								<a href="UserList?page=${page.curPage - 1 }">[ 이전 ]</a>
 							</c:otherwise>
 							</c:choose>
 							
@@ -144,7 +144,7 @@
 									[ ${fEach } ] &nbsp;
 								</c:when>
 								<c:otherwise>
-									<a href="UserListSelect.do?page=${fEach }">[ ${fEach } ]</a>&nbsp;
+									<a href="UserList?page=${fEach }">[ ${fEach } ]</a>&nbsp;
 								</c:otherwise>
 								</c:choose>
 							</c:forEach>
@@ -155,7 +155,7 @@
 								[ 다음 ]
 							</c:when>
 							<c:otherwise>
-								<a href="UserListSelect.do?page=${page.curPage + 1 }">[ 다음 ]</a>
+								<a href="UserList?page=${page.curPage + 1 }">[ 다음 ]</a>
 							</c:otherwise>
 							</c:choose>
 							<!-- 끝 -->
@@ -164,7 +164,7 @@
 								[ 마지막 ]
 							</c:when>
 							<c:otherwise>
-								<a href="UserListSelect.do?page=${page.totalPage }">[ 마지막 ]</a>
+								<a href="UserList?page=${page.totalPage }">[ 마지막 ]</a>
 							</c:otherwise>
 							</c:choose>
 							</td>

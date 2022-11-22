@@ -6,8 +6,9 @@ import com.rb.base.model.UserDto;
 
 public interface ManageUserListDao {// service가 아는 녀석
 	
-	public int userListRow(String query, String content) throws Exception;
-	public List<UserDto> userList(int cPage,String content, String query,  int start, int rowCount) throws Exception;
+	public int userListRow() throws Exception;
+	public List<UserDto> userList(int cPage , int start, int rowCount) throws Exception;
+	
 	
 	
 }//END 
