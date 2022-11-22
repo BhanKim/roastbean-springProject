@@ -11,4 +11,18 @@
 		WHERE (@rownum := 0) = 0 and notice_write_deletedate is null 
 	</select>
 	
+	<insert id="insertAction">
+		INSERT INTO notice_write (admin_id, notice_write_title, notice_write_content, notice_write_initdate) 
+		VALUES (#{admin_id},#{notice_write_title},#{notice_write_content},now())
+	</insert>
+	
+	<update id="updateAction">
+		UPDATE notice_write set notice_write_title = #{notice_write_title}, notice_write_content = #{notice_write_content}, notice_write_updatedate = now() 
+		WHERE notice_write_seq = #{notice_write_seq}
+	</update>
+	
+	<update id="updateActionDelete">
+		UPDATE notice_write set notice_write_deletedate = now() where notice_write_seq = #{notice_write_seq}
+	</update>
+	
 </mapper>
