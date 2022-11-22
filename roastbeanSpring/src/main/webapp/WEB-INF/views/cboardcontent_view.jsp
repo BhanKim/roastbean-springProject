@@ -134,7 +134,7 @@
 				</table>
 				<br>
 				<c:if test="${ID != null }">
-					<form action="coWrite.do" method="post" style="text-align: center;">
+					<form action="coWrite" method="post" style="text-align: center;">
 						<input type="hidden" name="community_id" value="${content_view.community_id }"> 
 						<input type="hidden" name="community_comment_name" value="${ID } }">
 						<textarea name="community_comment_content" rows="4" cols="120" placeholder="${NICK }님 댓글을 작성해주세요"></textarea>
