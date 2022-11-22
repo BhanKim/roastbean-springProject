@@ -8,6 +8,7 @@ public class BoardcommentDto {
 	String community_comment_name;
 	String community_comment_content;
 	String community_comment_codate;
+	String user_nick;
 
 	// C
 	public BoardcommentDto() {
@@ -22,6 +23,18 @@ public class BoardcommentDto {
 		this.community_comment_name = community_comment_name;
 		this.community_comment_content = community_comment_content;
 		this.community_comment_codate = community_comment_codate;
+	}
+	
+	//test
+	public BoardcommentDto(int community_comment_cono, int community_comment_id, String community_comment_name,
+			String community_comment_content, String community_comment_codate, String user_nick) {
+		super();
+		this.community_comment_cono = community_comment_cono;
+		this.community_comment_id = community_comment_id;
+		this.community_comment_name = community_comment_name;
+		this.community_comment_content = community_comment_content;
+		this.community_comment_codate = community_comment_codate;
+		this.user_nick = user_nick;
 	}
 
 	// G&S
@@ -64,5 +77,14 @@ public class BoardcommentDto {
 	public void setCommunity_comment_codate(String community_comment_codate) {
 		this.community_comment_codate = community_comment_codate;
 	}
+	//test
+	public String getUser_nick() {
+		return user_nick;
+	}
+
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
+	
 
 } // END
