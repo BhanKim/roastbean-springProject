@@ -13,7 +13,7 @@ import com.rb.base.model.QnaDto;
 import com.rb.base.service.QnaService;
 
 @Controller
-public class CsController {
+public class QnaController {
 	
 	@Autowired
 	QnaService service;
@@ -24,6 +24,11 @@ public class CsController {
 		List<QnaDto> dtos = service.qnaList(request);
 		model.addAttribute("myQnaList", dtos);
 		return "mypage_qna_list";
+	}
+	
+	@RequestMapping("/cs_qna")
+	public String cs_qna() throws Exception{
+		return "cs_qna";
 	}
 	
 	// Cs/QnA/유저:질문하기 Insert / 완료 22-11-22 SangwonKim
@@ -51,7 +56,7 @@ public class CsController {
 	// Cs/QnA/관리자:질문에 답변하기,수정하기 Insert&Update / 완료 22-11-22 SangwonKim
 	@RequestMapping("/qna_answer_by_admin")
 	public String qna_answer_by_admin(HttpServletRequest request) throws Exception {
-		service.userQuestionUpdate(request);
+		service.adminAnswerInsert(request);
 		return "redirect:qna_list_by_admin";
 	}
 	
