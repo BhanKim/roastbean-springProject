@@ -73,6 +73,9 @@ public class ManageMainServiceImpl implements ManageMainService {
 	@Override
 	public ManageMainDto order_date_order_quantity_NQP(HttpServletRequest request) throws Exception { 
 		ManageMainDto order_date_order_quantity_NQP = ManageMainDao.order_date_order_quantity_NQP(request);
+	/* Test */
+		System.out.println("service order_date_order_quantity_NQP : "+order_date_order_quantity_NQP);
+	
 		request.setAttribute("order_date_order_quantity_NQP_N", order_date_order_quantity_NQP.getProduct_name());
 		request.setAttribute("order_date_order_quantity_NQP_Q", order_date_order_quantity_NQP.getOrder_qty());
 		request.setAttribute("order_date_order_quantity_NQP_P", order_date_order_quantity_NQP.getOrder_price());
@@ -141,23 +144,14 @@ public class ManageMainServiceImpl implements ManageMainService {
 		}
 		
 		totalCount = ManageUserListDao.userListRow();
-		System.out.println("ManageMainServiceImpl totalCount : "+totalCount);
 		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
 		
 		rowCount = (totalCount - ((cPage-1)*10));
-			System.out.println("ManageMainServiceImpl rowCount : "+rowCount);
 	
 		int start = rowCount - 9;
-			System.out.println("ManageMainServiceImpl start : "+start);
 		List<UserDto> userList = ManageUserListDao.userList(cPage, start, rowCount);
-			System.out.println("ManageMainServiceImpl dto.getCurPage : "+dto.getCurPage());
-			System.out.println("ManageMainServiceImpl dto.getTotalCount : "+dto.getTotalCount());
-			System.out.println("ManageMainServiceImpl dto.getPageLength : "+dto.getPageLength());
-			System.out.println("ManageMainServiceImpl dto.getEndPage : "+dto.getEndPage());
 		model.addAttribute("page", dto);
 		model.addAttribute("manageuserlist", userList);
-		
-		
 		
 	}//userList END
 	
