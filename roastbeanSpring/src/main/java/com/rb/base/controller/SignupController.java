@@ -57,15 +57,6 @@ public class SignupController {
 		session.setAttribute("ID", request.getParameter("user_id"));
 		session.setAttribute("NICK", request.getParameter("user_nick"));
 		
-//		System.out.println(">>>>2");
-//		String uuser_id = (String) session.getAttribute("ID");
-//		System.out.println(">>>>3");
-//		System.out.println(uuser_id);
-//		UserDto dtos = loginDaoService.cartCount(uuser_id);
-//		System.out.println(">>>>4");
-//		session.setAttribute("CARTCOUNT", dtos);
-//		System.out.println(">>>>5");
-
 		session.setAttribute("CARTCOUNT", 0);
 		
 		return "index";
@@ -80,10 +71,6 @@ public class SignupController {
 		session.setAttribute("ID", request.getParameter("user_email"));
 		session.setAttribute("NICK", request.getParameter("user_nick"));
 		session.setAttribute("API", "1");
-		
-//		String uuser_id = (String) session.getAttribute("ID");
-//		UserDto dtos = loginDaoService.cartCount(uuser_id);
-//		session.setAttribute("CARTCOUNT", dtos);
 		
 		session.setAttribute("CARTCOUNT", 0);
 		
