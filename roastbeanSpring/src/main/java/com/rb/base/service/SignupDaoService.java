@@ -10,4 +10,6 @@ public interface SignupDaoService {
 	public void signupAction(HttpServletRequest request) throws Exception;
 	public void signupApiAction(HttpServletRequest request) throws Exception;
 	
+	public String sendEmail(HttpServletRequest request) throws Exception;
+	
 }
