@@ -72,7 +72,7 @@ $(document).ready(function() {
 		       } else {
 		    	   alert("이메일 전송중입니다.");
 		           $.ajax({
-		              url:'http://localhost:8080/RoastBean_WebProject/Email',
+		              url:'EmailCheck',
 		              type:'POST',
 		              data:{uemail : uemail},
 		              success:function(response)

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.rb.base.model.UserDto;
 import com.rb.base.service.LoginDaoService;
 import com.rb.base.service.SignupDaoService;
 
@@ -76,6 +76,13 @@ public class SignupController {
 		
 		return "index";
 		
+	}
+	
+	// *** 2022-11-22 / 2022-11-22 완료 YunHyeonJeong
+	@RequestMapping("/EmailCheck")
+	@ResponseBody
+	public String emailCheck(HttpServletRequest request) throws Exception {
+		return service.sendEmail(request) + "";
 	}
 
 }
