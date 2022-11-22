@@ -66,11 +66,12 @@
 				<ul>
 					<li class="dropdown"><a href="#about"><span>ABOUT</span></a>
 						<ul>
-							<li><a href="companyinfo.jsp">Information</a></li>
-							<li><a href="companylocation.jsp">Location</a></li>
+							<li><a href="companyinfo">Information</a></li>
+							<li><a href="companylocation">Location</a></li>
 							<li><a href="beans_that_fit_me">Coffee That Suits Me</a></li>
 						</ul>
 					<li class="dropdown"><a href="#COMMUNITY"><span>COMMUNITY</span></a>
+						<ul>
 							<li><a href="boardList">COMMUNITY</a></li>
 							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
 						</ul>
@@ -87,7 +88,7 @@
 						</li>
 						<li>&emsp;&emsp;</li>
 						<li><a class="nav-link scrollto" href="mypage_info_list"><font color="#F2BCBB" style="font-size: 0.9em">${NICK}님</font></a></li>
-						<li><a href="cartOrder.do"><i class="fa badge2 fa-lg" value="${CARTCOUNT.cartCount}" style="font-size: 1.5em">&#xf07a;</i></a></li>
+						<li><a href="cartOrder"><i class="fa badge2 fa-lg" value="${CARTCOUNT.cartCount}" style="font-size: 1.5em">&#xf07a;</i></a></li>
 					</c:if>
 					<c:if test="${ID == 'admin'}">
 						<li class="dropdown"><a href="notice_list.do"><span>CUSTOMER SERVICE</span></a>

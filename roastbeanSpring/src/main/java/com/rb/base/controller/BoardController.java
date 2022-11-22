@@ -1,7 +1,5 @@
 package com.rb.base.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.rb.base.model.BoardDto;
-import com.rb.base.model.BoardcommentDto;
 import com.rb.base.service.BoardService;
-import com.rb.base.service.BoardcommentService;
 
 @Controller
 public class BoardController {
@@ -27,8 +23,8 @@ public class BoardController {
 	
 	// 자유게시판 리스트
 	@RequestMapping("/boardList")
-	public String boardList(Model model)throws Exception{
-		service.boardList(model);
+	public String boardList(HttpServletRequest request, Model model)throws Exception{
+		service.boardList(request, model);
 		return "cboardlist";
 	}
 	
@@ -37,6 +33,7 @@ public class BoardController {
 	public String boardView(HttpServletRequest request, Model model) throws Exception{
 		service.contentView(request, model);
 		service.cList(model, request);
+		service.upHit(request);
 		return "cboardcontent_view";
 	}
 	
@@ -49,7 +46,7 @@ public class BoardController {
 	// 글작성
 	@RequestMapping("/boardwrite")
 	public String boardwrtie(HttpServletRequest request)throws Exception{
-		service.boardwrite(session, request);
+		service.boardwrite(request);
 		return "redirect:boardList";
 	}
 	
@@ -69,9 +66,18 @@ public class BoardController {
 	
 	// 글수정
 	@RequestMapping("/modify")
-	public String modify(HttpServletRequest request)throws Exception{
-		service.modify(request);
-		return "redirect:boardList";
+	public String modify(HttpServletRequest request, RedirectAttributes attributes)throws Exception{
+		service.modify(request, attributes);
+		return "redirect:content_view";
 	}
+	
+	// 좋아요
+	@RequestMapping("/boardlike")
+	public String like(HttpServletRequest request, RedirectAttributes attributes)throws Exception{
+		service.like(request, attributes);
+		return "redirect:content_view";
+	}
+	
+
 	
 } // End

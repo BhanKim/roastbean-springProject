@@ -55,7 +55,7 @@
 						<tr>
 							<td id="left" style="font-size: 14px; padding: 10px;">
 								<form action="boardlike" method="post">
-									<span style="font-size: 17px; font-weight: bold;">${content_view.community_name }</span>&nbsp;&nbsp;
+									<span style="font-size: 17px; font-weight: bold;">${content_view.user_nick }</span>&nbsp;&nbsp;
 									${content_view.community_initdate }<br>
 									조회&nbsp;${content_view.community_hit }&nbsp;&nbsp; 
 									<input type="hidden" name="community_id" value="${content_view.community_id }"> 
@@ -107,7 +107,7 @@
 					<c:forEach items="${cList }" var="dto">
 						<tbody>
 							<tr>
-								<td width="150">${dto.community_comment_name }</td>
+								<td width="150">${dto.user_nick }</td>
 								<td style="text-align: left">&nbsp;${dto.community_comment_content }</td>
 								<td width="100"><c:if
 										test="${ID == dto.community_comment_name }">

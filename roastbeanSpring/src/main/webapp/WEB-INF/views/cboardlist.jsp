@@ -102,11 +102,11 @@
 						<c:forEach items="${boardList }" var="dto">				
 						<tr>
 							<c:if test="${dto.community_name != 'admin' }">
-								<td width=70 style="text-align: center;">${dto.community_id }</td>				
+								<td width=70 style="text-align: center;">${dto.rownum }</td>				
 								<td id="left">
 									<c:forEach begin="1" end="${dto.community_indent}">&nbsp;└ </c:forEach>
 									<a href="content_view?community_id=${dto.community_id }" style="color: #000000;">${dto.community_title }</a></td>
-								<td id="left" style="text-align: center;">${dto.community_name }</td>
+								<td id="left" style="text-align: center;">${dto.user_nick }</td>
 								
 								<td style="text-align: center;">
 									<c:choose>
@@ -139,64 +139,82 @@
 							</c:choose>
 							</td>
 						</tr>
-						
-						
-					
-						<tr>
-						<td align="center" colspan="6">
-						<c:choose>
-							<c:when test="${(page.curPage - 1) < 1 }">
-								[ 처음 ]
-							</c:when>
-							<c:otherwise>
-								<a href="list.do?page=1">[ 처음 ]</a>
-							</c:otherwise>
-							</c:choose>
-							<!-- 이전 -->
-							<c:choose>
-							<c:when test="${(page.curPage - 1) < 1 }">
-								[ 이전 ]
-							</c:when>
-							<c:otherwise>
-								<a href="list.do?page=${page.curPage - 1 }">[ 이전 ]</a>
-							</c:otherwise>
-							</c:choose>
-							
-							<!-- 개별 페이지 -->
-							<c:forEach var="fEach" begin="${page.startPage }" end="${page.endPage }" step="1">
-								<c:choose>
-								<c:when test="${page.curPage == fEach}">
-									[ ${fEach } ] &nbsp;
-								</c:when>
-								<c:otherwise>
-									<a href="list.do?page=${fEach }">[ ${fEach } ]</a>&nbsp;
-								</c:otherwise>
-								</c:choose>
-							</c:forEach>
-							
-							<!-- 다음 -->
-							<c:choose>
-							<c:when test="${(page.curPage + 1) > page.totalPage }">
-								[ 다음 ]
-							</c:when>
-							<c:otherwise>
-								<a href="list.do?page=${page.curPage + 1 }">[ 다음 ]</a>
-							</c:otherwise>
-							</c:choose>
-							<!-- 끝 -->
-							<c:choose>
-							<c:when test="${page.curPage == page.totalPage }">
-								[ 마지막 ]
-							</c:when>
-							<c:otherwise>
-								<a href="list.do?page=${page.totalPage }">[ 마지막 ]</a>
-							</c:otherwise>
-							</c:choose>
-							</td>
-						</tr> 
 					</tbody>	
 				</table><br>
 				
+				<!-- Paging -->
+			<div class="container" align="center">
+               <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-center">
+                     <c:choose>
+                        <c:when test="${(page.curPage - 1) < 1 }">
+                           <li class="page-item disabled"><a class="page-link">처음</a>
+                           </li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="page-item"><a class="page-link"
+                              href="boardList?page=1">처음</a>
+                           </li>
+                        </c:otherwise>
+                     </c:choose>
+                     <!-- 이전 -->
+                     <c:choose>
+                        <c:when test="${(page.curPage - 1) < 1 }">
+                           <li class="page-item disabled"><a class="page-link">이전</a>
+                           </li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="page-item"><a class="page-link"
+                              href="boardList?page=${page.curPage - 1 }">이전</a>
+                           </li>
+                        </c:otherwise>
+                     </c:choose>
+                     <!-- 개별 페이지 -->
+                     <c:forEach var="fEach" begin="${page.startPage }"
+                        end="${page.endPage }" step="1">
+                        <c:choose>
+                           <c:when test="${page.curPage == fEach}">
+                              <li class="page-item disabled"><a class="page-link active">&nbsp;${fEach }&nbsp;</a>
+                              </li>
+                           </c:when>
+                           <c:otherwise>
+                              <li class="page-item"><a class="page-link"
+                                 href="boardList?page=${fEach}">&nbsp;${fEach }&nbsp;</a>
+                              </li>
+                           </c:otherwise>
+                        </c:choose>
+                     </c:forEach>
+
+                     <!-- 다음 -->
+                     <c:choose>
+                        <c:when test="${(page.curPage + 1) > page.totalPage }">
+                           <li class="page-item disabled"><a class="page-link">다음</a>
+                           </li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="page-item"><a class="page-link"
+                              href="boardList?page=${page.curPage + 1 }">다음</a>
+                           </li>
+                        </c:otherwise>
+                     </c:choose>
+                     <!-- 끝 -->
+                     <c:choose>
+                        <c:when test="${page.curPage == page.totalPage }">
+                           <li class="page-item disabled"><a class="page-link">마지막</a>
+                           </li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="page-item"><a class="page-link"
+                              href="boardList?page=${page.totalPage }">마지막</a>
+                           </li>
+                        </c:otherwise>
+                     </c:choose>
+                  </ul>
+               </nav>
+            </div>
+				
+				
+				<!-- Paging End -->
 					<form action="bSearch" method="post" style="text-align:center;">
 					<select name="b_opt">
 						<option value="1">제목+내용</option>
