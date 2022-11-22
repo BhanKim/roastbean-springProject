@@ -22,7 +22,7 @@ public class BeanInfoController {
 		service.excute(request, model);
 		
 		
-		return "beaninfo";
+		return "beaninfo"; 
 	}
 	
 	

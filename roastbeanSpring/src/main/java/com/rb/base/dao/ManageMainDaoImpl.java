@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.rb.base.model.ManageMainDto;
 
-public class AdminMainDaoImpl implements AdminMainDao {
+public class ManageMainDaoImpl implements ManageMainDao {
 	
 	SqlSession sqlSession;
 	
@@ -14,12 +14,12 @@ public class AdminMainDaoImpl implements AdminMainDao {
 	
 	
 	@Override//<!--1day 신규유저 카운트  -->
-	public String count_new_users(HttpServletRequest request) throws Exception {
+	public Integer count_new_users(HttpServletRequest request) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 
 	@Override //<!-- 오늘 하루 총 판매 금액 -->	
-	public String order_date_sales(HttpServletRequest request) throws Exception { // 오늘 총 판매 금액
+	public Integer order_date_sales(HttpServletRequest request) throws Exception { // 오늘 총 판매 금액
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 
@@ -32,7 +32,7 @@ public class AdminMainDaoImpl implements AdminMainDao {
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 	@Override //<!-- 오늘로부터 1주일간 총 판매 금액 -->
-	public String order_week_sales(HttpServletRequest request) throws Exception {// 오늘부터-7day 까지 매출금액
+	public Integer order_week_sales(HttpServletRequest request) throws Exception {// 오늘부터-7day 까지 매출금액
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 
@@ -47,27 +47,27 @@ public class AdminMainDaoImpl implements AdminMainDao {
 	}
 
 	@Override //<!-- 오늘부터 대충 30일전까지, -1month 매출 -->
-	public String monthly_statistics(HttpServletRequest request) throws Exception {
+	public Integer monthly_statistics(HttpServletRequest request) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 
 	@Override
-	public String todayNewQNA(HttpServletRequest request) throws Exception {
+	public Integer todayNewQNA(HttpServletRequest request) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 
 	@Override
-	public String totalQNA(HttpServletRequest request) throws Exception {
+	public Integer totalQNA(HttpServletRequest request) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 
 	@Override
-	public String doneanswerQNA(HttpServletRequest request) throws Exception {
+	public Integer doneanswerQNA(HttpServletRequest request) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 
 	@Override
-	public String today_sum_community(HttpServletRequest request) throws Exception {
+	public Integer today_sum_community(HttpServletRequest request) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
 	}
 

@@ -1,7 +1,8 @@
 package com.rb.base.model;
 
-public class UserDto {
-	
+
+	public class UserDto {
+	int rownum; 
 	int count;
 	String user_id;
 	String user_nick;
@@ -25,6 +26,22 @@ public class UserDto {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	public UserDto(int rownum, String user_id, String user_name, String user_birthday,
+			String user_gender,String user_email,   String user_telno) {
+		super();
+		this.rownum = rownum;
+		this.user_id = user_id;
+		this.user_name = user_name;
+		this.user_birthday = user_birthday;
+		this.user_gender = user_gender;
+		this.user_email = user_email;
+		this.user_telno = user_telno;
+	}
+
+
+
+
 	public UserDto(int count, String user_id, String user_nick, String user_pw, String user_email,
 			String user_emailhash, String user_name, String user_address1, String user_address2, String user_address3,
 			String user_addresszipcode, String user_birthday, String user_gender, String user_telno,
@@ -218,6 +235,16 @@ public class UserDto {
 
 	public void setCartCount(int cartCount) {
 		this.cartCount = cartCount;
+	}
+
+
+	public int getRownum() {
+		return rownum;
+	}
+
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 	
 	
