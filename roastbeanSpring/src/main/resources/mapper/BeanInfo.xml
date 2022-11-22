@@ -12,11 +12,13 @@
 	</select>
 	
 	<select id="beaninfogetlist" resultType="com.rb.base.model.BeanInfoDto"><!-- 게시물의 수와 번호를 지정해줌 -->
-		select * from(select row_number() over(order by beaninfo_id) 
+		select * from(select row_number() over(order by beaninfo_id desc) 
 		as rownum, beaninfo_id, beaninfo_name, beaninfo_content, beaninfo_url
-		from beaninfo order by rownum desc  ) A 
+		from beaninfo) A 
 		where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>;
 	</select>
-	
+
+
+
 
 </mapper>

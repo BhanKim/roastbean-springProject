@@ -1,10 +1,10 @@
 package com.rb.base.service;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
-import com.rb.base.model.BoardDto;
+import org.springframework.ui.Model;
 
 public interface BoardNoticeService {
-	public List<BoardDto> boardnList() throws Exception;
-	public List<BoardDto> bSearch(String b_opt, String keyword) throws Exception;
+	public void boardnList(HttpServletRequest request, Model model) throws Exception;
+	public void bSearch(HttpServletRequest request, Model model) throws Exception;
 }
