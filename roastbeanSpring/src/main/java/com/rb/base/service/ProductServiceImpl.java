@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import com.rb.base.dao.ProductDao;
 import com.rb.base.model.PageInfo;
 import com.rb.base.model.ProductDto;
+import com.rb.base.model.ReviewDto;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -53,6 +54,51 @@ public class ProductServiceImpl implements ProductService {
 		
 		model.addAttribute("page", dto);
 		model.addAttribute("list", dtos);
+	}
+	
+	@Override
+	public void productDetail(HttpServletRequest request, Model model) throws Exception {
+		
+		int product_id = Integer.parseInt(request.getParameter("product_id"));
+		ProductDto detailDto = pDao.productDetail(product_id);
+		
+		int cPage = 0;
+		int pageLength = 5;
+		int totalRows = 0;
+		int rowLength = 10;
+		int rowCount = 0;
+		String tempPage = request.getParameter("page");
+		String category_type = request.getParameter("category_type");
+		totalRows = pDao.reviewRow(product_id);
+		
+		if(category_type == null || category_type.equals("")) {
+			category_type = "%";
+		}
+		
+		if(tempPage == null || tempPage.length()==0) {
+			cPage = 1;
+		}
+		try {
+			cPage = Integer.parseInt(tempPage);
+		} catch (Exception e) {
+			cPage = 1;
+		}
+		
+		rowCount = totalRows - ((cPage - 1) * 10);
+		
+		int start = rowCount - 9;
+		
+		PageInfo pageDto = new PageInfo(cPage, totalRows, rowLength, pageLength);
+		
+		List<ReviewDto> listDto = pDao.reviewList(cPage, product_id, start, rowCount);
+		
+		ReviewDto avgDto = pDao.avgStar(product_id);
+		
+		model.addAttribute("page", pageDto);
+		model.addAttribute("productDetail", detailDto);
+		model.addAttribute("reviewList", listDto);
+		model.addAttribute("reviewAvg", avgDto);
+		
 	}
 	
 }

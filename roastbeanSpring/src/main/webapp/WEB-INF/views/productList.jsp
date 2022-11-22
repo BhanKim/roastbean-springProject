@@ -97,7 +97,7 @@
 				<c:forEach items="${list}" var="dto">
 				<div class="col-lg-4">
 				 <div class="card mb-4 product-wap rounded-0" style="border: 0;">
-					<div class="box" align="center" style="padding: 40px 30px;"><a href="productDetail.do?product_id=${dto.product_id}">
+					<div class="box" align="center" style="padding: 40px 30px;"><a href="productDetail?product_id=${dto.product_id}">
 						<img class="card-img rounded-0 img-fluid" src="assets/img/product/${dto.product_image}"></a>
 						<h5>${dto.product_name}</h5>
 						<p>${dto.product_info}</p>

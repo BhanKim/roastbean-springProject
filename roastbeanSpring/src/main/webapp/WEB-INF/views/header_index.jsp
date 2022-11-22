@@ -71,7 +71,6 @@
 							<li><a href="beans_that_fit_me">Coffee That Suits Me</a></li>
 						</ul>
 					<li class="dropdown"><a href="#COMMUNITY"><span>COMMUNITY</span></a>
-						<ul>
 							<li><a href="boardList">COMMUNITY</a></li>
 							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
 						</ul>
