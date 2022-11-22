@@ -1,5 +1,7 @@
 package com.rb.base.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.rb.base.dao.ManageMainDao;
+import com.rb.base.dao.ManageUserListDao;
 import com.rb.base.model.ManageMainDto;
+import com.rb.base.model.PageInfo;
+import com.rb.base.model.UserDto;
 
 @Service
 public class ManageMainServiceImpl implements ManageMainService {
@@ -15,7 +20,10 @@ public class ManageMainServiceImpl implements ManageMainService {
 	@Autowired
 	ManageMainDao ManageMainDao;
 	
+	@Autowired
+	ManageUserListDao ManageUserListDao;
 	
+	// /////////////////////////////////  Manage Main  /////////////////////////////////
 	//////////////////////// New Community //////////////////////////
 	@Override
 	public void today_sum_community(HttpServletRequest request) throws Exception {
@@ -25,7 +33,6 @@ public class ManageMainServiceImpl implements ManageMainService {
 	@Override
 	public void count_new_users(HttpServletRequest request) throws Exception {
 		request.setAttribute("count_new_users",ManageMainDao.count_new_users(request));
-		
 	}
 
 		
@@ -103,7 +110,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 	}
 
 	
-////////////////////////   1 Month   //////////////////////////
+	////////////////////////   1 Month   //////////////////////////
 	@Override
 	public void monthly_statistics(HttpServletRequest request) throws Exception {
 		request.setAttribute("monthly_statistics", ManageMainDao.monthly_statistics(request));
@@ -111,9 +118,43 @@ public class ManageMainServiceImpl implements ManageMainService {
 
 	
 	
-
+	///////////////////////////////////  manage_userList  ////////////////////////////////////
 	
-	
+	@Override
+	public void userList(HttpServletRequest request, Model model) throws Exception {
+		
+		int cPage = 0;
+		int pageLength = 5;
+		int totalRows = 0;
+		int rowLength = 9;
+		int rowCount = 0;
+		String tempPage = request.getParameter("page");
+		String query = request.getParameter("query");
+		String content = request.getParameter("content");
+		
+		if(query == null || query.equals("")) {
+			query = "%";
+		}
+		
+		if(tempPage == null || tempPage.length()==0) {
+			cPage = 1;
+		}try {
+			cPage = Integer.parseInt(tempPage);
+		} catch (Exception e) {
+			cPage = 1;
+		}
+		
+		int start = (cPage - 1) * rowLength + 1;
+		rowCount = rowLength * cPage;
+		
+		totalRows = ManageUserListDao.userListRow(query,content);
+		PageInfo dto = new PageInfo(cPage, totalRows, rowLength, pageLength);
+		
+		List<UserDto> dtos = ManageUserListDao.userList(cPage, query,content, start, rowCount);
+		
+		model.addAttribute("page", dto);
+		model.addAttribute("manageuserlist", dtos);
+	}
 	
 	
 	

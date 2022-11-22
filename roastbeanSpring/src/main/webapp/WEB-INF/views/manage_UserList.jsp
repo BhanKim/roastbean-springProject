@@ -44,7 +44,8 @@
 </head>
 <body link="black" vlink="black" alink="navy">
 <!-- ======= Header ======= -->
-	<%@include file = "header_manage.jsp" %>
+<%-- 	<%@include file = "header_manage.jsp" %> --%>
+	<%@include file = "header_innerpage.jsp" %>
   <!-- End Header -->
 
   <main id="main">

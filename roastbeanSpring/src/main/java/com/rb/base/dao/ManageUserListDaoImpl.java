@@ -13,12 +13,12 @@ public class ManageUserListDaoImpl implements ManageUserListDao {
 	public static String nameSpace = "com.rb.base.dao.ManageUserListDao";
 	
 	@Override
-	public int userListRow(String query, String category) throws Exception {
+	public int userListRow(String query, String content) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".userListRow");
 	}
 
 	@Override
-	public List<UserDto> userList(int cPage,String category, String query, int start, int rowCount) throws Exception {
+	public List<UserDto> userList(int cPage,String content, String query, int start, int rowCount) throws Exception {
 		return sqlSession.selectList(nameSpace + ".userList");
 	}
 	
