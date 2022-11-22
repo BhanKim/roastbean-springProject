@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
-  <title>Manage_orders_list</title>
+  <title>Manage Main</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -185,25 +185,22 @@
 		<main id="main">
 
 		<!-- ======= Breadcrumbs Section ======= -->
-		 <section class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Error</h2>
-        </div>
-
-      </div>
-    </section><!-- End Breadcrumbs Section -->
-
-		<!--  ---------------------------------- 정보 쓰기란 시작 ---------------------------------- -->
-		<section class="inner-page">
-			<div class="container">
-
-					<h2> 잘못된 접근 입니다.</h2>
-					<a href="index.jsp">메인 화면으로 돌아가기</a>
-
-			</div> 
-		</section>
+			 <section class="breadcrumbs">
+			      <div class="container">
+			        <div class="d-flex justify-content-between align-items-center">
+			          <h2>Error</h2>
+			        </div>
+			      </div>
+		    </section><!-- End Breadcrumbs Section -->
+	
+			<!--  ---------------------------------- 정보 쓰기란 시작 ---------------------------------- -->
+			<section class="inner-page">
+				<div class="container">
+						<h2> 잘못된 접근 입니다.</h2>
+						<a href="index.jsp">메인 화면으로 돌아가기</a>
+				</div> 
+			</section>
+		</main>
 	</c:if>	
 	
 	

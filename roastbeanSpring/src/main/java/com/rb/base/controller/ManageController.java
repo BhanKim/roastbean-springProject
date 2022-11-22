@@ -21,8 +21,8 @@ public class ManageController {
 		
 		service.order_date_sales(request);
 		service.order_week_sales(request);
-		service.order_date_order_quantity_NQP(request);
-		service.order_date_order_price_NQP(request);
+		//service.order_date_order_quantity_NQP(request);
+		//service.order_date_order_price_NQP(request);
 		service.week_order_product_order_price_NQP(request);
 		service.week_order_product_order_quantity_NQP(request);
 		service.monthly_statistics(request);
@@ -35,15 +35,6 @@ public class ManageController {
 		return "ManageMain";
 	}//ManageMain End
 	
-	
-	
-//	//UserList
-//	@RequestMapping("/UserList")
-//	public String UserList(HttpServletRequest request, Model model)throws Exception{
-//		service.userList(request,model);
-//		
-//		return "manage_UserList";
-//	}//UserList
 	
 	//UserList
 	@RequestMapping("/UserList")
