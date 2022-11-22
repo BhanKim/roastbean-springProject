@@ -1,13 +1,17 @@
 package com.rb.base.dao;
 
+import java.util.List;
+
+import com.rb.base.model.NoticeDto;
+
 public interface NoticeDao {
 	
-//	public UserDto userInfoList(String user_id) throws Exception;
-//	
-//	public int userPwCheck(String user_id, String user_pw) throws Exception;
-//	
-//	public void userInfoUpdate(String user_id, String user_nick, String user_telno, String user_email, String user_addresszipcode, String user_address1, String user_address2, String user_address3) throws Exception;
-//
-//	public List<MyOrderListDto> myOrderList(String user_id) throws Exception;
+	public List<NoticeDto> noticeList() throws Exception;
+
+	public void insertAction(String admin_id, String notice_write_title, String notice_write_content) throws Exception;
+
+	public void updateAction(String notice_write_title, String notice_write_content, String notice_write_seq) throws Exception;
+	
+	public void updateActionDelete(String notice_write_seq) throws Exception;
 	
 }
