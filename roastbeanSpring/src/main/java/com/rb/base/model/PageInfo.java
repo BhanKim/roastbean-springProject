@@ -38,6 +38,7 @@ public class PageInfo {
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
+		
 	}
 	
 	public int getTotalCount() {

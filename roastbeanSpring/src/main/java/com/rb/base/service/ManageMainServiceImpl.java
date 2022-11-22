@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 
 import com.rb.base.dao.ManageMainDao;
 import com.rb.base.dao.ManageUserListDao;
+import com.rb.base.model.BoardDto;
 import com.rb.base.model.ManageMainDto;
 import com.rb.base.model.PageInfo;
 import com.rb.base.model.UserDto;
@@ -123,38 +124,42 @@ public class ManageMainServiceImpl implements ManageMainService {
 	@Override
 	public void userList(HttpServletRequest request, Model model) throws Exception {
 		
-		int cPage = 0;
-		int pageLength = 5;
-		int totalRows = 0;
-		int rowLength = 9;
-		int rowCount = 0;
-		String tempPage = request.getParameter("page");
-		String query = request.getParameter("query");
-		String content = request.getParameter("content");
+		int cPage = 0; // 시작페이지
+		int pageLength = 5; // 페이징에 표시될 개수
+		int totalCount = 0; // 총 페이징 수
+		int listCount = 10; // 보여지는 게시글 수 페이지에
+		int rowCount = 0; // 총 게시글 갯수
+		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
 		
-		if(query == null || query.equals("")) {
-			query = "%";
-		}
-		
-		if(tempPage == null || tempPage.length()==0) {
+		if(tempPage == null || tempPage.length() == 0) {
 			cPage = 1;
-		}try {
+		}
+		try {
 			cPage = Integer.parseInt(tempPage);
-		} catch (Exception e) {
+		}catch(Exception e) {
 			cPage = 1;
 		}
 		
-		int start = (cPage - 1) * rowLength + 1;
-		rowCount = rowLength * cPage;
+		totalCount = ManageUserListDao.userListRow();
+		System.out.println("ManageMainServiceImpl totalCount : "+totalCount);
+		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
 		
-		totalRows = ManageUserListDao.userListRow(query,content);
-		PageInfo dto = new PageInfo(cPage, totalRows, rowLength, pageLength);
-		
-		List<UserDto> dtos = ManageUserListDao.userList(cPage, query,content, start, rowCount);
-		
+		rowCount = (totalCount - ((cPage-1)*10));
+			System.out.println("ManageMainServiceImpl rowCount : "+rowCount);
+	
+		int start = rowCount - 9;
+			System.out.println("ManageMainServiceImpl start : "+start);
+		List<UserDto> userList = ManageUserListDao.userList(cPage, start, rowCount);
+			System.out.println("ManageMainServiceImpl dto.getCurPage : "+dto.getCurPage());
+			System.out.println("ManageMainServiceImpl dto.getTotalCount : "+dto.getTotalCount());
+			System.out.println("ManageMainServiceImpl dto.getPageLength : "+dto.getPageLength());
+			System.out.println("ManageMainServiceImpl dto.getEndPage : "+dto.getEndPage());
 		model.addAttribute("page", dto);
-		model.addAttribute("manageuserlist", dtos);
-	}
+		model.addAttribute("manageuserlist", userList);
+		
+		
+		
+	}//userList END
 	
 	
 	
