@@ -8,11 +8,11 @@ import com.rb.base.model.MyOrderListDto;
 import com.rb.base.model.QnaDto;
 import com.rb.base.model.UserDto;
 
-public class MypageDaoImpl implements MypageDao {
+public class UserInfoDaoImpl implements UserInfoDao {
 
 	SqlSession sqlSession;
 
-	public static String nameSpace = "com.rb.base.dao.MypageDao";
+	public static String nameSpace = "com.rb.base.dao.UserInfoDao";
 
 	@Override
 	public UserDto userInfoList(String user_id) throws Exception {
@@ -34,11 +34,6 @@ public class MypageDaoImpl implements MypageDao {
 	@Override
 	public List<MyOrderListDto> myOrderList(String user_id) throws Exception {
 		return sqlSession.selectList(nameSpace + ".myOrderList");
-	}
-
-	@Override
-	public List<QnaDto> qnaList(String user_id) throws Exception {
-		return sqlSession.selectList(nameSpace + ".qnaList");
 	}
 
 }

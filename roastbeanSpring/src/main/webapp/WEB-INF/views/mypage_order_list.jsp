@@ -61,7 +61,7 @@
 			<a class="nav-link scrollto" href="mypage_info_list">My Information</a>
 			<a class="nav-link scrollto" href="mypage_order_list_"><font color="8784D6" style="font-size: 1.2em; font-weight: bold;">My Order List</font></a>
 			<a class="nav-link scrollto" href="myboardlist">My Write</a>
-			<a class="nav-link scrollto" href="mypage_qna_list.do">My QnA</a>
+			<a class="nav-link scrollto" href="mypage_qna_list_">My QnA</a>
 			&emsp;&emsp;&emsp;
 			<ol>
 				<li><a href="index.jsp">Home</a></li>

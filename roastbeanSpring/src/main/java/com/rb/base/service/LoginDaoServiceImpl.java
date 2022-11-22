@@ -39,25 +39,4 @@ public class LoginDaoServiceImpl implements LoginDaoService {
 
 	
 	
-//	HttpSession session = request.getSession(); // *******session
-////	String user_id = request.getParameter("user_id");
-////	String user_pw = request.getParameter("user_pw");
-//
-//	DaoUserLogin dao = new DaoUserLogin();
-//	DtoUserLogin dto = dao.loginCheck(user_id, user_pw);
-//	int checkLogin = dto.getCheck();
-//
-//	if (checkLogin == 1) {
-//		session.setAttribute("ID", user_id);
-//		session.setAttribute("NICK", dto.getUser_nick());
-//		checkLogin = 1;
-//	} else {
-//		checkLogin = 0;
-//	}
-//	request.setAttribute("checkLogin", checkLogin);
-//	
-//	DtoUser dtos = dao.cartCount(user_id);
-//	session.setAttribute("CARTCOUNT", dtos);
-//}
-
 }

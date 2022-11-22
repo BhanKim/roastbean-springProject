@@ -6,7 +6,7 @@ import com.rb.base.model.MyOrderListDto;
 import com.rb.base.model.QnaDto;
 import com.rb.base.model.UserDto;
 
-public interface MypageDao {
+public interface UserInfoDao {
 	
 	public UserDto userInfoList(String user_id) throws Exception;
 	
@@ -16,5 +16,4 @@ public interface MypageDao {
 
 	public List<MyOrderListDto> myOrderList(String user_id) throws Exception;
 	
-	public List<QnaDto> qnaList(String user_id) throws Exception;
 }

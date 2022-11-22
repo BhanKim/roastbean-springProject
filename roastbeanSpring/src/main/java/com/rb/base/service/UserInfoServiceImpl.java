@@ -8,16 +8,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rb.base.dao.MypageDao;
+import com.rb.base.dao.UserInfoDao;
 import com.rb.base.model.MyOrderListDto;
-import com.rb.base.model.QnaDto;
 import com.rb.base.model.UserDto;
 
 @Service
-public class MypageServiceImpl implements MypageService {
+public class UserInfoServiceImpl implements UserInfoService {
 	
 	@Autowired
-	MypageDao dao;
+	UserInfoDao dao;
 
 	@Override
 	public UserDto userInfoList(HttpServletRequest request) throws Exception {
@@ -66,22 +65,6 @@ public class MypageServiceImpl implements MypageService {
 		return dao.myOrderList(user_id);
 	}
 
-	@Override
-	public List<QnaDto> qnaList(HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		String user_id = (String) session.getAttribute("ID");
-		
-		return dao.qnaList(user_id);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

@@ -5,10 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.rb.base.model.MyOrderListDto;
-import com.rb.base.model.QnaDto;
 import com.rb.base.model.UserDto;
 
-public interface MypageService {
+public interface UserInfoService {
 	
 	public UserDto userInfoList(HttpServletRequest request) throws Exception;
 	
@@ -17,7 +16,5 @@ public interface MypageService {
 	public void userInfoUpdate(HttpServletRequest request) throws Exception;
 
 	public List<MyOrderListDto> myOrderList(HttpServletRequest request) throws Exception;
-
-	public List<QnaDto> qnaList(HttpServletRequest request) throws Exception;
 
 }

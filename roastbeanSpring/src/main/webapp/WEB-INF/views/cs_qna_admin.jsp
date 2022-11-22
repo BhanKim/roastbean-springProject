@@ -7,29 +7,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Roast Bean : My QnA List</title>
+  <title>Roast Bean : QnA</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-  <style type="text/css">
-  .form-control3 {
-	  padding: 0.375rem 0.75rem;
-	  font-size: 1rem;
-	  font-weight: 400;
-  	  line-height: 1em;
-  	  text-align-center;
-	  color: #212529;
-	  background-color: #CFD4D9;
-	  background-clip: padding-box;
-	  border: 1px solid #ced4da;
-	  -webkit-appearance: none;
-	  -moz-appearance: none;
-	  appearance: none;
-	  border-radius: 0.375rem;
-	  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-	  height: 32px; 
-	}
-  </style>
-
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -58,13 +38,12 @@
     <section class="breadcrumbs">
       <div class="container">
         <div class="d-flex justify-content-between align-items-center">
-			<a class="nav-link scrollto" href="mypage_info_list">My Information</a>
-			<a class="nav-link scrollto" href="mypage_order_list_">My Order List</a>
-			<a class="nav-link scrollto" href="myboardlist">My Write</a>
-			<a class="nav-link scrollto" href="mypage_qna_list_"><font color="8784D6" style="font-size: 1.2em; font-weight: bold;">My QnA</font></a>
+			<a class="nav-link scrollto" href="notice_list">Notice</a>
+			<a class="nav-link scrollto" href="cs_faq">FAQ</a>
+			<a class="nav-link scrollto" href="qna_list_by_admin"><font color="8784D6" style="font-size: 1.2em; font-weight: bold;">QnA</font></a>
 			&emsp;&emsp;&emsp;
 			<ol>
-				<li><a href="index.jsp">Home</a></li>
+				<li><a href="index">Home</a></li>
 				<li>My page</li>
 			</ol>
         </div>
@@ -73,83 +52,82 @@
     
 	<section class="inner-page">
 		<div class="container">
-				<h3>&nbsp;&nbsp;&nbsp;&nbsp;QnA List</h3>
-				<hr style="border: solid 2px red;">
-				<br>
-				<table class="table table-hover" style="vertical-align: middle;">
-					<thead>
-						<tr align="center">
-							<th style="width: 15%;">문의유형</th>
-							<th style="width: 45%;">제목 / 내용</th>
-							<th style="width: 10%;">문의번호</th>
-							<th style="width: 20%;">작성일 / 수정일</th>
-							<th style="width: 10%;">처리상태</th>
-						</tr>
-					</thead>
-					<c:forEach items="${myQnaList}" var="dto">
-						<c:if test="${dto.qna_write_title != null }">
-							<form action="qna_update_by_user" method="post">
-								<tr style="background-color: #A3A7AB; height: 2"><td colspan="6"></td></tr>
-								<tr align="center">
-									<td>${dto.qna_write_category}</td>
-									<c:choose>
-										<c:when test="${dto.qna_write_comment_content == null }">
-											<td align="left" valign="top">
-												<input type="text" name="qna_write_title" value="${dto.qna_write_title}" size="50%"><br>
-												<textarea rows="4" cols="70%" name="qna_write_content" style="background-color: #F2F1EF">${dto.qna_write_content}</textarea> 
-											</td>
-										</c:when><c:otherwise>
-											<td align="left">
-											제목 : ${dto.qna_write_title}<br>
-											내용 : ${dto.qna_write_content}
-											</td>
-										</c:otherwise>
-									</c:choose>
-									
-									<td>${dto.qna_write_seq}<input type="hidden" name="qna_write_seq" value="${dto.qna_write_seq}"></td>
-									<td align="left">
-										작성일 : ${dto.qna_write_initdate}<br>
-										<c:if test="${dto.qna_write_updatedate != null}">
-										수정일 : ${dto.qna_write_updatedate}
-										</c:if>
-									</td>
-									<c:choose>
-										<c:when test="${dto.qna_write_comment_content == null }">
-										<td valign="middle">답변예정<br><br><input type="submit" value="수정하기" class="btn" style="background-color: #F2BCBB"></td>
-										</c:when><c:otherwise>
-										<td></td>
-										</c:otherwise>
-									</c:choose>
-								</tr>
-								
-								<c:if test="${dto.qna_write_comment_content != null}">
-								<tr align="center" style="background-color: #F2F1EF;">
-									<td align="right" valign="top">ㄴ</td>
-									<td align="left">${dto.qna_write_comment_content}</td>
+			<h3>&nbsp;&nbsp;&nbsp;&nbsp;My QnA List</h3>
+			<hr style="border: solid 2px red;">
+			<br>
+			<div class="col">
+				<div>
+					<table class="table table-hover" style="vertical-align: middle;">
+						<thead>
+							<tr align="center">
+								<th style="width: 8%;">아이디</th>
+								<th style="width: 15%;">문의유형</th>
+								<th style="width: 40%;">제목 / 내용</th>
+								<th style="width: 7%;">문의번호</th>
+								<th style="width: 20%;">작성일 / 수정일</th>
+								<th style="width: 10%;">처리상태</th>
+							</tr>
+						</thead>
+						<c:forEach items="${adminQnaList}" var="dto">
+					 	<form action="qna_answer_by_admin" method="post">
+							<tr style="background-color: #A3A7AB;"><td colspan="6"></td></tr>
+							<tr align="center" >
+								<td>${dto.user_id}</td>
+								<td>${dto.qna_write_category}</td>
+								<td align="left">
+									- 제목 : ${dto.qna_write_title}<br>
+									- 내용 : ${dto.qna_write_content}
+								</td>
+								<td>${dto.qna_write_seq}<input type="hidden" name="qna_write_seq" value="${dto.qna_write_seq}"></td>
+								<td align="left">
+									작성일 : ${dto.qna_write_initdate}<br>
+									<c:if test="${dto.qna_write_updatedate != null}">
+									수정일 : ${dto.qna_write_updatedate}
+									</c:if>
+								</td>
+								<c:choose>
+									<c:when test="${dto.qna_write_comment_content == null }">
 									<td></td>
+									</c:when>
+										<c:otherwise>
+											<td>답변완료</td>
+										</c:otherwise>
+								</c:choose>
+							</tr>
+	
+							<c:if test="${dto.qna_write_comment_content == null || dto.qna_write_comment_content == ''}">
+								<tr align="center" valign="top" style="background-color: #F2F1EF;">
+									<td></td>
+									<td align="right">ㄴ</td>
+									<td align="left" colspan="2">
+										<textarea name="qna_write_comment_content" rows="5" cols="60%" style="background-color: #F2F1EF"></textarea>
+									</td>
+									<td><input type="hidden" name="submit_type" value="insert"></td>
+									<td valign="middle"><input type="submit" value="답변하기" class="btn" style="background-color: #F2BCBB"></td>
+								</tr>
+							</c:if>
+	
+							<c:if test="${dto.qna_write_comment_content != null && dto.qna_write_comment_content != ''}">
+								<tr align="center" style="background-color: #F2F1EF;">
+									<td></td>
+									<td align="right" valign="top">ㄴ</td>
+									<td align="left" colspan="2">
+										<textarea name="qna_write_comment_content" rows="5" cols="60%" style="background-color: #F2F1EF">${dto.qna_write_comment_content}</textarea>
+									</td>
 									<td align="left">
+										<input type="hidden" name="submit_type" value="update">
 										작성일 : ${dto.qna_write_comment_initdate}<br>
 										<c:if test="${dto.qna_write_comment_updatedate != null}">
 										수정일 : ${dto.qna_write_comment_updatedate}
 										</c:if>
 									</td>
-									<c:choose>
-									<c:when test="${dto.qna_write_comment_content == null }">
-									<td>답변예정</td>
-									</c:when><c:otherwise>
-									<td>답변완료</td>
-									</c:otherwise>
-									</c:choose>
+									<td valign="middle"><input type="submit" value="수정하기" class="btn" style="background-color: #A3A7AB"></td>
 								</tr>
-								</c:if>
-							</form>
-							
-						</c:if>
-					</c:forEach>
-				</table>
-					<div align="right">
-						<button class="btn mr-3" type="button" style="background-color: #D0D4D8" onclick="location.href='cs_qna.jsp'">질문하러 가기</button>
-					</div>
+							</c:if>
+						</form>
+						</c:forEach>
+					</table>
+				</div>
 				<%-- ******** 페이징부분 아직 적용안됐음 ******** --%>
 			 	<%-- <div class="container" align="center">
 				<table>
@@ -209,6 +187,7 @@
 				</div> --%>
 				<%-- ******** 페이징부분 아직 적용안됐음 ******** --%>
 			</div>
+		</div>
 	</section>
   </main><!-- End #main -->
 
