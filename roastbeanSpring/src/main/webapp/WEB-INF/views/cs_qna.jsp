@@ -133,7 +133,7 @@
 							</div>
 						</form>
 							<div align="right">
-								<button class="btn" type="button" style="background-color: #D0D4D8" onclick="location.href='mypage_qna_list.do'">질문목록</button>
+								<button class="btn" type="button" style="background-color: #D0D4D8" onclick="location.href='mypage_qna_list_'">질문목록</button>
 							</div>
 					</div>
 					<div class="col-2"></div>

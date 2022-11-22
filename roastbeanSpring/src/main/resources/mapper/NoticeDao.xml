@@ -3,11 +3,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.rb.base.dao.CsDao">
+<mapper namespace="com.rb.base.dao.NoticeDao">
 
-	<insert id="userQuestionInsert">
-		INSERT INTO qna_write (user_id, qna_write_category, qna_write_title, qna_write_content, qna_write_initdate) 
-		VALUES (#{user_id}, #{qna_write_category}, #{qna_write_title}, #{qna_write_content}, now())
-	</insert>
+	<select id="noticeList" resultType="com.rb.base.model.NoticeDto">
+		SELECT @rownum := @rownum + 1 rownumber, notice_write_seq, notice_write_title, notice_write_content, notice_write_initdate, notice_write_updatedate 
+		FROM notice_write 
+		WHERE (@rownum := 0) = 0 and notice_write_deletedate is null 
+	</select>
 	
 </mapper>
