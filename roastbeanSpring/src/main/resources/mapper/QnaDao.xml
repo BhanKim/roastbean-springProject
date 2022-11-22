@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rb.base.dao.CsDao">
+
+	<!-- Mypage/ User의 QnA 전체 리스트 검색 -->
+	<select id="qnaList" resultType="com.rb.base.model.QnaDto">
+		SELECT qw.qna_write_category, qw.qna_write_title, qw.qna_write_seq, qw.qna_write_initdate, qw.qna_write_updatedate, 
+			qw.qna_write_content, qwc.qna_write_comment_content, qwc.qna_write_comment_initdate, qwc.qna_write_comment_updatedate 
+		FROM qna_write qw left join qna_write_comment qwc on qw.qna_write_seq = qwc.qna_write_comment_seq 
+		WHERE qw.user_id = #{user_id} order by qw.qna_write_seq desc
+	</select>
+	
+	<!-- Cs/ User의 QnA Question Insert -->
+	<insert id="userQuestionInsert">
+		INSERT INTO qna_write (user_id, qna_write_category, qna_write_title, qna_write_content, qna_write_initdate) 
+		VALUES (#{user_id}, #{qna_write_category}, #{qna_write_title}, #{qna_write_content}, now())
+	</insert>
+	
+	<!-- Mypage/ User의 QnA Question Update -->
+	<update id="userQuestionUpdate">
+		UPDATE qna_write set qna_write_title = #{qna_write_title}, qna_write_content = #{qna_write_content}, qna_write_updatedate = now() 
+		WHERE qna_write_seq = #{qna_write_seq}
+	</update>
+	
+	<!-- Cs/ 관리자의 QnA 전체 리스트 검색 -->
+	<select id="qnaListAdmin">
+		SELECT qw.user_id, qw.qna_write_category, qw.qna_write_title, qw.qna_write_seq, qw.qna_write_initdate, qw.qna_write_updatedate, qw.qna_write_content, 
+			qwc.qna_write_comment_seq, qwc.qna_write_comment_content, qwc.qna_write_comment_initdate, qwc.qna_write_comment_updatedate 
+		FROM qna_write qw 
+		LEFT JOIN qna_write_comment qwc 
+		ON qw.qna_write_seq = qwc.qna_write_seq 
+		ORDER BY qw.qna_write_seq desc, qwc.qna_write_comment_seq asc
+	</select>
+	
+	<!-- Cs/ Admin의 QnA Answer Insert -->
+	<insert id="adminAnswerInsert">
+		INSERT INTO qna_write_comment (admin_id, qna_write_seq, qna_write_comment_content, qna_write_comment_initdate) 
+		VALUES (#{admin_id},#{qna_write_seq},#{qna_write_comment_content},now())
+	</insert>
+	
+	<!-- Cs/ User의 QnA Answer Update -->
+	<update id="adminAnswerUpdate">
+		UPDATE qna_write_comment set qna_write_comment_content = #{qna_write_comment_content}, qna_write_comment_updatedate = now() 
+		WHERE qna_write_seq = #{qna_write_seq}
+	</update>
+	
+</mapper>

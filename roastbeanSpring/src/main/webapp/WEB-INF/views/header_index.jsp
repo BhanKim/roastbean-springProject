@@ -50,11 +50,11 @@
 						</ul>
 					<li><a class="nav-link scrollto" href="beaninfo">BEAN INFORMATION</a></li>
 					<li><a class="nav-link scrollto" href="productList">COFFEE SHOP</a></li>
-					<li class="dropdown"><a href="notice_list.do"><span>CUSTOMER SERVICE</span></a>
+					<li class="dropdown"><a href="notice_list"><span>CUSTOMER SERVICE</span></a>
 						<ul>
-							<li><a href="notice_list.do">NOTICE</a></li>
-							<li><a href="cs_faq.jsp">FAQ</a></li>
-							<li><a href="qna_question_by_user.do">QnA</a></li>
+							<li><a href="notice_list">NOTICE</a></li>
+							<li><a href="cs_faq">FAQ</a></li>
+							<li><a href="qna_question_by_user">QnA</a></li>
 						</ul>
 					<li>&emsp;&emsp;</li>
 					<li><a class="nav-link scrollto" href="login"><font color="#F2BCBB" style="font-size: 1.1em">Get Started</font></a></li>
@@ -79,11 +79,11 @@
 					<li><a class="nav-link scrollto" href="productList">COFFEE SHOP</a></li>
 					
 					<c:if test="${ID != 'admin'}">
-						<li class="dropdown"><a href="notice_list.do"><span>CUSTOMER SERVICE</span></a>
+						<li class="dropdown"><a href="notice_list"><span>CUSTOMER SERVICE</span></a>
 							<ul>
-								<li><a href="notice_list.do">NOTICE</a></li>
-								<li><a href="cs_faq.jsp">FAQ</a></li>
-								<li><a href="qna_question_by_user.do">QnA</a></li>
+								<li><a href="notice_list">NOTICE</a></li>
+								<li><a href="cs_faq">FAQ</a></li>
+								<li><a href="qna_question_by_user">QnA</a></li>
 							</ul>
 						</li>
 						<li>&emsp;&emsp;</li>
@@ -91,11 +91,11 @@
 						<li><a href="cartOrder"><i class="fa badge2 fa-lg" value="${CARTCOUNT.cartCount}" style="font-size: 1.5em">&#xf07a;</i></a></li>
 					</c:if>
 					<c:if test="${ID == 'admin'}">
-						<li class="dropdown"><a href="notice_list.do"><span>CUSTOMER SERVICE</span></a>
+						<li class="dropdown"><a href="notice_list"><span>CUSTOMER SERVICE</span></a>
 							<ul>
-								<li><a href="notice_list.do">NOTICE</a></li>
-								<li><a href="cs_faq.jsp">FAQ</a></li>
-								<li><a href="qna_list_by_admin.do">QnA</a></li>
+								<li><a href="notice_list">NOTICE</a></li>
+								<li><a href="cs_faq">FAQ</a></li>
+								<li><a href="qna_list_by_admin">QnA</a></li>
 							</ul>
 						</li>
 						<li>&emsp;&emsp;</li>

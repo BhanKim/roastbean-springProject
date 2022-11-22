@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rb.base.dao.ManageUserListDao">
+		
+	<select id="userList" resultType="com.rb.base.model.UserDto">
+		select * from ( select row_number() over(order by user_id)
+		as rownum, user_id, user_name, user_birthday, user_gender, user_email, user_telno
+		from `user` )a 
+		where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>
+	</select>
+	
+	<select id="userListRow" resultType="Integer">
+		select count(*) as usertotalCount from user where user_id != 'admin' and user_deletedate is null and #{query} like #{content}
+	</select>
+	
+
+</mapper>
+
+ 

@@ -14,7 +14,16 @@
 	</select>
 	
 	<update id="userInfoUpdate">
-		UPDATE user set user_nick = #{user_nick}, user_telno = #{user_telno}, user_email = #{user_email}, user_addresszipcode = #{user_addresszipcode}, user_address1 = #{user_address1}, user_address2 = #{user_address2}, user_address3 = #{user_address3}, user_updatedate = now() where user_id = #{user_id}
+		UPDATE user set user_nick = #{user_nick}, user_telno = #{user_telno}, user_email = #{user_email}, user_addresszipcode = #{user_addresszipcode}, 
+			user_address1 = #{user_address1}, user_address2 = #{user_address2}, user_address3 = #{user_address3}, user_updatedate = now() 
+		WHERE user_id = #{user_id}
 	</update>
+	
+	<select id="myOrderList" resultType="com.rb.base.model.MyOrderListDto">
+		SELECT p.product_id, p.product_image, p.product_name, p.product_weight, o.order_seq, o.order_date, o.order_price, o.order_qty 
+		FROM user u, product p, orders o  
+		WHERE u.user_id = #{user_id} and u.user_id = o.user_id and p.product_id = o.product_id 
+		group by o.order_seq, p.product_id, o.order_date, o.order_price, o.order_qty
+	</select>
 	
 </mapper>

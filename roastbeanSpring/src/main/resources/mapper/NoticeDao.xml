@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rb.base.dao.CsDao">
+
+	<insert id="userQuestionInsert">
+		INSERT INTO qna_write (user_id, qna_write_category, qna_write_title, qna_write_content, qna_write_initdate) 
+		VALUES (#{user_id}, #{qna_write_category}, #{qna_write_title}, #{qna_write_content}, now())
+	</insert>
+	
+</mapper>

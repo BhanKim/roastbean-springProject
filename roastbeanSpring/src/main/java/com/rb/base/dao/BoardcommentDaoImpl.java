@@ -20,4 +20,25 @@ public class BoardcommentDaoImpl implements BoardcommentDao {
 		return sqlSession.selectList(nameSpace + ".cList");
 	}
 
+
+	@Override
+	public void coWrite(String community_id, String community_comment_name, String community_comment_content)
+			throws Exception {
+		sqlSession.insert(nameSpace+".coWrite");
+	}
+
+
+	@Override
+	public void coModify(String community_comment_content, String community_comment_cono) throws Exception {
+		sqlSession.update(nameSpace+".coModify");
+		
+	}
+
+
+	@Override
+	public void coDelete(String community_comment_cono) throws Exception {
+		sqlSession.delete(nameSpace+".coDelete");
+		
+	}
+
 }

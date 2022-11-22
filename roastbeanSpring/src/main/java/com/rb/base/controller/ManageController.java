@@ -4,16 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.rb.base.service.AdminMainService;
+import com.rb.base.service.ManageMainService;
 
 @Controller
-public class AdminController {
+public class ManageController {
 	
 	@Autowired
-	AdminMainService service;
-	
+	ManageMainService service;
 	
 	// AdminMain 
 	@RequestMapping("/ManageMain")
@@ -33,10 +33,17 @@ public class AdminController {
 		service.today_sum_community(request);
 		
 		return "ManageMain";
+	}//ManageMain End
 	
-	}
 	
 	
+	//UserList
+	@RequestMapping("/UserList")
+	public String UserList(HttpServletRequest request, Model model)throws Exception{
+		service.userList(request,model);
+		
+		return "manage_UserList";
+	}//UserList
 	
 	
 }//class end 

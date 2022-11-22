@@ -5,7 +5,7 @@
 
 <mapper namespace="com.rb.base.dao.BoardcommentDao">
 		
-		<!-- comment list select -->
+		<!-- comment list select --> <!-- 댓글 보기 -->
 		<select id="cList" resultType="com.rb.base.model.BoardcommentDto">
 		 	SELECT co.community_comment_cono, co.community_id, co.community_comment_name ,u.user_nick, co.community_comment_content, co.community_comment_codate 
 			FROM community_comment as co, community as c, `user` as u 
@@ -14,7 +14,20 @@
 		<!-- select * from community_comment where community_id = ${community_id} -->
 		</select>
 		
+		<insert id="coWrite"><!-- 댓글 작성하기 -->
+		 	insert into community_comment 
+		 	(community_id, community_comment_name, community_comment_content, community_comment_codate)
+			values (#{community_id }, #{community_comment_name} , #{community_comment_content} , now());
+		</insert>
+	
+		<update id="coModify"><!-- 댓글 수정하기 -->
+			update community_comment set community_comment_content = #{community_comment_content}
+			where community_comment_cono = #{community_comment_cono};
+		</update>
 		
-	
-	
+		<delete id="coDelete"><!-- 댓글 삭제하기 -->
+			delete from community_comment where community_comment_cono= #{community_comment_cono};
+		
+		</delete>
+		
 </mapper>
