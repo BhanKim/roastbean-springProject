@@ -14,4 +14,7 @@ public interface BoardDao {
 	public void modify(String community_title, String community_content, int community_id)throws Exception;
 	public void upHit(int community_id)throws Exception;
 	public void like(int community_id)throws Exception;
+	public BoardDto reply_view(int community_id)throws Exception;
+	public void reply(String community_name, String community_title, String community_content, int community_group, int community_step, int community_indent) throws Exception;
+	public void replyshape(int community_group, int community_step) throws Exception;
 }

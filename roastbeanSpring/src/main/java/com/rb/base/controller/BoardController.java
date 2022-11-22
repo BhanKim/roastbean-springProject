@@ -78,6 +78,20 @@ public class BoardController {
 		return "redirect:content_view";
 	}
 	
+	// 답글작성페이지
+	@RequestMapping("/reply_view")
+	public String reply_view(HttpServletRequest request, Model model)throws Exception{
+		service.reply_view(request, model);
+		return "cboardreply_view";
+	}
+	
+	// 답글기능
+	@RequestMapping("/reply")
+	public String reply(HttpServletRequest request) throws Exception{
+		service.reply(request);
+//		service.replyshape(request);
+		return "redirect:boardList";
+	}
 
 	
 } // End

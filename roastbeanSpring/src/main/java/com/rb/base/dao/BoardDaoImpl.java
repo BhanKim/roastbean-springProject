@@ -69,5 +69,23 @@ public class BoardDaoImpl implements BoardDao {
 		sqlSession.update(nameSpace + ".like");
 	}
 
+	@Override
+	public BoardDto reply_view(int community_id) throws Exception {
+		// TODO Auto-generated method stub
+		return (BoardDto) sqlSession.selectList(nameSpace + ".reply_view");	}
+
+	@Override
+	public void reply(String community_name, String community_title, String community_content, int community_group,
+			int community_step, int community_indent) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".reply");
+	}
+
+	@Override
+	public void replyshape(int community_group, int community_step) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".replyshape");
+	}
+
 
 }
