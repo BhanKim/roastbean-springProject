@@ -6,28 +6,54 @@
 <mapper namespace="com.rb.base.dao.BoardNoticeDao">
 	
 	<select id="boardnList" resultType="com.rb.base.model.BoardDto">
-		
-	select * from community as c, `user` as u where community_name = 'admin' 
-	and c.community_name = u.user_id and community_deletedate is null
-	order by community_initdate desc
+		select * from community as c, `user` as u where community_name = 'admin' 
+		and c.community_name = u.user_id and community_deletedate is null
+		order by community_initdate desc;
 	</select>
 	
 	<select id="bSearch" resultType="com.rb.base.model.BoardDto">
 		<choose>
 	<when test="b_opt=='community_title'">
-	select * from community where ${b_opt} like #{keyword} order by community_initdate desc;
+		select * from  (select row_number() over(order by community_group, community_indent desc)
+		as rownum, community_id, u.user_nick, community_title, community_content, 
+		community_initdate, community_updatedate, community_deletedate,
+		community_hit, community_group, community_step, community_indent, community_cnt
+		from community as c, `user` as u 
+		where  u.user_id = c.community_name and community_deletedate is null and community_name != 'admin' 
+		order by community_group desc, community_indent asc)A
+		where ${b_opt} like #{keyword};
 	</when>
 	<when test="b_opt=='community_content'">
-	select * from community where ${b_opt} like #{keyword} order by community_initdate desc;
+		select * from  (select row_number() over(order by community_group, community_indent desc)
+		as rownum, community_id, u.user_nick, community_title, community_content, 
+		community_initdate, community_updatedate, community_deletedate,
+		community_hit, community_group, community_step, community_indent, community_cnt
+		from community as c, `user` as u 
+		where  u.user_id = c.community_name and community_deletedate is null and community_name != 'admin' 
+		order by community_group desc, community_indent asc)A
+		where ${b_opt} like #{keyword};
 	</when>
 	<when test="b_opt=='community_name'">
-<!-- 	select * from community where ${b_opt} like #{keyword} order by community_initdate desc; -->
-	select * from community as c, `user` as u where ${b_opt}=u.user_id and u.user_nick like #{keyword};
+		select * from (select row_number() over(order by community_group, community_indent desc)
+		as rownum, community_id, u.user_nick, community_title, community_content, 
+		community_initdate, community_updatedate, community_deletedate,
+		community_hit, community_group, community_step, community_indent, community_cnt
+		from community as c, `user` as u
+		where u.user_id = c.${b_opt} and community_deletedate is null and community_name != 'admin'  and u.user_nick like #{keyword}
+		order by community_group desc, community_indent asc )A
+		group by rownum order by rownum desc;
 	</when>
 	<otherwise>
-		select * from community where community_title like #{keyword} or 
-		community_content like #{keyword} order by community_initdate desc;
+		select * from (select row_number() over(order by community_group, community_indent desc)
+		as rownum, community_id, u.user_nick, community_title, community_content, 
+		community_initdate, community_updatedate, community_deletedate,
+		community_hit, community_group, community_step, community_indent, community_cnt
+		from community as c, `user` as u where community_deletedate is null and community_name != 'admin' 
+		and u.user_id = c.community_name order by community_group desc, community_indent asc)A
+		where community_title like #{keyword} or 
+		community_content like #{keyword} group by community_id;
 	</otherwise>
 		</choose>
 	</select>
+	
 </mapper>

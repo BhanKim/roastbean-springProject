@@ -217,10 +217,10 @@
 				<!-- Paging End -->
 					<form action="bSearch" method="post" style="text-align:center;">
 					<select name="b_opt">
-						<option value="1">제목+내용</option>
-						<option value="2">제목</option>
-						<option value="3">내용</option>
-						<option value="4">작성자</option>
+						<option value="all">제목+내용</option>
+						<option value="community_title">제목</option>
+						<option value="community_content">내용</option>
+						<option value="community_name">작성자</option>
 					</select>&nbsp;
 					<input type="text" name="keyword" size="20">&nbsp;
 					<input type="submit" class="btn" value="검색" style="background: #F2BCBB; border: 0; padding:3px 12px; color: #fff; transition: 0.4s; border-radius: 50px;">
