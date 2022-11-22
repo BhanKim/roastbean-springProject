@@ -35,7 +35,7 @@
 		<div class="container text-center">
 			<div style="height: 100px;"></div>
 			<div align="center">
-				<a href="index.jsp"><img alt="" src="assets/img/logo.png" width="320" height="68"></a>
+				<a href="index"><img alt="" src="assets/img/logo.png" width="320" height="68"></a>
 			</div>
 			<div style="height: 40px;"></div>
 			<div class="row align-items-center">
@@ -43,7 +43,7 @@
 				<div class="col align-items-center">
 					<div class="col"
 						style="border-style: solid; border-radius: 12px; border-width: thin; border-color: #CFD4D9; padding: 40px;">
-						<form action="login.do" method="post">
+						<form action="login_action" method="post">
 							<div class="col" style="width: 380px;">
 								<!-- API 로그인 Start -->
 								<div class="col mb-3" id="google-button"></div><!-- ***** -->
@@ -81,7 +81,7 @@
 						</div>
 						<div class="mb-3">
 							<div>
-								No account? <a a href="signup.jsp" tabindex="-1"
+								No account? <a a href="signup" tabindex="-1"
 									style="color: #5464F9;">Create one</a>
 							</div>
 						</div>

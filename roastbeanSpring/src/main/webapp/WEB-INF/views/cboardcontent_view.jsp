@@ -74,10 +74,10 @@
 											class="btn" style="background: #A3A7AB; border: 0; padding:2px 10px; color: #fff;"> 답글</a>
 									</c:when>
 									<c:otherwise>
-										<a href="login.jsp" class="btn btn-success"
+										<a href="login" class="btn btn-success"
 											style="background: #F2BCBB; border: 0; padding:2px 10px; color: #fff; transition: 0.4s; border-radius: 50px; ">로그인하고 글쓰기</a>
 									</c:otherwise>
-								</c:choose> <c:if test="${NICK == content_view.community_name }">
+								</c:choose> <c:if test="${ID == content_view.community_name }">
 									<a
 										href="modify_view?community_id=${content_view.community_id }"
 										class="btn" style="background: #A3A7AB; border: 0; padding:2px 10px; color: #fff;"> 수정</a>
@@ -110,7 +110,7 @@
 								<td width="150">${dto.community_comment_name }</td>
 								<td style="text-align: left">&nbsp;${dto.community_comment_content }</td>
 								<td width="100"><c:if
-										test="${NICK == dto.community_comment_name }">
+										test="${ID == dto.community_comment_name }">
 										<form id="coModifySet" style="display: block;">
 											<input type="button" class="btn btn-primary mb-1" value="수정" onclick="coModifyOn()" class="btn" style="background: #F2BCBB; border: 0; padding:2px 10px; color: #fff; transition: 0.4s; border-radius: 50px;">
 										</form>

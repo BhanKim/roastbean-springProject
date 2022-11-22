@@ -1,10 +1,12 @@
 package com.rb.base.service;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
-import com.rb.base.model.BeanInfoDto;
+import org.springframework.ui.Model;
 
 public interface BeanInfoService {
 	
-	public List<BeanInfoDto> beaninfo() throws Exception;
+//	public List<BeanInfoDto> beaninfo() throws Exception;
+	
+	public void excute(HttpServletRequest request, Model model)throws Exception;
 }

@@ -1,11 +1,17 @@
 package com.rb.base.service;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import com.rb.base.model.BoardDto;
+import org.springframework.ui.Model;
 
 public interface BoardService {
-	public List<BoardDto> boardList() throws Exception;
-	public BoardDto contentView(int community_id) throws Exception;
+	public void boardList(Model model) throws Exception;
+	public void contentView(HttpServletRequest request, Model model) throws Exception;
+	void boardwrite(HttpSession session, HttpServletRequest request) throws Exception;
+	public void cList(Model model, HttpServletRequest request)throws Exception;
+	public void communitydelete(HttpServletRequest request)throws Exception;
+	public void modify_view(HttpServletRequest request, Model model)throws Exception;
+	public void modify(HttpServletRequest request)throws Exception;
 
 }

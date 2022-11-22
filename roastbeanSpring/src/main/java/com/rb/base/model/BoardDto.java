@@ -1,7 +1,7 @@
 package com.rb.base.model;
 
 public class BoardDto {
-	
+		
 	// F
 	int rownum;
 	int community_id;
@@ -18,7 +18,7 @@ public class BoardDto {
 	int community_cnt;
 	
 	public BoardDto() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	// ALL select
 	
@@ -184,9 +184,6 @@ public class BoardDto {
 	public void setCommunity_cnt(int community_cnt) {
 		this.community_cnt = community_cnt;
 	}
-
-
-
 
 	
 } // End

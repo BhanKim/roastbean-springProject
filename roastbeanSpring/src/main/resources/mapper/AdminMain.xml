@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rb.base.dao.AdminMainDao">
+		
+		
+		
+		<!-- /////////////// NEW  Community  /////////////// -->	
+	 <select id="today_sum_community" resultType="String">	
+		select count(community_initdate) as today_sum_community from community WHERE DATE_FORMAT (community_initdate, '%Y-%m-%d') = curdate();
+	</select>
+	
+	
+	 
+	<!-- /////////////// QNA /////////////// -->
+	
+	<!-- 당일 들어온 Qna 문의수량 구하기  -->
+	<select id="todayNewQNA" resultType="String">
+		select count(qna_write_initdate) as todayNewQNA from qna_write where DATE_FORMAT(qna_write_initdate, '%Y-%m-%d') = curdate();
+	</select> 
+	<!-- CPOUNT totalQNA  -->
+	<select id="totalQNA" resultType="String">
+		select count(*) as totalQNA from qna_write; 
+	</select> 
+	<!-- done answer QNA  -->
+	<select id="doneanswerQNA" resultType="String">
+		select count(*) as doneanswerQNA from qna_write_comment; 
+	</select> 
+	
+	
+	<!-- /////////////// 신규유저 가입 수 /////////////// -->
+	<select id="count_new_users" resultType="String">
+		select count(user_initdate) as count_new_users from user where user_initdate=curdate();
+	</select>
+	
+	
+	<!-- /////////////// 1day /////////////// -->
+		
+	<!-- 오늘 하루 총 판매 금액 -->	
+	<select id="order_date_sales" resultType="String">
+		select sum(order_price) as order_date_sales from orders WHERE DATE_FORMAT (order_date, '%Y-%m-%d') = curdate();
+	</select> 
+		
+	<!-- 오늘 많이 팔린 상품이름, 가격, 갯수  -->	
+	<select id="order_date_order_quantity_NQP" resultType="com.rb.base.model.ManageMainDto">
+		select p.product_name, sum(o.order_qty) as order_qty, sum(o.order_price) as order_price from orders o, product p where p.product_id = o.product_id and order_date=curdate() group by product_name order by order_qty desc limit 1;
+	</select>
+	
+		
+	<!-- 오늘 높은 매출 상품이름, 가격, 갯수  -->
+	<select id="order_date_order_price_NQP" resultType="com.rb.base.model.ManageMainDto">
+		select p.product_name, sum(o.order_qty) as order_qty, sum(o.order_price) as order_price from orders o, product p where p.product_id = o.product_id and order_date=curdate() group by product_name order by order_price desc limit 1;
+	</select>
+		
+		
+		
+	<!-- /////////////// 1week /////////////// -->
+	
+	<!-- 오늘로부터 1주일간 총 판매 금액 -->
+	<select id="order_week_sales" resultType="String">
+		select sum(order_price) as order_week_sales from orders WHERE order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate();
+	</select>
+		
+	<!-- 오늘부터 7일전까지 많은 매출을 낸  상품이름, 가격, 갯수 --> 		
+	<select id="week_order_product_order_price_NQP" resultType="com.rb.base.model.ManageMainDto">
+		select p.product_name ,sum(o.order_qty) as order_qty , sum(o.order_price) as order_price from orders o, product p
+		where p.product_id=o.product_id and o.order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate() group by p.product_name order by order_price desc limit 1; 
+	</select>
+	
+	<!-- 오늘부터 7일전까지 많이 팔린 상품이름, 가격, 갯수 --> 
+	<select id="week_order_product_order_quantity_NQP" resultType="com.rb.base.model.ManageMainDto">
+		select p.product_name ,sum(o.order_qty) as order_qty , sum(o.order_price) as order_price from orders o, product p 
+		where p.product_id=o.product_id and o.order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate() group by p.product_name order by order_qty desc limit 1;
+	</select>
+
+		<!-- /////////////// 1 Month /////////////// -->
+	
+	<!-- 한달 매출 -->
+	<select id="monthly_statistics" resultType="String">
+		select sum(`order_price`) as monthly_statistics FROM orders where order_date >= date_add(now(), interval -1 month) ;
+	</select>
+	
+	
+	
+		<!-- /////////////// All /////////////// -->
+	
+	<!-- 전체 매출액 -->
+	<select id="total_sales" resultType="String">
+		select sum(`order_price`) as total_sales FROM orders ;
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+</mapper>

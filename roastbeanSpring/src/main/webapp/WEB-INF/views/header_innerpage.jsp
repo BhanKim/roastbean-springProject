@@ -57,7 +57,7 @@
 							<li><a href="qna_question_by_user.do">QnA</a></li>
 						</ul>
 					<li>&emsp;&emsp;</li>
-					<li><a class="nav-link scrollto" href="login.jsp"><font color="#F2BCBB" style="font-size: 1.1em">Get Started</font></a></li>
+					<li><a class="nav-link scrollto" href="login"><font color="#F2BCBB" style="font-size: 1.1em">Get Started</font></a></li>
 				</ul>
 			</c:if>	
 			
@@ -72,7 +72,7 @@
 						</ul>
 					<li class="dropdown"><a href="#COMMUNITY"><span>COMMUNITY</span></a>
 						<ul>
-							<li><a href="list.do?page=1">COMMUNITY</a></li>
+							<li><a href="boardList">COMMUNITY</a></li>
 							<li><a href="boardnList">COMMUNITY NOTICE</a></li>
 						</ul>
 					<li><a class="nav-link scrollto" href="beaninfo">BEAN INFORMATION</a></li>
@@ -87,7 +87,7 @@
 							</ul>
 						</li>
 						<li>&emsp;&emsp;</li>
-						<li><a class="nav-link scrollto" href="mypage_info.do"><font color="#F2BCBB" style="font-size: 0.9em">${NICK}님</font></a></li>
+						<li><a class="nav-link scrollto" href="mypage_info_list"><font color="#F2BCBB" style="font-size: 0.9em">${NICK}님</font></a></li>
 						<li><a href="cartOrder.do"><i class="fa badge2 fa-lg" value="${CARTCOUNT.cartCount}" style="font-size: 1.5em">&#xf07a;</i></a></li>
 					</c:if>
 					<c:if test="${ID == 'admin'}">
@@ -99,16 +99,16 @@
 							</ul>
 						</li>
 						<li>&emsp;&emsp;</li>
-						<li><a class="nav-link scrollto" href="mypage_info.do"><font color="#F2BCBB" style="font-size: 0.9em">${NICK}님</font></a></li>
-						<li><a class="nav-link scrollto" href="ManageMain.do"><font color="#F2BCBB" style="font-size: 0.9em">Manage</font></a></li>
+						<li><a class="nav-link scrollto" href="mypage_info_list"><font color="#F2BCBB" style="font-size: 0.9em">${NICK}님</font></a></li>
+						<li><a class="nav-link scrollto" href="ManageMain"><font color="#F2BCBB" style="font-size: 0.9em">Manage</font></a></li>
 					</c:if>
 					
 					<c:choose>
 						<c:when test="${API eq null}">
-							<li><a class="nav-link scrollto" href="logout.do"><font style="font-size: 0.9em">Logout</font></a></li>
+							<li><a class="nav-link scrollto" href="logout_action"><font style="font-size: 0.9em">Logout</font></a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a class="nav-link scrollto" href="logout.do" onclick="signOut()"><font style="font-size: 0.9em">Logout</font></a></li>
+							<li><a class="nav-link scrollto" href="logout_action" onclick="signOut()"><font style="font-size: 0.9em">Logout</font></a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>

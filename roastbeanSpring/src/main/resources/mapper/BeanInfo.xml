@@ -5,9 +5,18 @@
 
 <mapper namespace="com.rb.base.dao.BeanInfoDao">
 	
-	<select id="beaninfo" resultType="com.rb.base.model.BeanInfoDto">
+	<select id="beaninfolistrow" resultType="Integer"><!-- 게시물의 수를 지정해줌. -->
 	
-	SELECT * FROM roastbean.beaninfo;
+	select count(*) from beaninfo;
 	
 	</select>
+	
+	<select id="beaninfogetlist" resultType="com.rb.base.model.BeanInfoDto"><!-- 게시물의 수와 번호를 지정해줌 -->
+		select * from(select row_number() over(order by beaninfo_id) 
+		as rownum, beaninfo_id, beaninfo_name, beaninfo_content, beaninfo_url
+		from beaninfo order by rownum desc  ) A 
+		where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>;
+	</select>
+	
+
 </mapper>

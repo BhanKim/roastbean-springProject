@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.rb.base.model.BeanInfoDto;
+import com.rb.base.model.BeanInfoPagingDto;
 
 public class BeanInfoDaoImpl implements BeanInfoDao {
 
@@ -13,9 +14,16 @@ public class BeanInfoDaoImpl implements BeanInfoDao {
 	public static String nameSpace="com.rb.base.dao.BeanInfoDao";
 	
 	@Override
-	public List<BeanInfoDto> beaninfo() throws Exception {
+	public int beaninfolistrow() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(nameSpace+".beaninfo");
+		return sqlSession.selectOne(nameSpace+".beaninfolistrow");
+	}
+
+
+	@Override
+	public List<BeanInfoDto> beaninfogetlist(int cPage, int rowLength,int start) throws Exception {
+		
+		return sqlSession.selectList(nameSpace+".beaninfogetlist");
 	}
 
 }

@@ -27,4 +27,30 @@ public class BoardDaoImpl implements BoardDao {
 		return (BoardDto) sqlSession.selectList(nameSpace + ".contentView");
 	}
 
+	@Override
+	public void boardwrite(String community_name, String community_title, String community_content) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(nameSpace + ".boardwrite");
+	}
+
+	@Override
+	public void communitydelete(int community_id) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".communitydelete");
+	}
+
+	@Override
+	public BoardDto modify_view(int community_id) throws Exception {
+		// TODO Auto-generated method stub
+		return (BoardDto) sqlSession.selectList(nameSpace+ ".modify_view");
+	}
+
+	@Override
+	public void modify(String community_title, String community_content, int community_id) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(nameSpace + ".modify");
+		
+	}
+
+
 }
