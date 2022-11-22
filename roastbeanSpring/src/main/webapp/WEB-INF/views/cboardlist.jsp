@@ -83,20 +83,20 @@
 					<tbody>
 					
 						<!-- 공지사항  -->
-						<!-- 
+						
 						<c:forEach items="${nList }" var="dto">
 						<tr>
 							<td id="left" colspan="2">&nbsp;
 								<span class="badge badge badge-danger">&nbsp;&nbsp;공지&nbsp;&nbsp;</span>
-								<a href="content_view.do?community_id=${dto.community_id }" style="color: #000000;">&nbsp;&nbsp;${dto.community_title }</a>
+								<a href="content_view?community_id=${dto.community_id }" style="color: #000000;">&nbsp;&nbsp;${dto.community_title }</a>
 							</td>
-							<td id="left" style="text-align: center;">${dto.community_name }</td>
+							<td id="left" style="text-align: center;">${dto.user_nick }</td>
 							<td style="text-align: center;">${dto.community_initdate }</td>
 							<td style="text-align: center;">${dto.community_hit }</td>
 							<td style="text-align: center;">${dto.community_cnt }</td>
 						</tr>
 						</c:forEach>
-						 -->
+						 
 						
 						
 						<c:forEach items="${boardList }" var="dto">				

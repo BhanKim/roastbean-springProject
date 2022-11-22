@@ -109,7 +109,7 @@
 								<td width=70 style="text-align: center;">${dto.rownum }</td>				
 								<td id="left">
 									<c:forEach begin="1" end="${dto.community_indent}">&nbsp;└ </c:forEach>
-									<a href="content_view.do?community_id=${dto.community_id }" style="color: #000000;">${dto.community_title }</a></td>
+									<a href="content_view?community_id=${dto.community_id }" style="color: #000000;">${dto.community_title }</a></td>
 								<td style="text-align: center;">
 									<c:choose>
 									<c:when test ="${dto.community_updatedate eq null }">
@@ -126,65 +126,84 @@
 							
 						</tr>
 						</c:forEach>
-						<tr></tr>
-						
-						<tr>
-						<td align="center" colspan="6">
-						<c:choose>
-							<c:when test="${(page.curPage - 1) < 1 }">
-								[ 처음 ]
-							</c:when>
-							<c:otherwise>
-								<a href="myboardlist.do?page=1&pages=<%=request.getParameter("pages") %>">[ 처음 ]</a>
-							</c:otherwise>
-							</c:choose>
-							<!-- 이전 -->
-							<c:choose>
-							<c:when test="${(page.curPage - 1) < 1 }">
-								[ 이전 ]
-							</c:when>
-							<c:otherwise>
-								<a href="myboardlist.do?page=${page.curPage - 1 }&pages=<%=request.getParameter("pages") %>">[ 이전 ]</a>
-							</c:otherwise>
-							</c:choose>
-							
-							<!-- 개별 페이지 -->
-							<c:forEach var="fEach" begin="${page.startPage }" end="${page.endPage }" step="1">
-								<c:choose>
-								<c:when test="${page.curPage == fEach}">
-									[ ${fEach } ] &nbsp;
-								</c:when>
-								<c:otherwise>
-									<a href="myboardlist.do?page=${fEach }&pages=<%=request.getParameter("pages") %>">[ ${fEach } ]</a>&nbsp;
-								</c:otherwise>
-								</c:choose>
-							</c:forEach>
-							
-							<!-- 다음 -->
-							<c:choose>
-							<c:when test="${(page.curPage + 1) > page.totalPage }">
-								[ 다음 ]
-							</c:when>
-							<c:otherwise>
-								<a href="myboardlist.do?page=${page.curPage + 1 }&pages=<%=request.getParameter("pages") %>">[ 다음 ]</a>
-							</c:otherwise>
-							</c:choose>
-							<!-- 끝 -->
-							<c:choose>
-							<c:when test="${page.curPage == page.totalPage }">
-								[ 마지막 ]
-							</c:when>
-							<c:otherwise>
-								<a href="myboardlist.do?page=${page.totalPage }&pages=<%=request.getParameter("pages") %>">[ 마지막 ]</a>
-							</c:otherwise>
-							</c:choose>
-							</td>
-						</tr>
 					</tbody>	
 				</table><br>
 				</div>
 			</div>
-	  </div>
+	  </div><br>
+	  
+	  				<!-- Paging -->
+			<div class="container" align="center">
+               <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-center">
+                     <c:choose>
+                        <c:when test="${(page.curPage - 1) < 1 }">
+                           <li class="page-item disabled"><a class="page-link">처음</a>
+                           </li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="page-item"><a class="page-link"
+                              href="myboardlist?page=1">처음</a>
+                           </li>
+                        </c:otherwise>
+                     </c:choose>
+                     <!-- 이전 -->
+                     <c:choose>
+                        <c:when test="${(page.curPage - 1) < 1 }">
+                           <li class="page-item disabled"><a class="page-link">이전</a>
+                           </li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="page-item"><a class="page-link"
+                              href="myboardlist?page=${page.curPage - 1 }">이전</a>
+                           </li>
+                        </c:otherwise>
+                     </c:choose>
+                     <!-- 개별 페이지 -->
+                     <c:forEach var="fEach" begin="${page.startPage }"
+                        end="${page.endPage }" step="1">
+                        <c:choose>
+                           <c:when test="${page.curPage == fEach}">
+                              <li class="page-item disabled"><a class="page-link active">&nbsp;${fEach }&nbsp;</a>
+                              </li>
+                           </c:when>
+                           <c:otherwise>
+                              <li class="page-item"><a class="page-link"
+                                 href="myboardlist?page=${fEach}">&nbsp;${fEach }&nbsp;</a>
+                              </li>
+                           </c:otherwise>
+                        </c:choose>
+                     </c:forEach>
+
+                     <!-- 다음 -->
+                     <c:choose>
+                        <c:when test="${(page.curPage + 1) > page.totalPage }">
+                           <li class="page-item disabled"><a class="page-link">다음</a>
+                           </li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="page-item"><a class="page-link"
+                              href="myboardlist?page=${page.curPage + 1 }">다음</a>
+                           </li>
+                        </c:otherwise>
+                     </c:choose>
+                     <!-- 끝 -->
+                     <c:choose>
+                        <c:when test="${page.curPage == page.totalPage }">
+                           <li class="page-item disabled"><a class="page-link">마지막</a>
+                           </li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="page-item"><a class="page-link"
+                              href="myboardlist?page=${page.totalPage }">마지막</a>
+                           </li>
+                        </c:otherwise>
+                     </c:choose>
+                  </ul>
+               </nav>
+            </div>
+	  
+	  
 	  
 	  <br><br>
 	  
@@ -235,7 +254,7 @@
 								[ 처음 ]
 							</c:when>
 							<c:otherwise>
-								<a href="myboardlist.do?page=<%=request.getParameter("page") %>&pages=1">[ 처음 ]</a>
+								<a href="myboardlist?page=<%=request.getParameter("page") %>&pages=1">[ 처음 ]</a>
 							</c:otherwise>
 							</c:choose>
 							<!-- 이전 -->
@@ -244,7 +263,7 @@
 								[ 이전 ]
 							</c:when>
 							<c:otherwise>
-								<a href="myboardlist.do?page=<%=request.getParameter("page") %>&pages=${pages.curPage - 1 }">[ 이전 ]</a>
+								<a href="myboardlist?page=<%=request.getParameter("page") %>&pages=${pages.curPage - 1 }">[ 이전 ]</a>
 							</c:otherwise>
 							</c:choose>
 							
@@ -255,7 +274,7 @@
 									[ ${fEach } ] &nbsp;
 								</c:when>
 								<c:otherwise>
-									<a href="myboardlist.do?page=<%=request.getParameter("page") %>&pages=${fEach }">[ ${fEach } ]</a>&nbsp;
+									<a href="myboardlist?page=<%=request.getParameter("page") %>&pages=${fEach }">[ ${fEach } ]</a>&nbsp;
 								</c:otherwise>
 								</c:choose>
 							</c:forEach>
@@ -266,7 +285,7 @@
 								[ 다음 ]
 							</c:when>
 							<c:otherwise>
-								<a href="myboardlist.do?page=<%=request.getParameter("page") %>&pages=${pages.curPage + 1 }">[ 다음 ]</a>
+								<a href="myboardlist?page=<%=request.getParameter("page") %>&pages=${pages.curPage + 1 }">[ 다음 ]</a>
 							</c:otherwise>
 							</c:choose>
 							<!-- 끝 -->
@@ -275,7 +294,7 @@
 								[ 마지막 ]
 							</c:when>
 							<c:otherwise>
-								<a href="myboardlist.do?page=<%=request.getParameter("page") %>&pages=${pages.totalPage }">[ 마지막 ]</a>
+								<a href="myboardlist?page=<%=request.getParameter("page") %>&pages=${pages.totalPage }">[ 마지막 ]</a>
 							</c:otherwise>
 							</c:choose>
 							</td>

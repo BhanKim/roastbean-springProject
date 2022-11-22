@@ -17,5 +17,7 @@ public interface BoardService {
 	public void like(HttpServletRequest request, RedirectAttributes attributes)throws Exception;
 	public void reply_view(HttpServletRequest request, Model model)throws Exception;
 	public void reply(HttpServletRequest request) throws Exception;
+	public void nList(HttpServletRequest request, Model model) throws Exception;
+	public void myboardlist(HttpServletRequest request, Model model) throws Exception;
 //	public void replyshape(HttpServletRequest request) throws Exception;
 }

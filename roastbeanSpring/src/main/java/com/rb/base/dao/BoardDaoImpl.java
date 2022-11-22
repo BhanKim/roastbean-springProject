@@ -87,5 +87,23 @@ public class BoardDaoImpl implements BoardDao {
 		sqlSession.update(nameSpace + ".replyshape");
 	}
 
+	@Override
+	public List<BoardDto> nList() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".nList");
+	}
+
+	@Override
+	public int myboardlistrow(String community_name) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace + ".myboardlistrow");
+	}
+
+	@Override
+	public List<BoardDto> myboardlist(int cPage, int start, int rowCount, String community_name) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(nameSpace + ".myboardlist");
+	}
+
 
 }

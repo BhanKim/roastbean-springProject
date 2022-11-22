@@ -156,6 +156,47 @@ public class BoardServiceImpl implements BoardService {
 		boarddao.replyshape(community_indent1, community_step1);
 	}
 
+	@Override
+	public void nList(HttpServletRequest request, Model model) throws Exception {
+		// TODO Auto-generated method stub
+		List<BoardDto> nList = boarddao.nList();
+		model.addAttribute("nList", nList);
+	}
+
+	@Override
+	public void myboardlist(HttpServletRequest request, Model model) throws Exception {
+		// TODO Auto-generated method stub
+		int cPage = 0; // 시작페이지
+		int pageLength = 5; // 페이징에 표시될 개수
+		int totalCount = 0; // 총 페이징 수
+		int listCount = 10; // 보여지는 게시글 수 페이지에
+		int rowCount = 0; // 총 게시글 갯수
+		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
+		String community_name = (String) session.getAttribute("ID");
+		
+		if(tempPage == null || tempPage.length() == 0) {
+			cPage = 1;
+		}
+		try {
+			cPage = Integer.parseInt(tempPage);
+		}catch(Exception e) {
+			cPage = 1;
+		}
+		
+		totalCount = boarddao.myboardlistrow(community_name);
+		System.out.println(totalCount);
+		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
+		
+		rowCount = (totalCount -((cPage-1)*10));
+		int start = rowCount - 9;
+		System.out.println(rowCount);
+		System.out.println(start);
+		System.out.println(cPage);
+		List<BoardDto> myboardList = boarddao.myboardlist(cPage, start, rowCount, community_name);
+		model.addAttribute("page", dto);
+		model.addAttribute("myboardlist", myboardList);
+	}
+
 	// 답글정렬구분메소드
 //	@Override
 //	public void replyshape(HttpServletRequest request) throws Exception {

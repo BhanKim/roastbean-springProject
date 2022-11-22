@@ -25,6 +25,7 @@ public class BoardController {
 	@RequestMapping("/boardList")
 	public String boardList(HttpServletRequest request, Model model)throws Exception{
 		service.boardList(request, model);
+		service.nList(request, model);
 		return "cboardlist";
 	}
 	
@@ -92,6 +93,13 @@ public class BoardController {
 //		service.replyshape(request);
 		return "redirect:boardList";
 	}
-
+	
+	// myboardlist
+	@RequestMapping("/myboardlist")
+	public String myboardlist(HttpServletRequest request, Model model) throws Exception{
+		service.myboardlist(request, model);
+		return "cboardmylist";
+	}
+	
 	
 } // End

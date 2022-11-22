@@ -17,4 +17,7 @@ public interface BoardDao {
 	public BoardDto reply_view(int community_id)throws Exception;
 	public void reply(String community_name, String community_title, String community_content, int community_group, int community_step, int community_indent) throws Exception;
 	public void replyshape(int community_group, int community_step) throws Exception;
+	public List<BoardDto> nList() throws Exception;
+	public int myboardlistrow(String community_name)throws Exception;
+	public List<BoardDto> myboardlist(int cPage, int start, int rowCount, String community_name) throws Exception;
 }
