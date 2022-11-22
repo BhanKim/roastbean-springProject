@@ -13,7 +13,6 @@ public interface ManageMainDao {// service가 아는 녀석
 	
 	
 	// QNA
-	
 	public Integer todayNewQNA(HttpServletRequest request) throws Exception; // 신규 QNA 수 
 	public Integer totalQNA(HttpServletRequest request) throws Exception; // 총 QNA 수 
 	public Integer doneanswerQNA(HttpServletRequest request) throws Exception; // 답변 완료된 QNA 수

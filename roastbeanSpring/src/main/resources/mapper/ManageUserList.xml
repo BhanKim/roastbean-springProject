@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="userListRow" resultType="Integer">
-		select count(*) as usertotalCount from user where user_id != 'admin' and user_deletedate is null and #{category} like #{query}
+		select count(*) as usertotalCount from user where user_id != 'admin' and user_deletedate is null and #{query} like #{content}
 	</select>
 	
 

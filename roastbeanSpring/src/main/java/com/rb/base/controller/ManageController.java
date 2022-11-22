@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rb.base.service.ManageMainService;
-import com.rb.base.service.ManageUserListService;
 
 @Controller
 public class ManageController {
@@ -38,13 +37,13 @@ public class ManageController {
 	
 	
 	
-//	//UserList
-//	@RequestMapping("/UserList")
-//	public String UserList(HttpServletRequest request, Model model)throws Exception{
-//		service.userList(request,model);
-//		
-//		return "manage_UserList";
-//	}//UserList
+	//UserList
+	@RequestMapping("/UserList")
+	public String UserList(HttpServletRequest request, Model model)throws Exception{
+		service.userList(request,model);
+		
+		return "manage_UserList";
+	}//UserList
 	
 	
 }//class end 
