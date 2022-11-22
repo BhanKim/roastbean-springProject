@@ -134,7 +134,7 @@
 									<a href="boardwrite_view" class="btn" style="background: #F2BCBB; border: 0; padding:2px 10px; color: #fff; transition: 0.4s; border-radius: 50px;">글쓰기</a>
 								</c:when>
 								<c:otherwise>
-									<a href="login.jsp" class="btn" style="background: #F2BCBB; border: 0; padding:2px 10px; color: #fff; transition: 0.4s; border-radius: 50px; ">로그인하고 글쓰기</a>
+									<a href="login" class="btn" style="background: #F2BCBB; border: 0; padding:2px 10px; color: #fff; transition: 0.4s; border-radius: 50px; ">로그인하고 글쓰기</a>
 								</c:otherwise>
 							</c:choose>
 							</td>

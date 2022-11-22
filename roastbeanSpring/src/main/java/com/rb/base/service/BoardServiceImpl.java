@@ -131,6 +131,39 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	// 답글작성페이지
+	@Override
+	public void reply_view(HttpServletRequest request, Model model) throws Exception {
+		// TODO Auto-generated method stub
+		BoardDto reply_view = boarddao.reply_view(Integer.parseInt(request.getParameter("community_id")));
+		model.addAttribute("reply_view",reply_view);
+	}
+	
+	// 답글작성
+	@Override
+	public void reply(HttpServletRequest request) throws Exception {
+		// TODO Auto-generated method stub
+		String community_name = (String) session.getAttribute("ID");
+		String community_title = request.getParameter("community_title");
+		String community_content = request.getParameter("community_content");
+		int community_group = Integer.parseInt(request.getParameter("community_group"));
+		int community_step = Integer.parseInt(request.getParameter("community_step"));
+		int community_indent = Integer.parseInt(request.getParameter("community_indent"));
+		boarddao.reply(community_name, community_title, community_content, community_group, community_step, community_indent);
+		
+		int community_step1 = Integer.parseInt(request.getParameter("community_step"));
+		int community_indent1 = Integer.parseInt(request.getParameter("community_indent"));
+		boarddao.replyshape(community_indent1, community_step1);
+	}
+
+	// 답글정렬구분메소드
+//	@Override
+//	public void replyshape(HttpServletRequest request) throws Exception {
+//		// TODO Auto-generated method stub
+//
+//		
+//	}
+
 
 
 

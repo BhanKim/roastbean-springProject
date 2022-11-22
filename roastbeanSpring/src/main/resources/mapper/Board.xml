@@ -57,5 +57,25 @@
 		<update id="like">
 			update community set community_cnt = community_cnt + 1 where community_id = #{community_id}
 		</update>
+		
+		<!-- 답글보기 -->
+		<select id="reply_view" resultType="com.rb.base.model.BoardDto">
+			SELECT * FROM community as c, `user` as u where c.community_name = u.user_id and community_id = #{community_id}
+		</select>
+		
+		<!-- 답글작성 -->
+		<insert id="reply">
+			insert into community (community_name, community_title, community_content, community_group, community_step, community_indent, community_initdate, community_hit, community_cnt)
+			values(#{community_name}, #{community_title}, #{community_content}, #{community_group}, #{community_step}+1, #{community_indent}+1, now(), 0, 0)
+		</insert>
+		
+		<!-- 답글구분 -->
+		<update id="replyshape">
+			update community set community_step = community_step + 1 where community_group = #{community_group} and community_step = #{community_step}
+		</update>
+	
+	
+	
+	
 	
 </mapper>
