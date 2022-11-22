@@ -69,7 +69,7 @@
 	function buySubmit() {
 		var buyFrom = document.cartForm
 		if(${ID == null}) {
-			buyFrom.action = 'login.jsp'
+			buyFrom.action = 'login'
 			alert('로그인을 먼저 해주세요.')
 			buyFrom.submit()
 		} else {
@@ -84,7 +84,7 @@
 	function buyCart() {
 		var buyFrom = document.cartForm
 		if(${ID == null}) {
-			buyFrom.action = 'login.jsp'
+			buyFrom.action = 'login'
 			alert('로그인을 먼저 해주세요.')
 			buyFrom.submit()
 		} else {
@@ -92,7 +92,7 @@
 				alert('재고가 없습니다.')
 			} else {
 				alert('장바구니에 추가되었습니다.')
-				buyFrom.action = 'insertCart?product_id=<%=request.getParameter("product_id")%>'
+				buyFrom.action = 'insertCart'
 				buyFrom.submit()
 			}
 		}
@@ -112,7 +112,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Coffee Shop</h2>
           <ol>
-            <li><a href="index.jsp">Home</a></li>
+            <li><a href="index">Home</a></li>
             <li>Coffee Shop</li>
           </ol>
         </div>

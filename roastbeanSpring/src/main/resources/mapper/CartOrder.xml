@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+						
+<mapper namespace="com.rb.base.dao.CartOrderDao">
+
+	<insert id="insertCart">
+		insert into cart (product_id, user_id, cart_qty, cart_date) values (#{product_id}, #{user_id}, #{cart_qty}, now())
+	</insert>
+	
+	<select id="selectCart" resultType="com.rb.base.model.CartDto">
+		select u.user_id, p.product_id, sum(c.cart_qty), p.product_name, sum(p.product_price), p.product_price, p.product_weight, p.product_image
+		from product as p, user as u, cart as c
+		where p.product_id = c.product_id and c.user_id = u.user_id and u.user_id = #{user_id}
+		group by u.user_id, p.product_id, p.product_name, p.product_price, p.product_weight, p.product_image
+	</select>
+
+	<delete id="deleteCart">
+		delete from cart where product_id = #{product_id} and user_id = #{user_id}
+	</delete>
+	
+	<select id="selectCartUserInfo" resultType="com.rb.base.model.UserDto">
+		select user_name, user_addresszipcode, user_address1, user_address2, user_address3,
+		SUBSTRING_INDEX(user_email, '@', 1) as user_email1, SUBSTRING_INDEX(user_email, '@', -1) as user_email2,
+		left(user_telno, 3) as user_telno1, substring(user_telno, 4,4) as user_telno2, right(user_telno, 4) as user_telno3
+		from user where user_id = #{user_id}
+	</select>
+	
+	<insert id="insertOrder">
+		insert into orders (product_id, user_id, order_qty, order_price, order_date)
+		select p.product_id, #{user_id}, sum(c.cart_qty), (p.product_price * sum(c.cart_qty)), now()
+		from product as p, cart as c
+		where p.product_id = c.product_id and c.user_id = #{user_id}
+		group by p.product_id, p.product_name, p.product_price, c.cart_qty, #{user_id}
+	</insert>
+	
+	<update id="updateOrder">
+		update orders set order_telno = #{order_telno}, order_addresszipcode = #{order_addresszipcode}, 
+						  order_address1 = #{order_address1}, order_address2 = #{order_address2}, order_address3 = #{order_address3}, 
+						  order_email = #{order_email}, order_name = #{order_name}
+		where user_id = #{user_id} and order_addresszipcode is null
+	</update>
+	
+	<delete id="deleteCartOrder">
+		delete from cart where user_id = #{user_id}
+	</delete>
+	
+	<select id="cartCount" resultType="com.rb.base.model.UserDto">
+		SELECT IFNULL(sum(cart_qty), 0) as cartCount from cart where user_id = #{user_id}
+	</select>
+	
+</mapper>

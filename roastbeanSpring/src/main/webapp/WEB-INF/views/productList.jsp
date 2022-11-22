@@ -63,7 +63,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Coffee Shop</h2>
           <ol>
-            <li><a href="index.jsp">Home</a></li>
+            <li><a href="index">Home</a></li>
             <li>Coffee Shop</li>
           </ol>
         </div>
