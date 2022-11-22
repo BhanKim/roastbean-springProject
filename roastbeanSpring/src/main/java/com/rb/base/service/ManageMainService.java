@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 
 import com.rb.base.model.ManageMainDto;
 
-public interface AdminMainService { // controller 가 아는 녀석 
+public interface ManageMainService { // controller 가 아는 녀석 
 	
 	
 	//New Users
