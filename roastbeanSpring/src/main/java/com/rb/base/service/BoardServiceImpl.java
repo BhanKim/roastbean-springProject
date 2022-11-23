@@ -184,14 +184,10 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		totalCount = boarddao.myboardlistrow(community_name);
-		System.out.println(totalCount);
 		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
 		
 		rowCount = (totalCount -((cPage-1)*10));
 		int start = rowCount - 9;
-		System.out.println(rowCount);
-		System.out.println(start);
-		System.out.println(cPage);
 		List<BoardDto> myboardList = boarddao.myboardlist(cPage, start, rowCount, community_name);
 		model.addAttribute("page", dto);
 		model.addAttribute("myboardlist", myboardList);
