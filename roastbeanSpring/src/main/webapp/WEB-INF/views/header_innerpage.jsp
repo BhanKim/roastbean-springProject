@@ -88,7 +88,7 @@
 						</li>
 						<li>&emsp;&emsp;</li>
 						<li><a class="nav-link scrollto" href="mypage_info_list"><font color="#F2BCBB" style="font-size: 0.9em">${NICK}님</font></a></li>
-						<li><a href="cartOrder.do"><i class="fa badge2 fa-lg" value="${CARTCOUNT.cartCount}" style="font-size: 1.5em">&#xf07a;</i></a></li>
+						<li><a href="cartOrder"><i class="fa badge2 fa-lg" value="${CARTCOUNT.cartCount}" style="font-size: 1.5em">&#xf07a;</i></a></li>
 					</c:if>
 					<c:if test="${ID == 'admin'}">
 						<li class="dropdown"><a href="notice_list"><span>CUSTOMER SERVICE</span></a>

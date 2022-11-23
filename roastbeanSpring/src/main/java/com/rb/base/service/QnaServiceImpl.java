@@ -103,6 +103,17 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public void adminAnswerInsert(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
+		
+		String page = request.getParameter("page");
+		String query = request.getParameter("query");
+		String content = request.getParameter("content");
+		
+		System.out.println(query);
+		System.out.println(content);
+		
+		request.setAttribute("page", page);
+		request.setAttribute("query", query);
+		request.setAttribute("content", content);
 
 		String admin_id = (String) session.getAttribute("ADMIN");
 		String submit_type = request.getParameter("submit_type");
