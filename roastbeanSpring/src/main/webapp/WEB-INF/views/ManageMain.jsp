@@ -89,9 +89,13 @@
 									<tr>
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='mpList'">PRODUCT LIST</td>	
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='manage_chart.jsp'">CHART'<준비중>'</td>
-									<!-- </tr>
-									<tr>	 -->
+									</tr>
+									<tr>
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='ManageOrdersList'">ORDERS LIST</td>
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='UserList?page=1'">USER LIST</td>
+									</tr>
+									<tr>
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href=' # ''">미 정</td>
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='notice_lis'">NOTICE</td>
 									</tr>
 								</thead>
