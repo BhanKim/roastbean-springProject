@@ -24,4 +24,10 @@ public class MProductController {
 		service.mpList(request, model);
 		return "mproductlist";
 	}
+	
+	@RequestMapping("/mproductdetail")
+	public String Mproductdetail(HttpServletRequest request, Model model)throws Exception{
+		service.mproductdetail(request, model);
+		return "mproductdetail";
+	}
 }

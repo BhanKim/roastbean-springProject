@@ -19,4 +19,11 @@
 	order by product_id desc
 	</select>
 
+
+	<select id="mproductdetail" resultType="com.rb.base.model.ProductDto">
+		select product_id, product_name, product_weight, product_info, product_price, product_stock, product_image 
+		from product where product_id = #{product_id}
+	</select>
+	
+	
 </mapper>

@@ -50,5 +50,16 @@ public class MProductServiceImpl implements MProductService {
 		model.addAttribute("mpList", mpList);
 		
 	}
+	
+	@Override
+	public void mproductdetail(HttpServletRequest request, Model model) throws Exception {
+		
+		int product_id=Integer.parseInt(request.getParameter("product_id"));
+		ProductDto detaildto=mproductdao.mproductdetail(product_id);//dto에 product_id를 넣어주기
+		
+		model.addAttribute("mproductdetail",detaildto);
+		
+		
+	}
 
 }

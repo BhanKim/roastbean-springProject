@@ -24,4 +24,10 @@ public class MProductDaoImpl implements MProductDao {
 		return sqlSession.selectList(nameSpace + ".mpList");
 	}
 
+	
+	@Override
+	public ProductDto mproductdetail(int product_id) throws Exception {
+		// TODO Auto-generated method stub
+		return (ProductDto)sqlSession.selectList(nameSpace+".mproductdetail");
+	}
 }

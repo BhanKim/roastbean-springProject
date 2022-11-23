@@ -6,5 +6,7 @@ import org.springframework.ui.Model;
 
 public interface MProductService {
 	public void mpList(HttpServletRequest request, Model model) throws Exception;
+	
+	public void mproductdetail(HttpServletRequest request, Model model)throws Exception;
 
 }
