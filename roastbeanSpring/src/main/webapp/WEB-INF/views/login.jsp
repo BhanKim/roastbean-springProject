@@ -76,7 +76,7 @@
 							</div>
 						</form>
 						<div class="mb-3">
-							<a a href="find_pw.jsp" tabindex="-1" style="color: #5464F9;">Forgot
+							<a a href="find_pw" tabindex="-1" style="color: #5464F9;">Forgot
 								password?</a>
 						</div>
 						<div class="mb-3">

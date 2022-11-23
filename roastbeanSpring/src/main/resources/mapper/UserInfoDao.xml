@@ -32,4 +32,5 @@
 		select count(*) as totalCount from orders where user_id = #{user_id}
 	</select>
 	
+	
 </mapper>
