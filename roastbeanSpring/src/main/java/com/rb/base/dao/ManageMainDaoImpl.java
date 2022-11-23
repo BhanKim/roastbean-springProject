@@ -1,5 +1,7 @@
 package com.rb.base.dao;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -69,6 +71,11 @@ public class ManageMainDaoImpl implements ManageMainDao {
 	@Override
 	public Integer today_sum_community(HttpServletRequest request) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".ManageMain");
+	}
+
+	@Override
+	public List<ManageMainDto> week_data(HttpServletRequest request) throws Exception {
+		return sqlSession.selectList(nameSpace + ".ManageMain");
 	}
 
 

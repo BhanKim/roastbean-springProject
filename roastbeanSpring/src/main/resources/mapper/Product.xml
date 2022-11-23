@@ -23,4 +23,20 @@
 		from product where product_id = #{product_id}
 	</select>
 	
+	<!-- Review -->
+	<select id="reviewList" resultType="com.rb.base.model.ReviewDto">
+		select * from (select row_number() over(order by review_seq asc)
+        as rownum, r.review_seq, r.review_content, u.user_nick, r.review_date, r.review_star 
+        from review as r, user as u where r.user_id = u.user_id and r.product_id = #{product_id}) A 
+        where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]> order by rownum desc
+	</select>
+	
+	<select id="reviewRow" resultType="Integer">
+		select count(*) as totalCount from review where product_id = #{product_id}
+	</select>
+	
+	<select id="avgStar" resultType="com.rb.base.model.ReviewDto">
+		select sum(review_star) as sumStar, count(review_star) as sumReview from review where product_id = #{product_id}
+	</select>
+	
 </mapper>

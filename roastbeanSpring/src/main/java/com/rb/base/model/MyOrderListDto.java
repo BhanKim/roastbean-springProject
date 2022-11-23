@@ -10,14 +10,17 @@ public class MyOrderListDto {
 	String order_date;
 	int order_price;
 	int order_qty;
+	int order_reviewcheck;
+	int rownum;
 	
 	public MyOrderListDto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public MyOrderListDto(int product_id, int order_seq, String product_image, String product_name, int product_weight,
-			String order_date, int order_price, int order_qty) {
+	public MyOrderListDto(int rownum, int product_id, int order_seq, String product_image, String product_name, int product_weight,
+			String order_date, int order_price, int order_qty, int order_reviewcheck) {
 		super();
+		this.rownum = rownum;
 		this.product_id = product_id;
 		this.order_seq = order_seq;
 		this.product_image = product_image;
@@ -26,6 +29,7 @@ public class MyOrderListDto {
 		this.order_date = order_date;
 		this.order_price = order_price;
 		this.order_qty = order_qty;
+		this.order_reviewcheck = order_reviewcheck;
 	}
 
 	public int getProduct_id() {
@@ -91,6 +95,23 @@ public class MyOrderListDto {
 	public void setOrder_qty(int order_qty) {
 		this.order_qty = order_qty;
 	}
+
+	public int getOrder_reviewcheck() {
+		return order_reviewcheck;
+	}
+
+	public void setOrder_reviewcheck(int order_reviewcheck) {
+		this.order_reviewcheck = order_reviewcheck;
+	}
+
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
+	
 	
 
 }

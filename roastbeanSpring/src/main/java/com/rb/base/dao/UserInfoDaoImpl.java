@@ -32,8 +32,12 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	}
 
 	@Override
-	public List<MyOrderListDto> myOrderList(String user_id) throws Exception {
+	public List<MyOrderListDto> myOrderList(String user_id, int start, int rowCount) throws Exception {
 		return sqlSession.selectList(nameSpace + ".myOrderList");
 	}
-
+	
+	@Override
+	public int myOrderRow(String user_id) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".myOrderRow");
+	}
 }

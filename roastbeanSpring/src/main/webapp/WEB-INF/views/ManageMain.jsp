@@ -89,9 +89,13 @@
 									<tr>
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='mpList'">PRODUCT LIST</td>	
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='manage_chart.jsp'">CHART'<준비중>'</td>
-									<!-- </tr>
-									<tr>	 -->
+									</tr>
+									<tr>
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='ManageOrdersList'">ORDERS LIST</td>
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='UserList?page=1'">USER LIST</td>
+									</tr>
+									<tr>
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href=' # ''">미 정</td>
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='notice_lis'">NOTICE</td>
 									</tr>
 								</thead>
@@ -152,6 +156,12 @@
 											 <br>답장을 기다리고 있는 Qna : ${totalQNA-doneanswerQNA}
 										</td>
 									</tr>
+									  <c:forEach items="${weekList}" var="dto">
+									<tr>
+										<td>${dto.order_date }</td>
+										<td>판매량 : ${dto.order_qty }/ 매출금액 : ${dto.order_price }</td>
+									</tr>
+									</c:forEach>
 									<%-- <tr>
 										<td colspan="2">
 											<table>	

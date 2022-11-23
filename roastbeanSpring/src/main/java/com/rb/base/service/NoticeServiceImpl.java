@@ -43,7 +43,7 @@ public class NoticeServiceImpl implements NoticeService {
 		if(btnType.equals("수정")) {
 			dao.updateAction(notice_write_title, notice_write_content, notice_write_seq);
 		}else {
-			dao.updateActionDelete(notice_write_seq);
+			dao.updateActionDelete(notice_write_seq); // deletedate 추가 update
 		}
 
 	}

@@ -1,5 +1,6 @@
 package com.rb.base.service;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.rb.base.dao.MProductDao;
 import com.rb.base.model.PageInfo;
@@ -62,45 +64,57 @@ public class MProductServiceImpl implements MProductService {
 		
 		
 	}
+
+	
+
 	@Override
-	public void mproductdetailupdate(HttpServletRequest request, Model model) throws Exception {
-		
-		int product_id=Integer.parseInt(request.getParameter("product_id"));
-		ProductDto detaildtos=mproductdao.mproductdetailupdate(product_id);//dto에 product_id를 넣어주기
-		model.addAttribute("mproductdetailupdate",detaildtos);
-		
+	public void insertcategory(HttpServletRequest request) throws Exception {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mproductdetailupdateinsert(HttpServletRequest request, RedirectAttributes attributes) throws Exception {
+	public void insertproduct(MultipartHttpServletRequest request, MultipartFile file) throws Exception {
+		// TODO Auto-generated method stub
+		String pimage = "";
+		String pid ="";
 		
-		int product_id=Integer.parseInt(request.getParameter("product_id"));
-		String product_name=request.getParameter("product_name");
-		int product_weight=Integer.parseInt(request.getParameter("product_weight"));
-		String product_info=request.getParameter("product_info");
-		int product_price=Integer.parseInt(request.getParameter("product_price"));
-		int product_stock=Integer.parseInt(request.getParameter("product_stock"));
-		String product_image=request.getParameter("product_image");
-		String category_type=request.getParameter("category_type");
-		String category_acidity=request.getParameter("category_acidity");
-		String category_aroma=request.getParameter("category_aroma");
-		String category_body=request.getParameter("category_body");
-		String category_sweet=request.getParameter("category_sweet");
-		
-		attributes.addAttribute("product_id",product_id);
-		mproductdao.mproductdetailupdateinsert(product_id,product_name,product_weight,product_info,
-				product_price,product_stock,product_image,category_type,category_acidity,
-				category_aroma, category_body, category_sweet);
+		// 파일 저장하는 방법
+		// 패스 지정
+		if (!(file == null)) {
+			String path = System.getProperty("user.dir") + "//src//main//webapp//assets//img//product";
+			// 파일을 pid로 만들기 위한 기초 단계
+			pid = request.getParameter("product_name");
+			// 확장자 가져오기
+			String originalName = file.getOriginalFilename();
+			String extension = originalName.substring(originalName.indexOf("."), originalName.length());
+			// 파일 이름 만들기
+			pimage = pid + extension;
+			// path에 "name"으로 saveFile을 만들 빈 껍데기를 생성.
+			File saveFile = new File(path, pimage);
+			// file을 savefile과 path로 지어서 넣기
+			file.transferTo(saveFile);
+			
+			String product_name = request.getParameter("product_name");
+			int product_weight = Integer.parseInt(request.getParameter("product_weight"));
+			String product_info = request.getParameter("product_info");
+			int product_price = Integer.parseInt(request.getParameter("product_price"));
+			int product_stock = Integer.parseInt(request.getParameter("product_stock"));
+			
+			mproductdao.insertproduct(product_name, product_weight, product_info, pimage, product_price, product_stock);
+			
+			int product_id = mproductdao.maxproduct_id();
+			String category_type = request.getParameter("category_type");
+			String category_acidity = request.getParameter("category_acidity");
+			String category_body = request.getParameter("String category_body");
+			String category_aroma = request.getParameter("category_aroma");
+			String category_sweet = request.getParameter("category_sweet");
+			
+			mproductdao.insertcategory(category_type, product_id, category_acidity, category_body, category_aroma, category_sweet);
+			
+		}
 		
 	}
 
-	@Override
-	public void mproductdetaildelete(HttpServletRequest request) throws Exception {
-		
-		int product_id=Integer.parseInt(request.getParameter("product_id"));
-//		attributes.addAttribute("product_id",product_id);
-		mproductdao.mproductdetaildelete(product_id);
-	}
 
-}
+} // END

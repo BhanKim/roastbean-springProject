@@ -12,9 +12,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rb.base.dao.BoardDao;
 import com.rb.base.dao.BoardcommentDao;
+import com.rb.base.dao.ReviewDao;
 import com.rb.base.model.BoardDto;
 import com.rb.base.model.BoardcommentDto;
 import com.rb.base.model.PageInfo;
+import com.rb.base.model.ReviewDto;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -24,6 +26,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
 	BoardcommentDao boardcommentdao;
+	
+	@Autowired
+	ReviewDao reviewDao;
 	
 	@Autowired
 	HttpSession session;
@@ -191,6 +196,34 @@ public class BoardServiceImpl implements BoardService {
 		List<BoardDto> myboardList = boarddao.myboardlist(cPage, start, rowCount, community_name);
 		model.addAttribute("page", dto);
 		model.addAttribute("myboardlist", myboardList);
+		
+		// 내가 쓴 리뷰
+		int cPages = 0; // 시작페이지
+		int pageLengths = 5; // 페이징에 표시될 개수
+		int totalCounts = 0; // 총 페이징 수
+		int listCounts = 10; // 보여지는 게시글 수 페이지에
+		int rowCounts = 0; // 총 게시글 갯수
+		String tempPages = request.getParameter("pages");
+		
+		if(tempPages == null || tempPages.length() == 0) {
+			cPages = 1;
+		}
+		try {
+			cPages = Integer.parseInt(tempPages);
+		}catch(Exception e) {
+			cPages = 1;
+		}
+		
+		totalCounts = reviewDao.reviewRow(community_name);
+		PageInfo dtos = new PageInfo(cPages, totalCounts, listCounts, pageLengths);
+		
+		rowCounts = (totalCounts -((cPages-1)*10));
+		int starts = rowCounts - 9;
+		
+		List<ReviewDto> selectReview = reviewDao.selectReview(cPages, starts, rowCounts, community_name);
+		
+		model.addAttribute("pages", dtos);
+		model.addAttribute("mylist", selectReview);
 	}
 
 	// 답글정렬구분메소드
