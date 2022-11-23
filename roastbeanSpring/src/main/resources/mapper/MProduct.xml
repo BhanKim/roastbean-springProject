@@ -25,5 +25,23 @@
 		from product where product_id = #{product_id}
 	</select>
 	
+	<insert id="insertproduct">
+		insert into product
+		(product_name, product_weight, product_info, product_image, product_price, product_stock, product_initdate)
+		values
+		(#{product_name}, #{product_weight}, #{product_info}, #{product_image}, #{product_price}, #{product_stock}, now())
+	</insert>
+	
+	<select id="maxproduct_id" resultType="Integer">
+		select max(product_id) from product
+	</select>
+	
+	<insert id="insertcategory">
+		insert into category
+		(category_type, product_id, category_acidity, category_body, category_aroma, category_sweet)
+		values
+		(#{category_type}, #{product_id}, #{category_acidity}, #{category_body}, #{category_aroma}, #{category_sweet})
+	</insert>
+	
 	
 </mapper>

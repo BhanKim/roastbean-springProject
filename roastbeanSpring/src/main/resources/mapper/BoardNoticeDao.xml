@@ -51,7 +51,7 @@
 		from community as c, `user` as u where community_deletedate is null and community_name != 'admin' 
 		and u.user_id = c.community_name order by community_group desc, community_indent asc)A
 		where community_title like #{keyword} or 
-		community_content like #{keyword} group by community_id;
+		community_content like #{keyword};
 	</otherwise>
 		</choose>
 	</select>
