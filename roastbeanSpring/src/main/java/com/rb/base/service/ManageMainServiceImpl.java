@@ -170,7 +170,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 		int cPage = 0; // 시작페이지
 		int pageLength = 5; // 페이징에 표시될 개수
 		int totalCount = 0; // 총 페이징 수
-		int listCount = 2; // 보여지는 게시글 수 페이지에
+		int listCount = 10; // 보여지는 게시글 수 페이지에
 		int rowCount = 0; // 총 게시글 갯수
 		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
 		String query = request.getParameter("query");
@@ -196,7 +196,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
 		
 		rowCount = (totalCount - ((cPage-1)*10));
-	
+					
 		int start = rowCount - 9;
 		List<UserDto> userList = ManageUserListDao.userList(cPage, start, rowCount, query, content);
 		model.addAttribute("page", dto);
@@ -213,7 +213,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 		int cPage = 0; // 시작페이지
 		int pageLength = 5; // 페이징에 표시될 개수
 		int totalCount = 0; // 총 페이징 수
-		int listCount = 15; // 보여지는 게시글 수 페이지에
+		int listCount = 10; // 보여지는 게시글 수 페이지에
 		int rowCount = 0; // 총 게시글 갯수
 		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
 		String query = request.getParameter("query");

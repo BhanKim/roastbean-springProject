@@ -12,12 +12,16 @@
 	
 	<select id="userList" resultType="com.rb.base.model.UserDto">
 
-        select * from  ( select row_number() over(order by user_name) as rownum, 
+        <!-- select * from  ( select row_number() over(order by user_name) as rownum, 
 		user_id, user_name, user_birthday, user_gender, user_email, user_telno
 		from `user` where user_deletedate is null order by user_name desc)A
-		where A.${query} like CONCAT('%',#{content},'%') 
-		<!-- where A.user_name like CONCAT('%',#{content},'%') --> 
-		
+		 where A.${query} like CONCAT('%',#{content},'%') -->
+		select * from  ( select row_number() over(order by user_name) as rownum, 
+		user_id, user_name, user_birthday, user_gender, user_email, user_telno
+		from `user` where user_deletedate is null order by user_name desc)A, `user` u
+        where A.user_name=u.user_name and A.${query} like CONCAT('%',#{content},'%') 
+        and <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>;
+        ;
 	</select>
 	
 </mapper>
