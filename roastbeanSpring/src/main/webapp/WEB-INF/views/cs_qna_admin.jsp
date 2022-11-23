@@ -85,7 +85,7 @@
 							</tr>
 						</thead>
 						<c:forEach items="${adminQnaList}" var="dto">
-					 	<form action="qna_answer_by_admin?page=${fEach}&query=${query}&content=${content}" method="get">
+					 	<form action="qna_answer_by_admin?page=${fEach}&query=${query}&content=${content}" method="post">
 							<tr style="background-color: #A3A7AB;">
 								<td colspan="6">
 								<input type="hidden" name="page" value="${fEach}">
@@ -108,7 +108,7 @@
 									</c:if>
 								</td>
 								<c:choose>
-									<c:when test="${dto.qna_write_comment_content == null }">
+									<c:when test="${dto.qna_write_comment_content == null || dto.qna_write_comment_content == ''}">
 									<td></td>
 									</c:when>
 										<c:otherwise>
@@ -123,7 +123,7 @@
 									<td></td>
 									<td align="right">ㄴ</td>
 									<td align="left" colspan="2">
-										<textarea name="qna_write_comment_content" rows="5" cols="60%" style="background-color: #F2F1EF"></textarea>
+										<textarea name="qna_write_comment_content" rows="5" cols="70%" style="background-color: #F2F1EF"></textarea>
 									</td>
 									<td valign="middle"><input type="submit" value="답변하기" class="btn" style="background-color: #F2BCBB"></td>
 								</tr>
@@ -135,7 +135,7 @@
 									<td></td>
 									<td align="right" valign="top">ㄴ</td>
 									<td align="left">
-										<textarea name="qna_write_comment_content" rows="5" cols="60%" style="background-color: #F2F1EF">${dto.qna_write_comment_content}</textarea>
+										<textarea name="qna_write_comment_content" rows="5" cols="70%" style="background-color: #F2F1EF">${dto.qna_write_comment_content}</textarea>
 									</td>
 									<td align="left">
 										<input type="hidden" name="submit_type" value="update">
