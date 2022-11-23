@@ -206,23 +206,6 @@
                 </p>
               </div>
             </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/indeximg/ksjprofile.png" class="testimonial-img" alt="">
-                <h3>Sungjin Kim</h3>
-                <h4>Beaninfo &amp; chart &amp; Database</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <img src="assets/img/indeximg/kyhprofile.png" class="testimonial-img" alt="">
@@ -270,23 +253,6 @@
                 </p>
               </div>
             </div><!-- End testimonial item -->
-            
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="assets/img/indeximg/asbprofile.png" class="testimonial-img" alt="">
-                <h3>Subin Ahn</h3>
-                <h4>Manage Page</h4>
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
-
           </div>
           <div class="swiper-pagination"></div>
         </div>

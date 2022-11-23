@@ -149,11 +149,11 @@ $(document).ready(function() {
 												<option value="017">017</option>
 												<option value="019">019</option>
 											</select> -->
-											<input class="form-control2" size="4" type="tel" name="user_telno1" value="${user_telno1}" style="height: 32px;">
+											<input class="form-control2" size="4" type="tel" name="user_telno1" value="${user_telno1}" style="height: 32px;" maxlength='3'>
 											-
-											<input class="form-control2" size="8" type="tel" name="user_telno2" value="${user_telno2}" style="height: 32px;">
+											<input class="form-control2" size="8" type="tel" name="user_telno2" value="${user_telno2}" style="height: 32px;" maxlength='4'>
 											-
-											<input class="form-control2" size="8" type="tel" name="user_telno3" value="${user_telno3}" style="height: 32px;">
+											<input class="form-control2" size="8" type="tel" name="user_telno3" value="${user_telno3}" style="height: 32px;" maxlength='4'>
 										</td>
 									</tr>
 									<tr height="10"></tr>

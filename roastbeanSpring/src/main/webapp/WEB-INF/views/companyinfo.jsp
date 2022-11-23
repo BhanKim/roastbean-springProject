@@ -140,23 +140,8 @@
 
         <div class="row">
 
-          <div class="col-lg-4 col-md-6">
-            <div class="member">
-              <div class="pic"><img src="assets/img/indeximg/profileksj.png" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sungjin Kim</h4>
-                <span>Developer</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-6 col-md-6">
             <div class="member">
               <div class="pic"><img src="assets/img/indeximg/profileksw.png" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -172,7 +157,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-6 col-md-6">
             <div class="member">
               <div class="pic"><img src="assets/img/indeximg/profilekyh.png" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -188,7 +173,7 @@
             </div>
           </div>
           
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-6 col-md-6">
             <div class="member">
               <div class="pic"><img src="assets/img/indeximg/profilejyh.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -204,7 +189,7 @@
             </div>
           </div>
           
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-6 col-md-6">
             <div class="member">
               <div class="pic"><img src="assets/img/indeximg/profilesmc.png" class="img-fluid" alt=""></div>
               <div class="member-info">
@@ -220,22 +205,6 @@
             </div>
           </div>
           
-          <div class="col-lg-4 col-md-6">
-            <div class="member">
-              <div class="pic"><img src="assets/img/indeximg/profileasb.png" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Subin Ahn</h4>
-                <span>Developer</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
       </div>
