@@ -78,29 +78,18 @@
 					<tbody>
 					
 						<!-- Manage Product List -->
-						<c:forEach items="${mpList }" var="dto">				
+						<c:forEach items="${mpList}" var="dto" varStatus="status">				
 						<tr>
-							<c:if test="${dto.community_name != 'admin' }">
-								<td width=70 style="text-align: center;">${dto.rownum }</td>				
-								<td id="left">
-									<c:forEach begin="1" end="${dto.community_indent}">&nbsp;└ </c:forEach>
-									<a href="content_view?community_id=${dto.community_id }" style="color: #000000;">${dto.community_title }</a></td>
-								<td id="left" style="text-align: center;">${dto.user_nick }</td>
-								
+								<td width=70 style="text-align: center;">${dto.rownum }</td>
+									
+								<td style="text-align: center;"> <img width = 100, height = 100 src="assets/img/product/${dto.product_image}"></td>
+											
 								<td style="text-align: center;">
-									<c:choose>
-									<c:when test ="${dto.community_updatedate eq null }">
-										${dto.community_initdate }
-									</c:when>	
-									<c:otherwise>
-										${dto.community_updatedate }
-									</c:otherwise>	
-									</c:choose>
-								</td>
+									<a href="mproductdetail?product_id=${dto.product_id }" style="color: #000000;">${dto.product_name }</a></td>
 								
-								<td style="text-align: center;">${dto.community_hit }</td>
-								<td style="text-align: center;">${dto.community_cnt }</td>
-							</c:if>
+								<td style="text-align: center;">${dto.product_stock}</td>
+								
+								<td style="text-align: center;">${dto.product_price}</td>
 							
 						</tr>
 						</c:forEach>
@@ -120,7 +109,7 @@
                         </c:when>
                         <c:otherwise>
                            <li class="page-item"><a class="page-link"
-                              href="boardList?page=1">처음</a>
+                              href="mpList?page=1">처음</a>
                            </li>
                         </c:otherwise>
                      </c:choose>
@@ -132,7 +121,7 @@
                         </c:when>
                         <c:otherwise>
                            <li class="page-item"><a class="page-link"
-                              href="boardList?page=${page.curPage - 1 }">이전</a>
+                              href="mpList?page=${page.curPage - 1 }">이전</a>
                            </li>
                         </c:otherwise>
                      </c:choose>
@@ -146,7 +135,7 @@
                            </c:when>
                            <c:otherwise>
                               <li class="page-item"><a class="page-link"
-                                 href="boardList?page=${fEach}">&nbsp;${fEach }&nbsp;</a>
+                                 href="mpList?page=${fEach}">&nbsp;${fEach }&nbsp;</a>
                               </li>
                            </c:otherwise>
                         </c:choose>
@@ -160,7 +149,7 @@
                         </c:when>
                         <c:otherwise>
                            <li class="page-item"><a class="page-link"
-                              href="boardList?page=${page.curPage + 1 }">다음</a>
+                              href="mpList?page=${page.curPage + 1 }">다음</a>
                            </li>
                         </c:otherwise>
                      </c:choose>
@@ -172,7 +161,7 @@
                         </c:when>
                         <c:otherwise>
                            <li class="page-item"><a class="page-link"
-                              href="boardList?page=${page.totalPage }">마지막</a>
+                              href="mpList?page=${page.totalPage }">마지막</a>
                            </li>
                         </c:otherwise>
                      </c:choose>

@@ -87,7 +87,7 @@
 									class="table table-sm table-hover">
 									<thead >
 									<tr>
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='MProductlist'">PRODUCT LIST</td>	
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='mpList'">PRODUCT LIST</td>	
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='manage_chart.jsp'">CHART'<준비중>'</td>
 									<!-- </tr>
 									<tr>	 -->

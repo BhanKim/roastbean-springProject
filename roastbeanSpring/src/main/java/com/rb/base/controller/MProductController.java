@@ -1,9 +1,11 @@
 package com.rb.base.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rb.base.service.MProductService;
@@ -17,8 +19,9 @@ public class MProductController {
 	@Autowired
 	HttpSession session;
 	
-	@RequestMapping("/MProductlist")
-	public String Mproductlist() throws Exception{
+	@RequestMapping("/mpList")
+	public String mpList(HttpServletRequest request, Model model) throws Exception{
+		service.mpList(request, model);
 		return "mproductlist";
 	}
 }
