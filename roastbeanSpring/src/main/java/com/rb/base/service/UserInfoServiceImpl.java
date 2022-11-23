@@ -51,7 +51,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 		String user_address1 = request.getParameter("user_address1");
 		String user_address2 = request.getParameter("user_address2");
 		String user_address3 = request.getParameter("user_address3");
-		System.out.println(user_telno);
 		
 		dao.userInfoUpdate(user_id, user_nick, user_telno, user_email, user_addresszipcode, user_address1, user_address2, user_address3);
 		

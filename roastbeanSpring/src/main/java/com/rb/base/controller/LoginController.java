@@ -16,7 +16,7 @@ public class LoginController {
 	@Autowired
 	LoginDaoService service;
 	
-	// 로그인 화면 *** 2022-11-19 / 2022-11-21수정 SangwonKim
+	// 로그인 화면 *** 2022-11-21 완료 SangwonKim
 	@RequestMapping("/login")
 	public String login()throws Exception{
 		return "login";

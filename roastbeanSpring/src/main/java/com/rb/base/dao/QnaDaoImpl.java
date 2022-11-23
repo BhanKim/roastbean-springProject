@@ -32,11 +32,25 @@ public class QnaDaoImpl implements QnaDao {
 		sqlSession.update(nameSpace + ".userQuestionUpdate");
 	}
 
+	
+	//////////////////////
+	
+	
+	// Row 계산
 	@Override
-	public List<QnaDto> qnaListAdmin() throws Exception {
+	public int qnaListAdminRow(String query, String content) throws Exception {
+		return sqlSession.selectOne(nameSpace + ".qnaListAdminRow");
+	}
+
+	@Override
+	public List<QnaDto> qnaListAdmin(int cPage, int start, int rowCount, String query, String content) throws Exception {
 		return sqlSession.selectList(nameSpace + ".qnaListAdmin");
 	}
 
+	
+	//////////////////////
+	
+	
 	@Override
 	public void adminAnswerInsert(String admin_id, String qna_write_seq, String qna_write_comment_content)
 			throws Exception {

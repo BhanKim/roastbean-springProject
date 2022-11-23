@@ -29,41 +29,34 @@ public class SignupController {
 		return "signup_api";
 	}
 	
-	
+	// *** 아이디 중복 체크하기 // 2022-11-21 완료 SangwonKim
 	@RequestMapping("/check_id")
 	public String checkId(HttpServletRequest request, Model model) throws Exception{
-		
 		service.checkId(request);
-		
 		String page = request.getParameter("page"); 
 		return page;
 	}
 
+	// *** 닉네임 중복 체크하기 // 2022-11-21 완료 SangwonKim
 	@RequestMapping("/check_nick")
 	public String checkNick(HttpServletRequest request) throws Exception{
-		
 		service.checkNick(request);
-		
 		String page = request.getParameter("page");
 		return page;
 	}
 	
-	// *** 2022-11-19 / 2022-11-21 완료 SangwonKim
+	// *** 일반 회원가입하기 / 2022-11-21 완료 SangwonKim
 	@RequestMapping("/signup_action") 
 	public String signupAction(HttpServletRequest request) throws Exception{
 		service.signupAction(request);
 		HttpSession session = request.getSession();
-		System.out.println(">>>>1");
 		session.setAttribute("ID", request.getParameter("user_id"));
 		session.setAttribute("NICK", request.getParameter("user_nick"));
-		
 		session.setAttribute("CARTCOUNT", 0);
-		
 		return "index";
-		
 	}
 
-	// *** 2022-11-19 / 2022-11-21 완료 SangwonKim
+	// *** Api를 통한 회원가입하기 / 2022-11-21 완료 SangwonKim
 	@RequestMapping("/signup_api_action")
 	public String signupApiAction(HttpServletRequest request) throws Exception{
 		service.signupApiAction(request);
@@ -71,14 +64,11 @@ public class SignupController {
 		session.setAttribute("ID", request.getParameter("user_email"));
 		session.setAttribute("NICK", request.getParameter("user_nick"));
 		session.setAttribute("API", "1");
-		
 		session.setAttribute("CARTCOUNT", 0);
-		
 		return "index";
-		
 	}
 	
-	// *** 2022-11-22 / 2022-11-22 완료 YunHyeonJeong
+	// *** Email 체크하기 / 2022-11-22 완료 YunHyeonJeong
 	@RequestMapping("/EmailCheck")
 	@ResponseBody
 	public String emailCheck(HttpServletRequest request) throws Exception {
