@@ -138,17 +138,17 @@ function checkMember(){
 		return
 	}
 	
-//	if(form.ucertify_num.value.length == 0) {
-//	    alert("인증번호를 입력해 주세요.");
-//	    form.ucertify_num.focus();
-//	    return;
-//	}
+	if(form.ucertify_num.value.length == 0) {
+	    alert("인증번호를 입력해 주세요.");
+	    form.ucertify_num.focus();
+	    return;
+	}
 	
-//	if(form.ucertify_num.value != form.user_certifycheck.value) {
-//	    alert("인증번호가 틀립니다.");
-//	    form.ucertify_num.focus();
-//	    return;
-//	}
+	if(form.ucertify_num.value != form.user_certifycheck.value) {
+	    alert("인증번호가 틀립니다.");
+	    form.ucertify_num.focus();
+	    return;
+	}
 	
 	form.submit();
 }
