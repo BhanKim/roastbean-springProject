@@ -65,6 +65,20 @@
 		<div class="row">
 		    <div class="col">
 		    	<h2>&nbsp;&nbsp;Manage Product List</h2><br>
+		    	<form action="bSearch" method="post" style="text-align:center;">
+					<select name="b_opt">
+						<option value="1">제목+내용</option>
+						<option value="2">제목</option>
+						<option value="3">내용</option>
+						<option value="4">작성자</option>
+					</select>&nbsp;
+					<input type="text" name="keyword" size="20">&nbsp;
+					<input type="submit" class="btn" value="검색" style="background: #F2BCBB; border: 0; padding:3px 12px; color: #fff; transition: 0.4s; border-radius: 50px;">
+				</form>
+				<div align="right">
+					<a href="mpwrite_view" class="btn" style="background: #F2BCBB; border: 0; padding:2px 10px; color: #fff; transition: 0.4s; border-radius: 50px;">상품등록</a>
+				</div>
+				<br>
 		    	<table class="table table-sm table-hover">
 					<thead>
 						<tr>
@@ -89,7 +103,7 @@
 								
 								<td style="text-align: center;">${dto.product_stock}</td>
 								
-								<td style="text-align: center;">${dto.product_price}</td>
+								<td style="text-align: center;">${dto.product_price}₩</td>
 							
 						</tr>
 						</c:forEach>
@@ -171,16 +185,6 @@
 				
 				
 				<!-- Paging End -->
-					<form action="bSearch" method="post" style="text-align:center;">
-					<select name="b_opt">
-						<option value="1">제목+내용</option>
-						<option value="2">제목</option>
-						<option value="3">내용</option>
-						<option value="4">작성자</option>
-					</select>&nbsp;
-					<input type="text" name="keyword" size="20">&nbsp;
-					<input type="submit" class="btn" value="검색" style="background: #F2BCBB; border: 0; padding:3px 12px; color: #fff; transition: 0.4s; border-radius: 50px;">
-					</form>
 				</div>
 			</div>
 		 </div>
