@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import com.rb.base.model.ManageMainDto;
+import com.rb.base.model.OrderDto;
 import com.rb.base.model.ManageChartDto.DataPointModel;
 
 public interface ManageMainService { // controller 가 아는 녀석 
@@ -46,9 +47,13 @@ public interface ManageMainService { // controller 가 아는 녀석
 	///////////////////////////////// manage_userList /////////////////////////////////
 
 	public void userList(HttpServletRequest request, Model model) throws Exception;
+	public void userListSearch(HttpServletRequest request, Model model) throws Exception;
 	
+	///////////////////////////////// manage_orderList /////////////////////////////////
 	
-	
+	public void orderList(HttpServletRequest request, Model model) throws Exception;
+//	public void orderList(HttpServletRequest request, Model model) throws Exception;
+//	public void orderListSearch(HttpServletRequest request, Model model) throws Exception;
 	
 	
 }//class end 

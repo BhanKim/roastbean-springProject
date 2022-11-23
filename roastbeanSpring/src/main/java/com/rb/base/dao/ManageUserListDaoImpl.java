@@ -20,5 +20,9 @@ public class ManageUserListDaoImpl implements ManageUserListDao {
 	public List<UserDto> userList(int cPage, int start, int rowCount) throws Exception {
 		return sqlSession.selectList(nameSpace + ".userList");
 	}
+	@Override
+	public List<UserDto> userListSearch(String query, String content) throws Exception {
+		return sqlSession.selectList(nameSpace + ".userListSearch");
+	}
 
 }//class end 

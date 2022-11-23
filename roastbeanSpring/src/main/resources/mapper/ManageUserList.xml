@@ -5,21 +5,31 @@
 
 <mapper namespace="com.rb.base.dao.ManageUserListDao">
 		
-		
+		<!-- 22-11-23-호식 쿼리문 수정 필요  -->
 	<select id="userListRow" resultType="Integer">
 		select count(*) as usertotalCount from user where user_id != 'admin' and user_deletedate is null;
 	</select>
 	
-	<select id="userList" resultType="com.rb.base.model.UserDto">
+	<!-- <select id="userList" resultType="com.rb.base.model.UserDto">
 		select * from ( select row_number() over(order by user_id)
 		as rownum, user_id, user_name, user_birthday, user_gender, user_email, user_telno
-		from `user` )a 
-		where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>
+		from `user` )a , user u
+		where <![CDATA[a.rownum <= #{rowCount}]]> and <![CDATA[a.rownum >= #{start}]]>  and u.user_id = a.user_id
+		order by u.user_initdate desc;
+	</select> -->
+	
+	<select id="userList" resultType="com.rb.base.model.UserDto">
+		select user_id, user_name, user_birthday, user_gender, user_email, user_telno from `user`
+        where user_id != 'admin' and user_deletedate is null
+        order by user_initdate desc;
+        
 	</select>
 	
+	<select id="userListSearch" resultType="com.rb.base.model.UserDto">
+		select * from  ( select row_number() over(order by user_initdate) as rownum, 
+		user_id, user_name, user_birthday, user_gender, user_email, user_telno
+		from `user` where user_deletedate is null order by user_initdate desc)A
+		where A.${query} like '${content}';
+	</select>
 	
-	
-
 </mapper>
-
- 

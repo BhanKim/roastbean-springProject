@@ -10,11 +10,8 @@ public class ManageChartDaoImpl implements ManageChartDao {
 	
 	SqlSession sqlSession;
 	
-	public static String nameSpace = "com.rb.base.dao.ManageChartDao";
-
 	@Override
 	public List<List<DataPointModel>> getCanvasjsChartData() {
-		System.out.println("ManageChartDaoImpl getCanvasjsChartData START");
 		return ManageChartDto.getCanvasjsDataList();
 	}
 	
