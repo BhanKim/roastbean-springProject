@@ -95,10 +95,11 @@
 						</div>
 					</div>
 					<div class="col-lg-7 mt-5">
-						<form action="cartOrder" method="post" name="cartForm">
 							<div class="">
 								<div class="card-body">
 									<h1 class="h2">${mproductdetail.product_name}</h1>
+
+									
 									<p class="h3 py-2">
 										<fmt:formatNumber value="${mproductdetail.product_price}"
 											groupingUsed="true" />
@@ -110,12 +111,6 @@
 									<h6>상품설명:</h6>
 									<p>${mproductdetail.product_info}</p>
 
-
-									<input type="hidden" name="product_price"
-										value="${mproductdetail.product_price}"> <input
-										type="hidden" name="product-title" value="Activewear">
-									<input type="hidden" name="product_price"
-										value="${mproductdetail.product_price}">
 									<div class="row">
 										<div class="col-auto">
 											<ul class="list-inline pb-3">
@@ -125,58 +120,49 @@
 												<li class="list-inline-item">${mproductdetail.product_weight}g</li>
 											</ul>
 										</div>
+										
 										<p>
 										<div class="col-auto">
 											<ul class="list-inline pb-3">
-												<li class="list-inline-item text-right"><b>현재 수량
-														: ${mproductdetail.product_stock}</b> <input type="hidden"
-													name="product_stock" id="product-quanity" value="1">
+												<li class="list-inline-item text-right">
+												<b>카테고리 타입: ${mproductdetail.category_type}</b><br>
+												<b>산미 : </b> ${mproductdetail.category_acidity}&nbsp;
+												<b>바디감 : </b> ${mproductdetail.category_body} &nbsp;
+												<b>단맛 : </b> ${mproductdetail.category_sweet} &nbsp;
+												<b>아로마 : </b> ${mproductdetail.category_aroma}
 												</li>
 											</ul>
 										</div>
 										<p>
-											<script type="text/javascript">
-                                    	function increaseCQty() {
-                                    		document.getElementById('cQty').value = parseInt(document.getElementById('cQty').value) + parseInt(1);
-                                    		document.getElementById('var-value').innerHTML = document.getElementById('cQty').value
-                                    		document.getElementById('totalPrice').innerHTML = ${productDetail.product_price} * parseInt(document.getElementById('cQty').value)
-										}
-                                    	function decreaseCQty() {
-                                    		if(parseInt(document.getElementById('cQty').value) <= 1){
-                                    			document.getElementById("cQty").value = 1
-                                    			document.getElementById('var-value').innerHTML = document.getElementById('cQty').value
-                                    			document.getElementById('totalPrice').innerHTML = document.getElementById('totalPrice').innerHTML
-                                    		} else {
-                                				document.getElementById("cQty").value = parseInt(document.getElementById('cQty').value) - parseInt(1);
-                                				document.getElementById('var-value').innerHTML = document.getElementById('cQty').value
-                                				document.getElementById('totalPrice').innerHTML = document.getElementById('totalPrice').innerHTML - ${productDetail.product_price} 
-                                    		}
-										}
-                                    </script>
+										<p>
+										<div class="col-auto">
+											<ul class="list-inline pb-3">
+												<li class="list-inline-item text-right"><b>현재 수량
+														: ${mproductdetail.product_stock}</b>
+												</li>
+											</ul>
+										</div>
+										<p>
+										<div class="col d-grid">
+										<a href="mproductdetailupdate?product_id=${mproductdetail.product_id }" class="btn btn-success"
+											style="background: #F2BCBB; border: 0; padding:10px 24px; color: #fff; 
+											transition: 0.4s; border-radius: 50px; ">수정</a>
+										</div>
+										<div class="col d-grid">
+										<a href="mproductdetaildelete?product_id=${mproductdetail.product_id }" class="btn btn-success"
+											style="background: #F2BCBB; border: 0; padding:10px 24px; color: #fff; 
+											transition: 0.4s; border-radius: 50px; ">삭제</a>
+										</div>
 									</div>
 									<input type="hidden" name="product_id"
 										value='<%=request.getParameter("product_id")%>'>
 									<div class="row pb-3">
-										<div class="col d-grid">
-											<button
-												style="background: #F2BCBB; border: 0; padding: 10px 24px; color: #fff; transition: 0.4s; border-radius: 50px;"
-												type="button" name="insertbuy" value="buy"
-												onclick="buySubmit()">수정</button>
-										</div>
-										<div class="col d-grid">
-											<button
-												style="background: #F2BCBB; border: 0; padding: 10px 24px; color: #fff; transition: 0.4s; border-radius: 50px;"
-												type="button" name="insertcart" value="addtocart"
-												onclick="buyCart()">삭제
-											</button>
 										</div>
 									</div>
 								</div>
 							</div>
-						</form>
 					</div>
 				</div>
-			</div>
 		</section>
 	</main>
 	<%@include file="footer.jsp"%>
