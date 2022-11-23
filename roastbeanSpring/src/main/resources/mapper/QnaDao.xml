@@ -39,14 +39,14 @@
 			</when>
 			<otherwise>
 				SELECT * 
-				FROM (SELECT row_number() over(order by qwc.qna_write_comment_seq is null asc, qna_write_seq asc) as rownum, qw.user_id, 
+				FROM (SELECT row_number() over(order by qw.qna_write_seq asc) as rownum, qw.user_id, 
 							qw.qna_write_category, qw.qna_write_title, qw.qna_write_seq, qw.qna_write_initdate, qw.qna_write_updatedate, qw.qna_write_content, 
 							qwc.qna_write_comment_seq, qwc.qna_write_comment_content, qwc.qna_write_comment_initdate, qwc.qna_write_comment_updatedate 
 						FROM qna_write qw 
 						LEFT JOIN qna_write_comment qwc 
 							ON qw.qna_write_seq = qwc.qna_write_seq 
 						WHERE qw.${query} like #{content}
-						ORDER BY qwc.qna_write_comment_seq is null DESC, qw.qna_write_seq DESC) A
+						ORDER BY qw.qna_write_seq DESC) A
 				WHERE <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>
 			</otherwise>
 		</choose>

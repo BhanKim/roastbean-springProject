@@ -52,7 +52,7 @@ public class QnaController {
 	@RequestMapping("/qna_answer_by_admin")
 	public String qna_answer_by_admin(HttpServletRequest request) throws Exception {
 		service.adminAnswerInsert(request);
-		return "redirect:qna_list_by_admin";
+		return "forward:qna_list_by_admin";
 	}
 	
 	@RequestMapping("/cs_faq")

@@ -148,7 +148,7 @@
 					</c:forEach>
 				</table>
 					<div align="right">
-						<button class="btn mr-3" type="button" style="background-color: #D0D4D8" onclick="location.href='cs_qna.jsp'">질문하러 가기</button>
+						<button class="btn mr-3" type="button" style="background-color: #D0D4D8" onclick="location.href='cs_qna'">질문하러 가기</button>
 					</div>
 				<%-- ******** 페이징부분 아직 적용안됐음 ******** --%>
 			 	<%-- <div class="container" align="center">

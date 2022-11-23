@@ -53,6 +53,22 @@
 	<section class="inner-page">
 		<div class="container">
 			<h3>&nbsp;&nbsp;&nbsp;&nbsp;My QnA List</h3>
+			<div class="row">
+				<div class="col-8"></div>
+				<div class="col-4">
+				<form action="qna_list_by_admin" method="post" style="text-align:center;">
+					<select name="query" >
+						<option value="qna_write_seq"<c:if test="${query=='qna_write_seq'}">selected="selected"</c:if>>전체</option>
+						<option value="noncomment"<c:if test="${query=='noncomment'}">selected="selected"</c:if>>미답변 전체</option>
+						<option value="qna_write_category"<c:if test="${query=='qna_write_category'}">selected="selected"</c:if>>문의유형</option>
+						<option value="qna_write_content"<c:if test="${query=='qna_write_content'}">selected="selected"</c:if>>질문내용</option>
+						<option value="user_id"<c:if test="${query=='user_id'}">selected="selected"</c:if>>사용자 ID</option>
+					</select>&nbsp;
+					<input type="text" name="content" size="20" value="${content }">&nbsp;
+					<input type="submit" class="btn" value="검색" style="background: #F2BCBB; border: 0; padding:3px 12px; color: #fff; transition: 0.4s; border-radius: 50px;">
+				</form>
+				</div>
+			</div>
 			<hr style="border: solid 2px red;">
 			<br>
 			<div class="col">
@@ -69,8 +85,14 @@
 							</tr>
 						</thead>
 						<c:forEach items="${adminQnaList}" var="dto">
-					 	<form action="qna_answer_by_admin" method="post">
-							<tr style="background-color: #A3A7AB;"><td colspan="6"></td></tr>
+					 	<form action="qna_answer_by_admin?page=${fEach}&query=${query}&content=${content}" method="get">
+							<tr style="background-color: #A3A7AB;">
+								<td colspan="6">
+								<input type="hidden" name="page" value="${fEach}">
+								<input type="hidden" name="query" value="${query}">
+								<input type="hidden" name="content" value="${content}">
+								</td>
+							</tr>
 							<tr align="center" >
 								<td>${dto.qna_write_seq}<input type="hidden" name="qna_write_seq" value="${dto.qna_write_seq}"></td>
 								<td>${dto.user_id}</td>
@@ -208,7 +230,7 @@
 						<option value="noncomment"<c:if test="${query=='noncomment'}">selected="selected"</c:if>>미답변 전체</option>
 						<option value="qna_write_category"<c:if test="${query=='qna_write_category'}">selected="selected"</c:if>>문의유형</option>
 						<option value="qna_write_content"<c:if test="${query=='qna_write_content'}">selected="selected"</c:if>>질문내용</option>
-						<option value="user_id">사용자 ID</option>
+						<option value="user_id"<c:if test="${query=='user_id'}">selected="selected"</c:if>>사용자 ID</option>
 					</select>&nbsp;
 					<input type="text" name="content" size="20" value="${content }">&nbsp;
 					<input type="submit" class="btn" value="검색" style="background: #F2BCBB; border: 0; padding:3px 12px; color: #fff; transition: 0.4s; border-radius: 50px;">
