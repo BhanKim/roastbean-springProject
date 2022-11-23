@@ -16,7 +16,8 @@
 <!-- Favicons -->
 <link href="assets/img/favicon.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+  
 <!-- Google Fonts -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i"
@@ -116,7 +117,7 @@
 						<tr align="center">
 							<th style="width: 15%;">상품이미지</th>
 							<th style="width: 15%;">상품이름</th>
-							<th style="width: 15%;">상품수량</th>
+							<th style="width: 15%;">주문번호</th>
 							<th style="width: 15%;">주문금액</th>
 							<th style="width: 15%;">상품무게</th>
 						</tr>
@@ -152,6 +153,7 @@
 									</td>
 									<td>
 										<textarea name="review_content" class="col-auto form-control mb-2" id="review_content" placeholder="상품에 대한 평가를 작성해 주세요." cols="100">${mylistEdit.review_content}</textarea>
+										<script>CKEDITOR.replace('review_content');</script>
 									</td>
 								</tr>
 								<tr>

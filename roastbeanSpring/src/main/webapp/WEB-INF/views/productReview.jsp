@@ -8,6 +8,7 @@
 
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
 
 <title>Roast Bean</title>
 <meta content="" name="description">
@@ -106,7 +107,7 @@
 						<tr align="center">
 							<th style="width: 15%;">상품이미지</th>
 							<th style="width: 15%;">상품이름</th>
-							<th style="width: 15%;">상품수량</th>
+							<th style="width: 15%;">주문번호</th>
 							<th style="width: 15%;">주문금액</th>
 							<th style="width: 15%;">상품무게</th>
 						</tr>
@@ -142,6 +143,7 @@
 									</td>
 									<td>
 										<textarea name="review_content" class="col-auto form-control mb-2" id="review_content" placeholder="상품에 대한 평가를 작성해 주세요." cols="100"></textarea>
+										<script>CKEDITOR.replace('review_content');</script>
 									</td>
 								</tr>
 								<tr>
