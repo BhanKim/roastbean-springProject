@@ -80,4 +80,6 @@
 		update product set product_deletedate=now() where product_id=#{product_id};
 	</update>
 	
+	
+	
 </mapper>

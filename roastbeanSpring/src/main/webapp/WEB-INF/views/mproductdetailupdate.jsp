@@ -66,7 +66,7 @@
 </head>
 <body>
 	<!-- ======= Header ======= -->
-	<%@include file = "header_innerpage.jsp" %>
+	<%@include file = "header_minnerpage.jsp" %>
 	
 	<main id="main">
   	<!-- End Header -->

@@ -48,13 +48,13 @@
 
 	<!-- ======= Header ======= -->
 	<c:if test="${ADMIN != 'admin'}">
-		<%@include file = "header_innerpage.jsp" %>
+		<%@include file = "header_minnerpage.jsp" %>
 	</c:if>	
 	
 	<!-- 22.11.19 Hosik - Can view manage_main.jsp just got Admin session -->
 	<c:if test="${ADMIN == 'admin'}">
 	<%-- <%@include file="header_manage2.jsp"%> --%>
-		<%@include file = "header_innerpage.jsp" %>
+		<%@include file = "header_minnerpage.jsp" %>
 	<!-- End Header -->
 
 	<main id="main">
