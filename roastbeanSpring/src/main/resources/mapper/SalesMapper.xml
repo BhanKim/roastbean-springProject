@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rb.base.dao.ChartDao"> 
+
+<resultMap type="hashMap" id="chartmap">
+	<result column="label" property="label"/>
+	<result column="y" property="y"/>
+</resultMap>
+
+
+<select id="ordercount" resultMap="chartmap"> 
+	SELECT p.product_name as label, sum(order_qty) AS y 
+	FROM orders as o, product as p where o.product_id=p.product_id 
+	group by o.product_id order by o.product_id;
+	
+</select> 
+
+
+
+</mapper>
