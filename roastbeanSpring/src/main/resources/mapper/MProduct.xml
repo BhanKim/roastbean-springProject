@@ -21,9 +21,45 @@
 
 
 	<select id="mproductdetail" resultType="com.rb.base.model.ProductDto">
-		select product_id, product_name, product_weight, product_info, product_price, product_stock, product_image 
-		from product where product_id = #{product_id}
+		select p.product_id, p.product_name, p.product_weight, p.product_info, p.product_price, p.product_stock , p.product_image,
+		c.category_type, c.category_acidity, c.category_aroma, c.category_body, c.category_sweet
+		from product as p, category as c
+		where c.product_id=p.product_id and p.product_id = #{product_id};
 	</select>
 	
+	
+	
+	<select id="mproductdetailupdate" resultType="com.rb.base.model.ProductDto">
+		select p.product_id, p.product_name, p.product_weight, p.product_info, p.product_price, p.product_stock , p.product_image,
+		c.category_type, c.category_acidity, c.category_aroma, c.category_body, c.category_sweet
+		from product as p, category as c
+		where c.product_id=p.product_id and p.product_id = #{product_id};
+	</select>
+	
+	
+	<update id="mproductdetailupdateinsert">
+		UPDATE product as p, category as c SET 
+		p.product_image= #{product_image},
+		p.product_name=#{product_name}, 
+		p.product_price=#{product_price},
+		p.product_info=#{product_info},
+		p.product_weight=#{product_weight},
+		
+		c.category_type=#{category_type}, 
+		c.category_acidity=#{category_acidity}, 
+		c.category_aroma=#{category_aroma}, 
+		c.category_body=#{category_body}, 
+		c.category_sweet=#{category_sweet},
+		
+		p.product_stock =${product_stock},
+		p.product_updatedate=now()
+		
+		where c.product_id=p.product_id and p.product_id = #{product_id} ;
+	</update>
+	
+	
+	<update id="mproductdetaildelete">
+		update product set product_deletedate=now() where product_id=#{product_id};
+	</update>
 	
 </mapper>

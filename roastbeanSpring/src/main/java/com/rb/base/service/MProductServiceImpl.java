@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rb.base.dao.MProductDao;
 import com.rb.base.model.PageInfo;
@@ -60,6 +61,46 @@ public class MProductServiceImpl implements MProductService {
 		model.addAttribute("mproductdetail",detaildto);
 		
 		
+	}
+	@Override
+	public void mproductdetailupdate(HttpServletRequest request, Model model) throws Exception {
+		
+		int product_id=Integer.parseInt(request.getParameter("product_id"));
+		ProductDto detaildtos=mproductdao.mproductdetailupdate(product_id);//dto에 product_id를 넣어주기
+		model.addAttribute("mproductdetailupdate",detaildtos);
+		
+		
+	}
+
+	@Override
+	public void mproductdetailupdateinsert(HttpServletRequest request, RedirectAttributes attributes) throws Exception {
+		
+		int product_id=Integer.parseInt(request.getParameter("product_id"));
+		String product_name=request.getParameter("product_name");
+		int product_weight=Integer.parseInt(request.getParameter("product_weight"));
+		String product_info=request.getParameter("product_info");
+		int product_price=Integer.parseInt(request.getParameter("product_price"));
+		int product_stock=Integer.parseInt(request.getParameter("product_stock"));
+		String product_image=request.getParameter("product_image");
+		String category_type=request.getParameter("category_type");
+		String category_acidity=request.getParameter("category_acidity");
+		String category_aroma=request.getParameter("category_aroma");
+		String category_body=request.getParameter("category_body");
+		String category_sweet=request.getParameter("category_sweet");
+		
+		attributes.addAttribute("product_id",product_id);
+		mproductdao.mproductdetailupdateinsert(product_id,product_name,product_weight,product_info,
+				product_price,product_stock,product_image,category_type,category_acidity,
+				category_aroma, category_body, category_sweet);
+		
+	}
+
+	@Override
+	public void mproductdetaildelete(HttpServletRequest request) throws Exception {
+		
+		int product_id=Integer.parseInt(request.getParameter("product_id"));
+//		attributes.addAttribute("product_id",product_id);
+		mproductdao.mproductdetaildelete(product_id);
 	}
 
 }
