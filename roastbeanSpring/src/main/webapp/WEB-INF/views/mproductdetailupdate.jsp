@@ -1,4 +1,4 @@
-Ï<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -84,11 +84,16 @@
         </div>
       </div>
     </section><!-- End Breadcrumbs Section -->
-    <form name= "mproductdetailupdateinsert" action="mproductdetailupdateinsert" method="post">
+    <form name= "mproductdetailupdateinsert" action="mproductdetailupdateinsert" method="post"
+    enctype="multipart/form-data">
 			<div class="container pb-5">
 				<div class="row">
 					<div class="col-lg-5 mt-5">
 						<div class="card mb-3">
+					<input type="file" class="form-control my-2" name="file"
+					accept="image/*"
+					onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+					value="사진 선택">
 							<img class="card-img img-fluid"
 								src="assets/img/product/${mproductdetailupdate.product_image}"
 								alt="Card image cap" id="product-detail">
@@ -208,15 +213,9 @@
 					<p>
 					<div class="col d-grid">
 					<input type="submit"class="btn btn-success"
-						style="background: #F2BCBB; border: 0; padding:10px 24px; color: #fff; 
+						style="background: #F2BCBB; border: 0; padding:10px 48px; color: #fff; 
 						transition: 0.4s; border-radius: 50px; " value="수정">
 					</div>
-					<div class="col d-grid">
-					<a href="mproductdetaildelete?product_id=${mproductdetail.product_id }" class="btn btn-success"
-						style="background: #F2BCBB; border: 0; padding:10px 24px; color: #fff; 
-						transition: 0.4s; border-radius: 50px; ">삭제</a>
-					</div>
-										
 									</div>
 									<input type="hidden" name="product_id"
 										value='<%=request.getParameter("product_id")%>'>
