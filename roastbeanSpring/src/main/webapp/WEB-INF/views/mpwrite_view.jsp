@@ -40,7 +40,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-	<%@include file = "header_innerpage.jsp" %>
+	<%@include file = "header_minnerpage.jsp" %>
   <!-- End Header -->
 
   <main id="main">
