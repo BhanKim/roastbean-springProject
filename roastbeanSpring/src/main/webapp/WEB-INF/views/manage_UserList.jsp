@@ -77,18 +77,18 @@
 		&nbsp;&nbsp;&nbsp; 
 <!-- 	      &nbsp;&nbsp;&nbsp;<h2>회원정보 리스트</h2>&nbsp;&nbsp;&nbsp;
  -->	      
- 		<form action="ManageUserListSearch">
+ 		<form action="UserList">
 		   <br>
 		   검색
 		   <select name="query">
-		      <option value="user_id">아이디</option>
-		      <option value="user_name">이름</option>
-		      <option value="user_birthday">생년원일</option>
-		      <option value="user_gender">성별</option>
-		      <option value="user_email">이메일</option>
-		      <option value="user_telno">전화번호</option>
+		      <option value="user_id"<c:if test="${query=='user_id'}">selected="selected"</c:if>>아이디</option>
+		      <option value="user_name"<c:if test="${query=='user_name'}">selected="selected"</c:if>>이름</option>
+		      <option value="user_birthday"<c:if test="${query=='user_birthday'}">selected="selected"</c:if>>생년원일</option>
+		      <option value="user_gender"<c:if test="${query=='user_gender'}">selected="selected"</c:if>>성별</option>
+		      <option value="user_email"<c:if test="${query=='user_email'}">selected="selected"</c:if>>이메일</option>
+		      <option value="user_telno"<c:if test="${query=='user_telno'}">selected="selected"</c:if>>전화번호</option>
 		   </select>&nbsp;&nbsp;&nbsp;
-		   <input type="text" name="content">
+		   <input type="text" name="content" value="${content }">
 		   <input type="submit" value="검색" class="btn" style="background: #F2BCBB; border: 0; padding:3px 12px; color: #fff; transition: 0.4s; border-radius: 50px;">
 		</form>
 		<br>
@@ -124,7 +124,7 @@
 								[ 처음 ]
 							</c:when>
 							<c:otherwise>
-								<a href="UserList?page=1">[ 처음 ]</a>
+								<a href="UserList?page=1&query=${query}&content=${content}">[ 처음 ]</a>
 							</c:otherwise>
 							</c:choose>
 							<!-- 이전 -->
@@ -133,7 +133,7 @@
 								[ 이전 ]
 							</c:when>
 							<c:otherwise>
-								<a href="UserList?page=${page.curPage - 1 }">[ 이전 ]</a>
+								<a href="UserList?page=${page.curPage - 1 }&query=${query}&content=${content}">[ 이전 ]</a>
 							</c:otherwise>
 							</c:choose>
 							
@@ -144,7 +144,7 @@
 									[ ${fEach } ] &nbsp;
 								</c:when>
 								<c:otherwise>
-									<a href="UserList?page=${fEach }">[ ${fEach } ]</a>&nbsp;
+									<a href="UserList?page=${fEach }&query=${query}&content=${content}">[ ${fEach } ]</a>&nbsp;
 								</c:otherwise>
 								</c:choose>
 							</c:forEach>
@@ -155,7 +155,7 @@
 								[ 다음 ]
 							</c:when>
 							<c:otherwise>
-								<a href="UserList?page=${page.curPage + 1 }">[ 다음 ]</a>
+								<a href="UserList?page=${page.curPage + 1 }&query=${query}&content=${content}">[ 다음 ]</a>
 							</c:otherwise>
 							</c:choose>
 							<!-- 끝 -->
@@ -164,7 +164,7 @@
 								[ 마지막 ]
 							</c:when>
 							<c:otherwise>
-								<a href="UserList?page=${page.totalPage }">[ 마지막 ]</a>
+								<a href="UserList?page=${page.totalPage }&query=${query}&content=${content}">[ 마지막 ]</a>
 							</c:otherwise>
 							</c:choose>
 							</td>

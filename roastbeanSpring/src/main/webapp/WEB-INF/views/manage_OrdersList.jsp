@@ -78,13 +78,13 @@
 		   <br>
 		   검색
 		   <select name="query">
-		      <option value="order_seq">주문번호</option>
-		      <option value="user_id">고객ID</option>
-		      <option value="order_name">고객명</option>
-		      <option value="product_name">상품명</option>
-		      <option value="order_date">주문날짜</option>
+		      <option value="order_seq"<c:if test="${query=='order_seq'}">selected="selected"</c:if>>주문번호</option>
+		      <option value="user_id"<c:if test="${query=='user_id'}">selected="selected"</c:if>>고객ID</option>
+		      <option value="order_name"<c:if test="${query=='order_name'}">selected="selected"</c:if>>고객명</option>
+		      <option value="product_name"<c:if test="${query=='product_name'}">selected="selected"</c:if>>상품명</option>
+		      <option value="order_date"<c:if test="${query=='order_date'}">selected="selected"</c:if>>주문날짜</option>
 		   </select>&nbsp;&nbsp;&nbsp;
-		   <input type="text" name="content">
+		   <input type="text" name="content" value="${content }">
 		   <input type="submit" value="검색" class="btn" style="background: #F2BCBB; border: 0; padding:3px 12px; color: #fff; transition: 0.4s; border-radius: 50px;">
 		</form>
 		<br>
@@ -121,7 +121,7 @@
 								[ 처음 ]
 							</c:when>
 							<c:otherwise>
-								<a href="OrderList?page=1">[ 처음 ]</a>
+								<a href="OrderList?page=1&query=${query}&content=${content}">[ 처음 ]</a>
 							</c:otherwise>
 							</c:choose>
 							<!-- 이전 -->
@@ -130,7 +130,7 @@
 								[ 이전 ]
 							</c:when>
 							<c:otherwise>
-								<a href="OrderList?page=${page.curPage - 1 }">[ 이전 ]</a>
+								<a href="OrderList?page=${page.curPage - 1 }&query=${query}&content=${content}">[ 이전 ]</a>
 							</c:otherwise>
 							</c:choose>
 							
@@ -141,7 +141,7 @@
 									[ ${fEach } ] &nbsp;
 								</c:when>
 								<c:otherwise>
-									<a href="OrderList?page=${fEach }">[ ${fEach } ]</a>&nbsp;
+									<a href="OrderList?page=${fEach }&query=${query}&content=${content}">[ ${fEach } ]</a>&nbsp;
 								</c:otherwise>
 								</c:choose>
 							</c:forEach>
@@ -152,7 +152,7 @@
 								[ 다음 ]
 							</c:when>
 							<c:otherwise>
-								<a href="OrderList?page=${page.curPage + 1 }">[ 다음 ]</a>
+								<a href="OrderList?page=${page.curPage + 1 }&query=${query}&content=${content}">[ 다음 ]</a>
 							</c:otherwise>
 							</c:choose>
 							<!-- 끝 -->
@@ -161,7 +161,7 @@
 								[ 마지막 ]
 							</c:when>
 							<c:otherwise>
-								<a href="OrderList?page=${page.totalPage }">[ 마지막 ]</a>
+								<a href="OrderList?page=${page.totalPage }&query=${query}&content=${content}">[ 마지막 ]</a>
 							</c:otherwise>
 							</c:choose>
 							</td>
