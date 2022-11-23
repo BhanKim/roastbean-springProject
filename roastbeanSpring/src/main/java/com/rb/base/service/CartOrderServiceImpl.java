@@ -78,6 +78,7 @@ public class CartOrderServiceImpl implements CartOrderService {
 		String order_email = request.getParameter("order_email1") + "@" + request.getParameter("order_email2");
 		String order_name = request.getParameter("order_name");
 		
+		cDao.subtractionQty(user_id);
 		cDao.insertOrder(user_id);
 		cDao.updateOrder(order_telno, order_addresszipcode, order_address1, order_address2, order_address3, order_email, order_name, user_id);
 		cDao.deleteCartOrder(user_id);

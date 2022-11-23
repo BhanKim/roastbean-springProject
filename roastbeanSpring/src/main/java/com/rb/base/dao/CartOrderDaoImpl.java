@@ -54,4 +54,9 @@ public class CartOrderDaoImpl implements CartOrderDao {
 		return sqlSession.selectOne(nameSpace + ".cartCount");
 	}
 	
+	@Override
+	public void subtractionQty(String user_id) throws Exception {
+		sqlSession.update(nameSpace + ".subtractionQty");
+	}
+	
 }

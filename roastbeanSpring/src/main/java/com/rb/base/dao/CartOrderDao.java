@@ -16,5 +16,6 @@ public interface CartOrderDao {
 			String order_address3, String order_email, String order_name, String user_id) throws Exception;
 	public void deleteCartOrder(String user_id) throws Exception;
 	public UserDto cartCount(String user_id) throws Exception;
+	public void subtractionQty(String user_id) throws Exception;
 
 }
