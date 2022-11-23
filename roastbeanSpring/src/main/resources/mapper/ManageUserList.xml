@@ -10,26 +10,14 @@
 		select count(*) as usertotalCount from user where user_id != 'admin' and user_deletedate is null;
 	</select>
 	
-	<!-- <select id="userList" resultType="com.rb.base.model.UserDto">
-		select * from ( select row_number() over(order by user_id)
-		as rownum, user_id, user_name, user_birthday, user_gender, user_email, user_telno
-		from `user` )a , user u
-		where <![CDATA[a.rownum <= #{rowCount}]]> and <![CDATA[a.rownum >= #{start}]]>  and u.user_id = a.user_id
-		order by u.user_initdate desc;
-	</select> -->
-	
 	<select id="userList" resultType="com.rb.base.model.UserDto">
-		select user_id, user_name, user_birthday, user_gender, user_email, user_telno from `user`
-        where user_id != 'admin' and user_deletedate is null
-        order by user_initdate desc;
-        
-	</select>
-	
-	<select id="userListSearch" resultType="com.rb.base.model.UserDto">
-		select * from  ( select row_number() over(order by user_initdate) as rownum, 
+
+        select * from  ( select row_number() over(order by user_name) as rownum, 
 		user_id, user_name, user_birthday, user_gender, user_email, user_telno
-		from `user` where user_deletedate is null order by user_initdate desc)A
-		where A.${query} like '${content}';
+		from `user` where user_deletedate is null order by user_name desc)A
+		where A.${query} like CONCAT('%',#{content},'%') 
+		<!-- where A.user_name like CONCAT('%',#{content},'%') --> 
+		
 	</select>
 	
 </mapper>

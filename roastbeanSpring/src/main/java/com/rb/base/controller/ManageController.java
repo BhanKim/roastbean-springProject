@@ -52,24 +52,11 @@ public class ManageController {
 		return "manage_UserList";
 	}//UserList
 	
-	@RequestMapping("/UserListSearch")
-	public String UserListSearch(HttpServletRequest request, Model model)throws Exception{
-		service.userListSearch(request, model);
-		return "manage_UserList";
-	}	
-	
 	@RequestMapping("/OrderList")
 	public String OrderList(HttpServletRequest request, Model model)throws Exception{
 		service.orderList(request,model);
 		return "manage_OrdersList";
 	}//UserList
-	
-//	@RequestMapping("/OrderListSearch")
-//	public String OrderListSearch(HttpServletRequest request, Model model)throws Exception{
-//		service.orderListSearch(request, model);
-//		return "OrderList?query=order_seq&content=";
-//	}	
-	
 	
 	// Chart 
 //	@RequestMapping("/ManageMainChart")   기존꺼 수정하기 전 빽업 

@@ -173,6 +173,15 @@ public class ManageMainServiceImpl implements ManageMainService {
 		int listCount = 2; // 보여지는 게시글 수 페이지에
 		int rowCount = 0; // 총 게시글 갯수
 		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
+		String query = request.getParameter("query");
+		String content = request.getParameter("content");
+		
+		
+		if(query == null) {
+			query = "user_name";
+		}
+		if(content == null) {
+			content = "";}
 		
 		if(tempPage == null || tempPage.length() == 0) {
 			cPage = 1;
@@ -189,25 +198,15 @@ public class ManageMainServiceImpl implements ManageMainService {
 		rowCount = (totalCount - ((cPage-1)*10));
 	
 		int start = rowCount - 9;
-		List<UserDto> userList = ManageUserListDao.userList(cPage, start, rowCount);
+		List<UserDto> userList = ManageUserListDao.userList(cPage, start, rowCount, query, content);
 		model.addAttribute("page", dto);
 		model.addAttribute("manageuserlist", userList);
-		
+		request.setAttribute("query", query);
+		request.setAttribute("content", content.replace("%", ""));
 	}//userList END
 
-	@Override
-	public void userListSearch(HttpServletRequest request, Model model) throws Exception {
-		
-		String query = request.getParameter("query");
-		String content = request.getParameter("content");
-		content = '%'+content+'%';
-		List<UserDto> userListSearch = ManageUserListDao.userListSearch(query, content);
-		model.addAttribute("manageuserlist",userListSearch);
-	}
 	
 ///////////////////////////////////  manage_orderList  ////////////////////////////////////
-	
-	
 	
 	@Override
 	public void orderList(HttpServletRequest request, Model model) throws Exception {
@@ -244,54 +243,11 @@ public class ManageMainServiceImpl implements ManageMainService {
 		List<OrderDto> orderList = ManageOrderListDao.orderList(cPage, start, rowCount, query, content);
 		model.addAttribute("page", dto);
 		model.addAttribute("manageorderlist", orderList);
-		
+		request.setAttribute("query", query);
+		request.setAttribute("content", content.replace("%", ""));
 	}//orderList END
 
-	
-//	 Paging + search 합치기 전 빽업 
-//	@Override
-//	public void orderList(HttpServletRequest request, Model model) throws Exception {
-//		int cPage = 0; // 시작페이지
-//		int pageLength = 5; // 페이징에 표시될 개수
-//		int totalCount = 0; // 총 페이징 수
-//		int listCount = 15; // 보여지는 게시글 수 페이지에
-//		int rowCount = 0; // 총 게시글 갯수
-//		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
-//		
-//		if(tempPage == null || tempPage.length() == 0) {
-//			cPage = 1;
-//		}
-//		try {
-//			cPage = Integer.parseInt(tempPage);
-//		}catch(Exception e) {
-//			cPage = 1;
-//		}
-//		
-//		totalCount = ManageOrderListDao.orderListRow();
-//		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
-//		
-//		rowCount = (totalCount - ((cPage-1)*10));
-//		
-//		int start = rowCount - 9;
-//		List<OrderDto> orderList = ManageOrderListDao.orderList(cPage, start, rowCount);
-//		model.addAttribute("page", dto);
-//		model.addAttribute("manageorderlist", orderList);
-//		
-//	}//orderList END
-//	
-//	
-//	
-//	@Override
-//	public void orderListSearch(HttpServletRequest request, Model model) throws Exception {
-//		
-//		String query = request.getParameter("query");
-//		String content = request.getParameter("content");
-//		content = '%'+content+'%';
-//		List<OrderDto> orderListSearch = ManageOrderListDao.orderListSearch(query, content);
-//		model.addAttribute("manageorderlist",orderListSearch);
-//	}
-//	
-	
+		
 	
 	
 }//class end 

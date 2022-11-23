@@ -25,12 +25,6 @@
 		<!-- where A.${query} like '${content}'; -->
 	</select> 
 	
-	
-<!--<select id="orderListSearch" resultType="com.rb.base.model.OrderDto">
-		select * from  ( select row_number() over(order by order_seq) as rownum, o.order_seq, o.order_name,o.user_id, p.product_name, o.order_qty,
-		o.order_price, o.order_date from orders as o, product as p where  o.product_id = p.product_id order by o.order_seq desc)A
-		where A.${query} like '${content}';
-	</select>	 -->
 
 </mapper>
 
