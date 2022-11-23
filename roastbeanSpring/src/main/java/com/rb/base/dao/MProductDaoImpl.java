@@ -24,13 +24,6 @@ public class MProductDaoImpl implements MProductDao {
 		return sqlSession.selectList(nameSpace + ".mpList");
 	}
 
-	
-	@Override
-	public ProductDto mproductdetail(int product_id) throws Exception {
-		// TODO Auto-generated method stub
-		return (ProductDto)sqlSession.selectList(nameSpace+".mproductdetail");
-	}
-
 	@Override
 	public void insertproduct(String product_name, int product_weight, String product_info, String product_image,
 			int product_price, int product_stock) throws Exception {
@@ -52,4 +45,40 @@ public class MProductDaoImpl implements MProductDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(nameSpace + ".maxproduct_id");
 	}
+	
+	
+	@Override
+	public ProductDto mproductdetail(int product_id) throws Exception {
+		// TODO Auto-generated method stub
+		return (ProductDto)sqlSession.selectList(nameSpace+".mproductdetail");
+	}
+	
+	@Override
+	public ProductDto mproductdetailupdate(int product_id) throws Exception {
+		// TODO Auto-generated method stub
+		return (ProductDto)sqlSession.selectList(nameSpace+".mproductdetailupdate");
+	}
+	
+	@Override
+	public ProductDto mproductdetailimages(int product_id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(nameSpace+".mproductdetailimages");
+	}
+	
+	@Override
+	public void mproductdetailupdateinsert(int product_id, String product_name, int product_weight,
+			String product_info, int product_price, int product_stock, String product_image, String category_type,
+			String category_acidity, String category_aroma, String category_body, String category_sweet)
+			throws Exception {
+		sqlSession.update(nameSpace+".mproductdetailupdateinsert");
+		
+	}
+
+	@Override
+	public void mproductdetaildelete(int product_id) throws Exception {
+		
+		sqlSession.update(nameSpace+".mproductdetaildelete");
+		
+	}
+	
 }
