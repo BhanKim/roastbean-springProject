@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Inner Page 샘플입니다. 관련 제목을 입력해주세요.</title>
+  <title>Roast Bean : MyBoardList</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -143,7 +143,7 @@
                         </c:when>
                         <c:otherwise>
                            <li class="page-item"><a class="page-link"
-                              href="myboardlist?page=1">처음</a>
+                              href="myboardlist?page=1&pages=<%=request.getParameter("pages") %>">처음</a>
                            </li>
                         </c:otherwise>
                      </c:choose>
@@ -155,7 +155,7 @@
                         </c:when>
                         <c:otherwise>
                            <li class="page-item"><a class="page-link"
-                              href="myboardlist?page=${page.curPage - 1 }">이전</a>
+                              href="myboardlist?page=${page.curPage - 1 }&pages=<%=request.getParameter("pages") %>">이전</a>
                            </li>
                         </c:otherwise>
                      </c:choose>
@@ -169,7 +169,7 @@
                            </c:when>
                            <c:otherwise>
                               <li class="page-item"><a class="page-link"
-                                 href="myboardlist?page=${fEach}">&nbsp;${fEach }&nbsp;</a>
+                                 href="myboardlist?page=${fEach }&pages=<%=request.getParameter("pages") %>">&nbsp;${fEach }&nbsp;</a>
                               </li>
                            </c:otherwise>
                         </c:choose>
@@ -183,7 +183,7 @@
                         </c:when>
                         <c:otherwise>
                            <li class="page-item"><a class="page-link"
-                              href="myboardlist?page=${page.curPage + 1 }">다음</a>
+                              href="myboardlist?page=${page.curPage + 1 }&pages=<%=request.getParameter("pages") %>">다음</a>
                            </li>
                         </c:otherwise>
                      </c:choose>
@@ -195,7 +195,7 @@
                         </c:when>
                         <c:otherwise>
                            <li class="page-item"><a class="page-link"
-                              href="myboardlist?page=${page.totalPage }">마지막</a>
+                              href="myboardlist?page=${page.totalPage }&pages=<%=request.getParameter("pages") %>">마지막</a>
                            </li>
                         </c:otherwise>
                      </c:choose>
@@ -208,103 +208,115 @@
 	  <br><br>
 	  
 	  <div class="container">
-	  		<div class="row">
-		    <div class="col">
-		    	<h3>&nbsp;&nbsp;&nbsp;&nbsp;Review List</h3>
-				<hr style="border: solid 2px red;">
-		    	<br>
-		    	<table class="table table-sm table-hover">
-					<thead>
-						<tr>
-							<th width=15 style="text-align: center;">번호</th>
-							<th width=15 style="text-align: center;">주문번호</th>
-							<th width=150 style="text-align: center;">내용</th>
-							<th width=70 style="text-align: center;">작성일</th>
-							<th width=70 style="text-align: center;">평점</th>
-						</tr>
-					</thead>
-					<tbody>
-						
-						<c:forEach items="${mylist}" var="dtos">				
-						<tr>
-								<td width=70 style="text-align: center;">${dtos.rownum}</td>		
-								<td width=70 style="text-align: center;">${dtos.order_seq}</td>					
-								<td id="left" style="text-align: center;">
-									<a href="reviewEdit.do?order_seq=${dtos.order_seq}&review_seq=${dtos.review_seq}" style="color: #000000;">${dtos.review_content }</a></td>
-								<td style="text-align: center;">
-										<fmt:formatDate value="${dtos.review_date}" pattern="yyyy-MM-dd KK:mm"/>
-								</td>
-								
-								<td style="text-align: center;">
-								<c:forEach begin="1" end="${dtos.review_star}">
-									<span class="star">★</span>
-								</c:forEach>
-								<c:forEach begin="${dtos.review_star}" end="4">
+				<div class="row">
+					<div class="col">
+						<h3>&nbsp;&nbsp;&nbsp;&nbsp;Review List</h3>
+						<hr style="border: solid 2px red;">
+						<br>
+						<table class="table table-sm table-hover">
+							<thead>
+								<tr>
+									<th width=15 style="text-align: center;">번호</th>
+									<th width=15 style="text-align: center;">주문번호</th>
+									<th width=150 style="text-align: center;">내용</th>
+									<th width=70 style="text-align: center;">작성일</th>
+									<th width=70 style="text-align: center;">평점</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<c:forEach items="${mylist}" var="dtos">
+									<tr>
+										<td width=70 style="text-align: center;">${dtos.rownum}</td>
+										<td width=70 style="text-align: center;">${dtos.order_seq}</td>
+										<td id="left" style="text-align: center;"><a
+											href="reviewEdit?order_seq=${dtos.order_seq}&review_seq=${dtos.review_seq}"
+											style="color: #000000;">${dtos.review_content }</a></td>
+										<td style="text-align: center;"><fmt:formatDate
+												value="${dtos.review_date}" pattern="yyyy-MM-dd KK:mm" /></td>
+
+										<td style="text-align: center;"><c:forEach begin="1"
+												end="${dtos.review_star}">
+												<span class="star">★</span>
+											</c:forEach> <c:forEach begin="${dtos.review_star}" end="4">
 									☆
 								</c:forEach></td>
-							
-						</tr>
-						</c:forEach>
-						<tr></tr>
-						
-						<tr>
-						<td align="center" colspan="6">
-						<c:choose>
-							<c:when test="${(pages.curPage - 1) < 1 }">
-								[ 처음 ]
-							</c:when>
-							<c:otherwise>
-								<a href="myboardlist?page=<%=request.getParameter("page") %>&pages=1">[ 처음 ]</a>
-							</c:otherwise>
-							</c:choose>
-							<!-- 이전 -->
-							<c:choose>
-							<c:when test="${(pages.curPage - 1) < 1 }">
-								[ 이전 ]
-							</c:when>
-							<c:otherwise>
-								<a href="myboardlist?page=<%=request.getParameter("page") %>&pages=${pages.curPage - 1 }">[ 이전 ]</a>
-							</c:otherwise>
-							</c:choose>
-							
-							<!-- 개별 페이지 -->
-							<c:forEach var="fEach" begin="${pages.startPage }" end="${pages.endPage }" step="1">
-								<c:choose>
-								<c:when test="${pages.curPage == fEach}">
-									[ ${fEach } ] &nbsp;
-								</c:when>
-								<c:otherwise>
-									<a href="myboardlist?page=<%=request.getParameter("page") %>&pages=${fEach }">[ ${fEach } ]</a>&nbsp;
-								</c:otherwise>
-								</c:choose>
-							</c:forEach>
-							
-							<!-- 다음 -->
-							<c:choose>
-							<c:when test="${(pages.curPage + 1) > pages.totalPage }">
-								[ 다음 ]
-							</c:when>
-							<c:otherwise>
-								<a href="myboardlist?page=<%=request.getParameter("page") %>&pages=${pages.curPage + 1 }">[ 다음 ]</a>
-							</c:otherwise>
-							</c:choose>
-							<!-- 끝 -->
-							<c:choose>
-							<c:when test="${pages.curPage == pages.totalPage }">
-								[ 마지막 ]
-							</c:when>
-							<c:otherwise>
-								<a href="myboardlist?page=<%=request.getParameter("page") %>&pages=${pages.totalPage }">[ 마지막 ]</a>
-							</c:otherwise>
-							</c:choose>
-							</td>
-						</tr>
-					</tbody>	
-				</table><br>
+
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<br>
+
+						<div class="container" align="center">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination justify-content-center">
+									<c:choose>
+										<c:when test="${(pages.curPage - 1) < 1 }">
+											<li class="page-item disabled"><a class="page-link">처음</a>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a class="page-link"
+												href="myboardlist?page=<%=request.getParameter("page") %>&pages=1">처음</a></li>
+										</c:otherwise>
+									</c:choose>
+									<!-- 이전 -->
+									<c:choose>
+										<c:when test="${(pages.curPage - 1) < 1 }">
+											<li class="page-item disabled"><a class="page-link">이전</a>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a class="page-link"
+												href="myboardlist?page=<%=request.getParameter("page") %>&pages=${pages.curPage - 1 }">이전</a></li>
+										</c:otherwise>
+									</c:choose>
+									<!-- 개별 페이지 -->
+									<c:forEach var="fEach" begin="${pages.startPage }"
+										end="${pages.endPage }" step="1">
+										<c:choose>
+											<c:when test="${pages.curPage == fEach}">
+												<li class="page-item disabled"><a
+													class="page-link active">&nbsp;${fEach }&nbsp;</a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="page-item"><a class="page-link"
+													href="myboardlist?page=<%=request.getParameter("page") %>&pages=${fEach }">&nbsp;${fEach }&nbsp;</a>
+												</li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+
+									<!-- 다음 -->
+									<c:choose>
+										<c:when test="${(pages.curPage + 1) > pages.totalPage }">
+											<li class="page-item disabled"><a class="page-link">다음</a>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a class="page-link"
+												href="myboardlist?page=<%=request.getParameter("page") %>&pages=${pages.curPage + 1 }">다음</a></li>
+										</c:otherwise>
+									</c:choose>
+									<!-- 끝 -->
+									<c:choose>
+										<c:when test="${pages.curPage == pages.totalPage }">
+											<li class="page-item disabled"><a class="page-link">마지막</a>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a class="page-link"
+												href="myboardlist?page=<%=request.getParameter("page") %>&pages=${pages.totalPage }">마지막</a></li>
+										</c:otherwise>
+									</c:choose>
+								</ul>
+							</nav>
+						</div>
+					</div>
 				</div>
+
 			</div>
-	  
-	  </div>
 	</section>
 	
 

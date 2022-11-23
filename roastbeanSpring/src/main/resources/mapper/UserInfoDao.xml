@@ -20,10 +20,16 @@
 	</update>
 	
 	<select id="myOrderList" resultType="com.rb.base.model.MyOrderListDto">
-		SELECT p.product_id, p.product_image, p.product_name, p.product_weight, o.order_seq, o.order_date, o.order_price, o.order_qty 
+		SELECT * from (select row_number() over(order by o.order_date desc) as rownum,
+		p.product_id, p.product_image, p.product_name, p.product_weight, o.order_seq, o.order_date, o.order_price, o.order_qty, o.order_reviewcheck
 		FROM user u, product p, orders o  
-		WHERE u.user_id = #{user_id} and u.user_id = o.user_id and p.product_id = o.product_id 
-		group by o.order_seq, p.product_id, o.order_date, o.order_price, o.order_qty
+		WHERE u.user_id = #{user_id} and u.user_id = o.user_id and p.product_id = o.product_id) A
+		where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>
+		group by order_seq, product_id, order_date, order_price, order_qty;
+	</select>
+	
+	<select id="myOrderRow" resultType="Integer">
+		select count(*) as totalCount from orders where user_id = #{user_id}
 	</select>
 	
 </mapper>

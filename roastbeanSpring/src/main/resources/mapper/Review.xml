@@ -3,21 +3,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 						
-<mapper namespace="com.rb.base.dao.ProductDao">
+<mapper namespace="com.rb.base.dao.ReviewDao">
 	
-	<select id="reviewList" resultType="com.rb.base.model.ReviewDto">
-		select * from (select row_number() over(order by review_seq asc)
-        as rownum, r.review_seq, r.review_content, u.user_nick, r.review_date, r.review_star 
-        from review as r, user as u where r.user_id = u.user_id and r.product_id = #{product_id}) A 
-        where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]> order by rownum desc
+	<select id="productReview" resultType="com.rb.base.model.ProductDto">
+		select o.order_seq, o.product_id, o.order_qty, p.product_name, p.product_weight, o.order_price, p.product_image
+	    from product as p, orders as o where o.product_id = p.product_id and order_seq = #{order_seq}
 	</select>
+	
+	<insert id="insertReview">
+		insert into review (review_date, review_content, review_star, order_seq, product_id, user_id)
+		value (now(), #{review_content}, #{review_star}, #{order_seq}, #{product_id}, #{user_id})
+	</insert>
+	
+	<update id="updateReviewCheck">
+		update orders set order_reviewcheck = '1' where order_seq = #{order_seq}
+	</update>
 	
 	<select id="reviewRow" resultType="Integer">
-		select product_id, product_name, product_weight, product_info, product_price, product_stock, product_image from product where product_id = #{product_id}
+		select count(*) as total from review where user_id = #{user_id}
 	</select>
 	
-	<select id="avgStar" resultType="com.rb.base.model.ReviewDto">
-		select sum(review_star) as sumStar, count(review_star) as sumReview from review where product_id = #{product_id}
+	<select id="selectReview" resultType="com.rb.base.model.ReviewDto">
+		select * from (select row_number() over(order by review_seq asc)
+	    as rownum, r.review_seq, r.review_content, u.user_nick, r.review_date, r.review_star, r.order_seq
+	    from review as r, user as u where r.user_id = u.user_id and r.user_id = #{user_id}) A
+	    where <![CDATA[rownum <= #{rowCounts}]]> and <![CDATA[rownum >= #{starts}]]> order by rownum desc
 	</select>
+	
+	<select id="selectMyReview" resultType="com.rb.base.model.ReviewDto">
+		select review_seq, order_seq, review_content, review_star
+	    from review where review_seq = #{review_seq}
+	</select>
+	
+	<update id="updateReview">
+		update review set review_content = #{review_content}, review_star = #{review_star} where review_seq = #{review_seq}
+	</update>
+	
+	<delete id="deleteReview">
+		delete from review where review_seq = #{review_seq}
+	</delete>
 	
 </mapper>
