@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD 3.0//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.rb.base.dao.CsDao">
+<mapper namespace="com.rb.base.dao.Dao">
 
 	<insert id="userQuestionInsert">
 		INSERT INTO qna_write (user_id, qna_write_category, qna_write_title, qna_write_content, qna_write_initdate) 

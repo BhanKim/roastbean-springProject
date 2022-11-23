@@ -19,12 +19,12 @@ public class ManageController {
 	@RequestMapping("/ManageMain")
 	public String ManageMain(HttpServletRequest request)throws Exception{
 		
-		service.order_date_sales(request);
-		service.order_week_sales(request);
-		service.order_date_order_quantity_NQP(request);
-		service.order_date_order_price_NQP(request);
-		service.week_order_product_order_price_NQP(request);
-		service.week_order_product_order_quantity_NQP(request);
+//		service.order_date_sales(request);
+//		service.order_week_sales(request);
+//		service.order_date_order_quantity_NQP(request);   임마 하나 
+//		service.order_date_order_price_NQP(request);		임마 둘 
+//		service.week_order_product_order_price_NQP(request); //ok
+//		service.week_order_product_order_quantity_NQP(request);//ok
 		service.monthly_statistics(request);
 		service.count_new_users(request);
 		service.todayNewQNA(request);
