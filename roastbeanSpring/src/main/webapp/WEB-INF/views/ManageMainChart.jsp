@@ -20,6 +20,7 @@
 				data: [{
 					type: "column",
 					dataPoints: dps[0]
+				/* datapoint */
 				}]
 			});
 		</c:if>
@@ -43,14 +44,15 @@
 			</c:if>
 		}
 	</script>
+	<title>Manage Chart Test</title>
 </head>
 <body>
-	<c:if test="${error != null}">
+	<%-- <c:if test="${error != null}">
 	<div  style='width: 50%; margin-left: auto; margin-right: auto; margin-top: 200px; text-align: center;'>${error}</div>
-	</c:if>
-	<c:if test="${error == null}">
+	</c:if> --%>
+	<%-- <c:if test="${error == null}"> --%>
 	<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-	</c:if>
+	<%-- </c:if> --%>
 	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>      

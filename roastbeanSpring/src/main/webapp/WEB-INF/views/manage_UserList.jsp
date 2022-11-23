@@ -57,7 +57,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>User List</h2>
           <ol>
-            <li><a href="ManageMain.do">Home</a></li>
+            <li><a href="ManageMain">ManageMain</a></li>
             <li>User List</li>
           </ol>
         </div>
@@ -77,7 +77,7 @@
 		&nbsp;&nbsp;&nbsp; 
 <!-- 	      &nbsp;&nbsp;&nbsp;<h2>회원정보 리스트</h2>&nbsp;&nbsp;&nbsp;
  -->	      
- 	<form action="ManageUserListSearch">
+ 		<form action="ManageUserListSearch">
 		   <br>
 		   검색
 		   <select name="query">

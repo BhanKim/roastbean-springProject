@@ -9,6 +9,6 @@ public interface ManageUserListDao {// service가 아는 녀석
 	public int userListRow() throws Exception;
 	public List<UserDto> userList(int cPage , int start, int rowCount) throws Exception;
 	
-	
+	public List<UserDto> userListSearch(String query, String content) throws Exception;
 	
 }//END 

@@ -28,7 +28,7 @@ public class ManageController {
 	@RequestMapping("/ManageMain")
 	public String ManageMain(HttpServletRequest request, Model model)throws Exception{
 		
-//		service.order_date_sales(request);
+		service.order_date_sales(request);
 //		service.order_week_sales(request);
 //		service.order_date_order_quantity_NQP(request);   임마 하나 
 //		service.order_date_order_price_NQP(request);		임마 둘 
@@ -45,45 +45,52 @@ public class ManageController {
 	}//ManageMain End
 	
 	
-	
-//	//UserList
-//	@RequestMapping("/UserList")
-//	public String UserList(HttpServletRequest request, Model model)throws Exception{
-//		service.userList(request,model);
-//		
-//		return "manage_UserList";
-//	}//UserList
-	
 	//UserList
 	@RequestMapping("/UserList")
 	public String UserList(HttpServletRequest request, Model model)throws Exception{
 		service.userList(request,model);
-		
 		return "manage_UserList";
 	}//UserList
 	
+	@RequestMapping("/UserListSearch")
+	public String UserListSearch(HttpServletRequest request, Model model)throws Exception{
+		service.userListSearch(request, model);
+		return "manage_UserList";
+	}	
+	
+	@RequestMapping("/OrderList")
+	public String OrderList(HttpServletRequest request, Model model)throws Exception{
+		service.orderList(request,model);
+		return "manage_OrdersList";
+	}//UserList
+	
+//	@RequestMapping("/OrderListSearch")
+//	public String OrderListSearch(HttpServletRequest request, Model model)throws Exception{
+//		service.orderListSearch(request, model);
+//		return "OrderList?query=order_seq&content=";
+//	}	
 	
 	
 	// Chart 
-	@RequestMapping("/ManageMainChart")
-	public class CanvasjsChartController {
-		@Autowired
-		private ManageMainService canvasjsChartService;
-		@RequestMapping(method = RequestMethod.GET)
-		public String springMVC(ModelMap modelMap) {
-							System.out.println("ManageController ManageMainChart Start");			//////Syso
-			List<List<DataPointModel>> canvasjsDataList = canvasjsChartService.getCanvasjsChartData();
-			modelMap.addAttribute("dataPointsList", canvasjsDataList);
-			return "ManageMainChart";
-		}
-	 
-		@ExceptionHandler({DatabaseConnectionException.class})
-		public ModelAndView getSuperheroesUnavailable(DatabaseConnectionException ex) {
-								System.out.println("ManageController ManageMainChart End");			//////Syso
-		    return new ModelAndView("chart", "error", ex.getMessage());
-		}
-	
-	}// CanvasjsChartController END 
+//	@RequestMapping("/ManageMainChart")   기존꺼 수정하기 전 빽업 
+//	public class CanvasjsChartController {
+//		@Autowired
+//		private ManageMainService canvasjsChartService;
+//		@RequestMapping(method = RequestMethod.GET)
+//		public String springMVC(ModelMap modelMap) {
+//			System.out.println("ManageController ManageMainChart Start");			//////Syso
+//			List<List<DataPointModel>> canvasjsDataList = canvasjsChartService.getCanvasjsChartData();
+//			modelMap.addAttribute("dataPointsList", canvasjsDataList);
+//			return "ManageMainChart";
+//		}
+//		
+//		@ExceptionHandler({DatabaseConnectionException.class})
+//		public ModelAndView getSuperheroesUnavailable(DatabaseConnectionException ex) {
+//			System.out.println("ManageController ManageMainChart End");			//////Syso
+//			return new ModelAndView("chart", "error", ex.getMessage());
+//		}
+//		
+//	}// CanvasjsChartController END 
 	
 	
 }//class end 

@@ -1,8 +1,12 @@
 package com.rb.base.model;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 public class OrderDto {
-		
+		int rownum;
 		int product_id;
+		int order_seq;
 		String user_id;
 		String order_telno;
 		int order_qty;
@@ -13,7 +17,36 @@ public class OrderDto {
 		String address3;
 		String order_email;
 		String order_name;
+		Date order_date;
+		///
+		String product_name;
 		
+		
+		public OrderDto() {
+			// TODO Auto-generated constructor stub
+		}
+		
+		
+		public OrderDto(int rownum, int product_id, String user_id, String order_telno, int order_qty, int order_price,
+				String order_zipcode, String address1, String address2, String address3, String order_email,
+				String order_name) {
+			super();
+			this.rownum = rownum;
+			this.product_id = product_id;
+			this.user_id = user_id;
+			this.order_telno = order_telno;
+			this.order_qty = order_qty;
+			this.order_price = order_price;
+			this.order_zipcode = order_zipcode;
+			this.address1 = address1;
+			this.address2 = address2;
+			this.address3 = address3;
+			this.order_email = order_email;
+			this.order_name = order_name;
+		}
+
+
+
 		public OrderDto(int product_id, String user_id, String order_telno, int order_qty, int order_price,
 				String order_zipcode, String address1, String address2, String address3, String order_email, String order_name) {
 			super();
@@ -29,10 +62,54 @@ public class OrderDto {
 			this.order_email = order_email;
 			this.order_name = order_name;
 		}
+
+
+		public OrderDto(int rownum, int order_seq, String user_id, int order_qty, int order_price, String order_name,
+				Date order_date, String product_name) {
+			super();
+			this.rownum = rownum;
+			this.order_seq = order_seq;
+			this.order_name = order_name;
+			this.user_id = user_id;
+			this.product_name = product_name;
+			this.order_qty = order_qty;
+			this.order_price = order_price;
+			this.order_date = order_date;
+		}
+
+
+		public OrderDto(int rownum, int order_seq, String user_id, int order_qty, int order_price, String order_name,
+				String product_name) {
+			super();
+			this.rownum = rownum;
+			this.order_seq = order_seq;
+			this.user_id = user_id;
+			this.order_qty = order_qty;
+			this.order_price = order_price;
+			this.order_name = order_name;
+			this.product_name = product_name;
+		}
 		
-		
-		
-		
+
+		public OrderDto(int order_seq, String user_id, int order_qty, int order_price, Date order_date,
+				String product_name) {
+			super();
+			this.order_seq = order_seq;
+			this.user_id = user_id;
+			this.order_qty = order_qty;
+			this.order_price = order_price;
+			this.order_date = order_date;
+			this.product_name = product_name;
+		}
+
+
+		public int getRownum() {
+			return rownum;
+		}
+
+		public void setRownum(int rownum) {
+			this.rownum = rownum;
+		}
 
 		public int getProduct_id() {
 			return product_id;
@@ -120,6 +197,36 @@ public class OrderDto {
 
 		public void setOrder_name(String order_name) {
 			this.order_name = order_name;
+		}
+
+
+		public int getOrder_seq() {
+			return order_seq;
+		}
+
+
+		public void setOrder_seq(int order_seq) {
+			this.order_seq = order_seq;
+		}
+
+
+		public String getProduct_name() {
+			return product_name;
+		}
+
+
+		public void setProduct_name(String product_name) {
+			this.product_name = product_name;
+		}
+
+
+		public Date getOrder_date() {
+			return order_date;
+		}
+
+
+		public void setOrder_date(Date order_date) {
+			this.order_date = order_date;
 		}
 		
 		

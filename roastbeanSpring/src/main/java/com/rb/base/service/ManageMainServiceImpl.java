@@ -10,9 +10,11 @@ import org.springframework.ui.Model;
 
 import com.rb.base.dao.ManageChartDao;
 import com.rb.base.dao.ManageMainDao;
+import com.rb.base.dao.ManageOrderListDao;
 import com.rb.base.dao.ManageUserListDao;
 import com.rb.base.model.ManageChartDto.DataPointModel;
 import com.rb.base.model.ManageMainDto;
+import com.rb.base.model.OrderDto;
 import com.rb.base.model.PageInfo;
 import com.rb.base.model.UserDto;
 
@@ -23,15 +25,21 @@ public class ManageMainServiceImpl implements ManageMainService {
 	ManageMainDao ManageMainDao;
 	
 	@Autowired
+	ManageOrderListDao ManageOrderListDao;
+	
+	@Autowired
 	ManageUserListDao ManageUserListDao;
 	
 	@Autowired
 	ManageChartDao ManageChartDao;
 	
+	
 	// /////////////////////////////////  Manage Main  /////////////////////////////////
 	
 	
 //////////////////////// Manage Main Chart  //////////////////////////
+	
+	@Autowired
 	public void setCanvasjsChartDao(ManageChartDao ManageChartDao) {
 		this.ManageChartDao = ManageChartDao;
 	}
@@ -40,7 +48,6 @@ public class ManageMainServiceImpl implements ManageMainService {
 	public List<List<DataPointModel>> getCanvasjsChartData() {
 		return ManageChartDao.getCanvasjsChartData();
 	}
-	
 	
 	//////////////////////// New Community //////////////////////////
 	@Override
@@ -91,12 +98,9 @@ public class ManageMainServiceImpl implements ManageMainService {
 	
 	
 	// 하루동안 가장 많이 팔린 제품의 이름,수량,총 판매금액
-	@Override
+	@Override   // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
 	public ManageMainDto order_date_order_quantity_NQP(HttpServletRequest request) throws Exception { 
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		System.out.println("order_date_order_quantity_NQP");
 		ManageMainDto order_date_order_quantity_NQP = ManageMainDao.order_date_order_quantity_NQP(request);
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		
 		if(order_date_order_quantity_NQP != null) {
 		request.setAttribute("order_date_order_quantity_NQP_N", order_date_order_quantity_NQP.getProduct_name());
@@ -118,7 +122,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 	////////////////////////   1 week   //////////////////////////
 	
 	// 하루동안 가장 높은 매출 제품의 이름,수량,총 판매금액
-	@Override
+	@Override // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
 	public ManageMainDto order_date_order_price_NQP(HttpServletRequest request) throws Exception { 
 		ManageMainDto order_date_order_price_NQP = ManageMainDao.order_date_order_price_NQP(request);
 		request.setAttribute("order_date_order_price_NQP_N", order_date_order_price_NQP.getProduct_name());
@@ -130,7 +134,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 	
 	
 	// 1주일간 가장 높은 매출 상픔의 이름,수량,판매금액
-	@Override
+	@Override	 // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
 	public ManageMainDto week_order_product_order_price_NQP(HttpServletRequest request) throws Exception { 
 		ManageMainDto week_order_product_order_price_NQP = ManageMainDao.week_order_product_order_price_NQP(request);
 		request.setAttribute("week_order_product_order_price_NQP_N", week_order_product_order_price_NQP.getProduct_name());
@@ -140,7 +144,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 	}
 
 	//<!-- 오늘부터 7일전까지 많이 팔린 상품이름, 가격, 갯수 -->
-	@Override
+	@Override	 // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
 	public ManageMainDto week_order_product_order_quantity_NQP(HttpServletRequest request) throws Exception {
 		ManageMainDto week_order_product_order_quantity_NQP = ManageMainDao.week_order_product_order_price_NQP(request);
 		request.setAttribute("week_order_product_order_quantity_NQP_N", week_order_product_order_quantity_NQP.getProduct_name());
@@ -151,7 +155,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 
 	
 	////////////////////////   1 Month   //////////////////////////
-	@Override
+	@Override	 // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
 	public void monthly_statistics(HttpServletRequest request) throws Exception {
 		request.setAttribute("monthly_statistics", ManageMainDao.monthly_statistics(request));
 	}
@@ -166,7 +170,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 		int cPage = 0; // 시작페이지
 		int pageLength = 5; // 페이징에 표시될 개수
 		int totalCount = 0; // 총 페이징 수
-		int listCount = 10; // 보여지는 게시글 수 페이지에
+		int listCount = 2; // 보여지는 게시글 수 페이지에
 		int rowCount = 0; // 총 게시글 갯수
 		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
 		
@@ -190,9 +194,104 @@ public class ManageMainServiceImpl implements ManageMainService {
 		model.addAttribute("manageuserlist", userList);
 		
 	}//userList END
-	
-	
-	
 
+	@Override
+	public void userListSearch(HttpServletRequest request, Model model) throws Exception {
+		
+		String query = request.getParameter("query");
+		String content = request.getParameter("content");
+		content = '%'+content+'%';
+		List<UserDto> userListSearch = ManageUserListDao.userListSearch(query, content);
+		model.addAttribute("manageuserlist",userListSearch);
+	}
+	
+///////////////////////////////////  manage_orderList  ////////////////////////////////////
+	
+	
+	
+	@Override
+	public void orderList(HttpServletRequest request, Model model) throws Exception {
+		int cPage = 0; // 시작페이지
+		int pageLength = 5; // 페이징에 표시될 개수
+		int totalCount = 0; // 총 페이징 수
+		int listCount = 15; // 보여지는 게시글 수 페이지에
+		int rowCount = 0; // 총 게시글 갯수
+		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
+		String query = request.getParameter("query");
+		String content = request.getParameter("content");
+		
+		if(query == null) {
+			query = "order_seq";
+		}
+		if(content == null) {
+			content = "";}
+		
+		if(tempPage == null || tempPage.length() == 0) {
+			cPage = 1;
+		}
+		try {
+			cPage = Integer.parseInt(tempPage);
+		}catch(Exception e) {
+			cPage = 1;
+		}
+		
+		totalCount = ManageOrderListDao.orderListRow();
+		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
+		
+		rowCount = (totalCount - ((cPage-1)*10));
+	
+		int start = rowCount - 9;
+		List<OrderDto> orderList = ManageOrderListDao.orderList(cPage, start, rowCount, query, content);
+		model.addAttribute("page", dto);
+		model.addAttribute("manageorderlist", orderList);
+		
+	}//orderList END
 
+	
+//	 Paging + search 합치기 전 빽업 
+//	@Override
+//	public void orderList(HttpServletRequest request, Model model) throws Exception {
+//		int cPage = 0; // 시작페이지
+//		int pageLength = 5; // 페이징에 표시될 개수
+//		int totalCount = 0; // 총 페이징 수
+//		int listCount = 15; // 보여지는 게시글 수 페이지에
+//		int rowCount = 0; // 총 게시글 갯수
+//		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
+//		
+//		if(tempPage == null || tempPage.length() == 0) {
+//			cPage = 1;
+//		}
+//		try {
+//			cPage = Integer.parseInt(tempPage);
+//		}catch(Exception e) {
+//			cPage = 1;
+//		}
+//		
+//		totalCount = ManageOrderListDao.orderListRow();
+//		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
+//		
+//		rowCount = (totalCount - ((cPage-1)*10));
+//		
+//		int start = rowCount - 9;
+//		List<OrderDto> orderList = ManageOrderListDao.orderList(cPage, start, rowCount);
+//		model.addAttribute("page", dto);
+//		model.addAttribute("manageorderlist", orderList);
+//		
+//	}//orderList END
+//	
+//	
+//	
+//	@Override
+//	public void orderListSearch(HttpServletRequest request, Model model) throws Exception {
+//		
+//		String query = request.getParameter("query");
+//		String content = request.getParameter("content");
+//		content = '%'+content+'%';
+//		List<OrderDto> orderListSearch = ManageOrderListDao.orderListSearch(query, content);
+//		model.addAttribute("manageorderlist",orderListSearch);
+//	}
+//	
+	
+	
+	
 }//class end 

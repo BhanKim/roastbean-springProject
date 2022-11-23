@@ -66,7 +66,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Manage Mode</h2>
           <ol>
-            <li><a href="manage_main.jsp">Home</a></li>
+            <li><a href="ManageMain">ManageMain</a></li>
             <li>Inner Page</li>
           </ol>
         </div>
@@ -88,15 +88,15 @@
 									<thead >
 									<tr>
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='mpList'">PRODUCT LIST</td>	
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='manage_chart.jsp'">CHART'<준비중>'</td>
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='manage_chart.jsp'">CHART<br><준비중></td>
 									</tr>
 									<tr>
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='ManageOrdersList'">ORDERS LIST</td>
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='OrderList'">ORDERS LIST</td>
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='UserList?page=1'">USER LIST</td>
 									</tr>
 									<tr>
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href=' # ''">미 정</td>
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='notice_lis'">NOTICE</td>
+										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='notice_list'">NOTICE</td>
 									</tr>
 								</thead>
 							</table>
@@ -207,7 +207,7 @@
 			<section class="inner-page">
 				<div class="container">
 						<h2> 잘못된 접근 입니다.</h2>
-						<a href="index.jsp">메인 화면으로 돌아가기</a>
+						<a href="index">메인 화면으로 돌아가기</a>
 				</div> 
 			</section>
 		</main>
