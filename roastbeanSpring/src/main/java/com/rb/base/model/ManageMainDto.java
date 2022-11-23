@@ -1,15 +1,27 @@
 package com.rb.base.model;
 
+import java.sql.Timestamp;
+
 public class ManageMainDto {
 	
 	String product_name;
 	int order_qty;
 	int order_price;
-		
+	Timestamp order_date;	
+	
 	public ManageMainDto() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public ManageMainDto(String product_name, int order_qty, int order_price, Timestamp order_date) {
+		super();
+		this.product_name = product_name;
+		this.order_qty = order_qty;
+		this.order_price = order_price;
+		this.order_date = order_date;
+	}
+
+
 	public ManageMainDto(String product_name, int order_qty, int order_price) {
 		super();
 		this.product_name = product_name;
@@ -39,6 +51,14 @@ public class ManageMainDto {
 	
 	public void setOrder_price(int order_price) {
 		this.order_price = order_price;
+	}
+
+	public Timestamp getOrder_date() {
+		return order_date;
+	}
+
+	public void setOrder_date(Timestamp order_date) {
+		this.order_date = order_date;
 	}
 		
 		

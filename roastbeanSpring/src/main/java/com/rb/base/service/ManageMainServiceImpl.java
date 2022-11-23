@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.rb.base.dao.ManageChartDao;
 import com.rb.base.dao.ManageMainDao;
 import com.rb.base.dao.ManageUserListDao;
-import com.rb.base.model.BoardDto;
+import com.rb.base.model.ManageChartDto.DataPointModel;
 import com.rb.base.model.ManageMainDto;
 import com.rb.base.model.PageInfo;
 import com.rb.base.model.UserDto;
@@ -24,7 +25,23 @@ public class ManageMainServiceImpl implements ManageMainService {
 	@Autowired
 	ManageUserListDao ManageUserListDao;
 	
+	@Autowired
+	ManageChartDao ManageChartDao;
+	
 	// /////////////////////////////////  Manage Main  /////////////////////////////////
+	
+	
+//////////////////////// Manage Main Chart  //////////////////////////
+	public void setCanvasjsChartDao(ManageChartDao ManageChartDao) {
+		this.ManageChartDao = ManageChartDao;
+	}
+ 
+	@Override
+	public List<List<DataPointModel>> getCanvasjsChartData() {
+		return ManageChartDao.getCanvasjsChartData();
+	}
+	
+	
 	//////////////////////// New Community //////////////////////////
 	@Override
 	public void today_sum_community(HttpServletRequest request) throws Exception {
@@ -54,14 +71,18 @@ public class ManageMainServiceImpl implements ManageMainService {
 	}
 		
 	
-	
-	
 	// 하루 매출액
 	@Override
 	public void order_date_sales(HttpServletRequest request) throws Exception {
 		request.setAttribute("order_date_sales", ManageMainDao.order_date_sales(request));
 	}
 
+	@Override
+	public void week_data(Model model, HttpServletRequest request) throws Exception {
+		List<ManageMainDto> weekList = ManageMainDao.week_data(request);
+		model.addAttribute("weekList",weekList);
+	}
+	
 	// 오늘부터-7day 까지 매출금액
 	@Override
 	public void order_week_sales(HttpServletRequest request) throws Exception {
@@ -72,16 +93,30 @@ public class ManageMainServiceImpl implements ManageMainService {
 	// 하루동안 가장 많이 팔린 제품의 이름,수량,총 판매금액
 	@Override
 	public ManageMainDto order_date_order_quantity_NQP(HttpServletRequest request) throws Exception { 
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		System.out.println("order_date_order_quantity_NQP");
 		ManageMainDto order_date_order_quantity_NQP = ManageMainDao.order_date_order_quantity_NQP(request);
-	/* Test */
-		System.out.println("service order_date_order_quantity_NQP : "+order_date_order_quantity_NQP);
-	
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		
+		if(order_date_order_quantity_NQP != null) {
 		request.setAttribute("order_date_order_quantity_NQP_N", order_date_order_quantity_NQP.getProduct_name());
 		request.setAttribute("order_date_order_quantity_NQP_Q", order_date_order_quantity_NQP.getOrder_qty());
 		request.setAttribute("order_date_order_quantity_NQP_P", order_date_order_quantity_NQP.getOrder_price());
 		return ManageMainDao.order_date_order_quantity_NQP(request);
+		}else {
+			System.out.println("order_date_order_quantity_NQP NULL!!!!!!!!!!!!!!!!!!!!!");
+			String cName="0";
+			order_date_order_quantity_NQP.setProduct_name(cName);
+			order_date_order_quantity_NQP.setOrder_qty(0);
+			order_date_order_quantity_NQP.setOrder_price(0);
+			String name = order_date_order_quantity_NQP.getProduct_name();
+			System.out.println(name);
+			return ManageMainDao.order_date_order_quantity_NQP(request);
+		}
 	}//order_date_sales_NQP END
-
+	
+	////////////////////////   1 week   //////////////////////////
+	
 	// 하루동안 가장 높은 매출 제품의 이름,수량,총 판매금액
 	@Override
 	public ManageMainDto order_date_order_price_NQP(HttpServletRequest request) throws Exception { 
@@ -90,6 +125,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 		request.setAttribute("order_date_order_price_NQP_Q", order_date_order_price_NQP.getOrder_qty());
 		request.setAttribute("order_date_order_price_NQP_P", order_date_order_price_NQP.getOrder_price());
 		return ManageMainDao.order_date_order_quantity_NQP(request);
+		
 	}//order_date_sales_NQP END
 	
 	

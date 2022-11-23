@@ -1,5 +1,7 @@
 package com.rb.base.dao;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.rb.base.model.ManageMainDto;
@@ -25,6 +27,7 @@ public interface ManageMainDao {// service가 아는 녀석
 	public Integer count_new_users(HttpServletRequest request) throws Exception; // 신규 가입회원 카운트 
 	// 7day
 	public Integer order_week_sales(HttpServletRequest request) throws Exception; // 오늘부터-7day 까지 매출금액
+	public List<ManageMainDto> week_data(HttpServletRequest request) throws Exception;  //<!-- 1주일치 날짜,팔린갯수, 매출금액 -->
 	public ManageMainDto week_order_product_order_price_NQP(HttpServletRequest request) throws Exception;  //<!-- 오늘부터 7일전까지 많은 매출을 낸  상품이름, 가격, 갯수 --> 
 	public ManageMainDto week_order_product_order_quantity_NQP(HttpServletRequest request) throws Exception;  //<!-- 오늘부터 7일전까지 많이 팔린 상품이름, 가격, 갯수 -->
 	
