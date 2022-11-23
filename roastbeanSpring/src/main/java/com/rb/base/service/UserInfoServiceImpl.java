@@ -7,9 +7,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.rb.base.dao.UserInfoDao;
 import com.rb.base.model.MyOrderListDto;
+import com.rb.base.model.PageInfo;
 import com.rb.base.model.UserDto;
 
 @Service
@@ -58,14 +60,38 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public List<MyOrderListDto> myOrderList(HttpServletRequest request) throws Exception {
+	public void myOrderList(HttpServletRequest request, Model model) throws Exception {
 		HttpSession session = request.getSession();
 		String user_id = (String) session.getAttribute("ID");
 		
-		return dao.myOrderList(user_id);
+		int cPage = 0;
+		int pageLength = 5;
+		int totalRows = 0;
+		int rowLength = 10;
+		int rowCount = 0;
+		String tempPage = request.getParameter("page");
+		
+		totalRows = dao.myOrderRow(user_id);
+		
+		if(tempPage == null || tempPage.length()==0) {
+			cPage = 1;
+		}
+		try {
+			cPage = Integer.parseInt(tempPage);
+		} catch (Exception e) {
+			cPage = 1;
+		}
+		
+		rowCount = totalRows - ((cPage - 1) * 10);
+		
+		int start = rowCount - 9;
+		
+		PageInfo pageDto = new PageInfo(cPage, totalRows, rowLength, pageLength);
+		model.addAttribute("page", pageDto);
+		
+		List<MyOrderListDto> dto = dao.myOrderList(user_id, start, rowCount);
+		model.addAttribute("myOrderList", dto);
 	}
 
-	
-	
 	
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,72 +88,88 @@
 					</thead>
 					<c:forEach items="${myOrderList}" var="dto">
 						<tr align="center">
-							<td align="left"><a href="productDetail.do?product_id=${dto.product_id}"><img width="100" height="100" alt="" src="assets/img/product/${dto.product_image}">${dto.product_name}</a></td>
+							<td align="left"><a href="productDetail?product_id=${dto.product_id}"><img width="100" height="100" alt="" src="assets/img/product/${dto.product_image}">${dto.product_name}</a></td>
 							<td>${dto.order_date}</td>
 							<td>${dto.order_seq}</td>
 							<td><fmt:formatNumber value="${dto.order_price}" groupingUsed="true" />원<br>${dto.order_qty}개</td>
-							<td><a href="productReview_?order_seq=${dto.order_seq}">후기작성</a></td>
+							<c:if test="${dto.order_reviewcheck < 1 or dto.order_reviewcheck == null}">
+								<td><a href="productReview?order_seq=${dto.order_seq}">후기작성</a></td>
+							</c:if>
+							<c:if test="${dto.order_reviewcheck > 0}">
+								<td>후기작성 완료</td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</table>
-				<%-- ******** 페이징부분 아직 적용안됐음 ******** --%>
-			 	<%-- <div class="container" align="center">
-				<table>
-					<tr>
-						<td align="center" colspan="6">
-						<c:choose>
-							<c:when test="${(page.curPage - 1) < 1 }">
-								[ 처음 ]
-							</c:when>
-							<c:otherwise>
-								<a href="productDetail.do?page=1&product_id=${productDetail.product_id}">[ 처음 ]</a>
-							</c:otherwise>
+				<div class="container" align="center">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<c:choose>
+								<c:when test="${(page.curPage - 1) < 1 }">
+									<li class="page-item disabled"><a class="page-link">처음</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="mypage_order_list_?page=1">처음</a>
+									</li>
+								</c:otherwise>
 							</c:choose>
 							<!-- 이전 -->
 							<c:choose>
-							<c:when test="${(page.curPage - 1) < 1 }">
-								[ 이전 ]
-							</c:when>
-							<c:otherwise>
-								<a href="productDetail.do?page=${page.curPage - 1 }&product_id=${productDetail.product_id}">[ 이전 ]</a>
-							</c:otherwise>
-							</c:choose>
-							
-							<!-- 개별 페이지 -->
-							<c:forEach var="fEach" begin="${page.startPage }" end="${page.endPage }" step="1">
-								<c:choose>
-								<c:when test="${page.curPage == fEach}">
-									&nbsp; [ ${fEach } ] &nbsp;
+								<c:when test="${(page.curPage - 1) < 1 }">
+									<li class="page-item disabled"><a class="page-link">이전</a>
+									</li>
 								</c:when>
 								<c:otherwise>
-									<a href="productDetail.do?page=${fEach }&product_id=${productDetail.product_id}">[ ${fEach } ]</a>&nbsp;
+									<li class="page-item"><a class="page-link"
+										href="mypage_order_list_?page=${page.curPage - 1 }">이전</a>
+									</li>
 								</c:otherwise>
+							</c:choose>
+							<!-- 개별 페이지 -->
+							<c:forEach var="fEach" begin="${page.startPage }"
+								end="${page.endPage }" step="1">
+								<c:choose>
+									<c:when test="${page.curPage == fEach}">
+										<li class="page-item disabled"><a class="page-link active">&nbsp;${fEach }&nbsp;</a>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link"
+											href="mypage_order_list_?page=${fEach }">&nbsp;${fEach }&nbsp;</a>
+										</li>
+									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-							
+
 							<!-- 다음 -->
 							<c:choose>
-							<c:when test="${(page.curPage + 1) > page.totalPage }">
-								[ 다음 ]
-							</c:when>
-							<c:otherwise>
-								<a href="productDetail.do?page=${page.curPage + 1 }&product_id=${productDetail.product_id}">[ 다음 ]</a>
-							</c:otherwise>
+								<c:when test="${(page.curPage + 1) > page.totalPage }">
+									<li class="page-item disabled"><a class="page-link">다음</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="productDetail?page=${page.curPage + 1 }">다음</a>
+									</li>
+								</c:otherwise>
 							</c:choose>
 							<!-- 끝 -->
 							<c:choose>
-							<c:when test="${page.curPage == page.totalPage }">
-								[ 마지막 ]
-							</c:when>
-							<c:otherwise>
-								<a href="productDetail.do?page=${page.totalPage }&product_id=${productDetail.product_id}">[ 마지막 ]</a>
-							</c:otherwise>
-						</c:choose>
-						</td>
-					</tr>
-				</table>
-				</div> --%>
-				<%-- ******** 페이징부분 아직 적용안됐음 ******** --%>
+								<c:when test="${page.curPage == page.totalPage }">
+									<li class="page-item disabled"><a class="page-link">마지막</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="mypage_order_list_?page=${page.totalPage }">마지막</a>
+									</li>
+								</c:otherwise>
+							</c:choose>
+						</ul>
+					</nav>
+				</div>
 			</div>
 	</section>
   </main><!-- End #main -->

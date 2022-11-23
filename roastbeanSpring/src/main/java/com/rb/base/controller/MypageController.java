@@ -56,8 +56,7 @@ public class MypageController {
 
 	@RequestMapping("/mypage_order_list_")
 	public String mypage_order_list_(HttpServletRequest request, Model model) throws Exception {
-		List<MyOrderListDto> dtos = service.myOrderList(request);
-		model.addAttribute("myOrderList", dtos);
+		service.myOrderList(request, model);
 		return "mypage_order_list";
 	}
 
