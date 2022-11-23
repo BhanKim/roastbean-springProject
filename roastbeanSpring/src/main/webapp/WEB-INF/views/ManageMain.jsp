@@ -152,6 +152,12 @@
 											 <br>답장을 기다리고 있는 Qna : ${totalQNA-doneanswerQNA}
 										</td>
 									</tr>
+									  <c:forEach items="${weekList}" var="dto">
+									<tr>
+										<td>${dto.order_date }</td>
+										<td>판매량 : ${dto.order_qty }/ 매출금액 : ${dto.order_price }</td>
+									</tr>
+									</c:forEach>
 									<%-- <tr>
 										<td colspan="2">
 											<table>	
