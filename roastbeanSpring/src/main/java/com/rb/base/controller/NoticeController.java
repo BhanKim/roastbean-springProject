@@ -18,6 +18,7 @@ public class NoticeController {
 	@Autowired
 	NoticeService service;
 	
+	// User&Admin의 NoticeList Select / 22-11-22 SangwonKim
 	@RequestMapping("/notice_list")
 	public String notice_list(HttpServletRequest request, Model model) throws Exception{
 		List<NoticeDto> dtos = service.noticeList(request);
@@ -25,12 +26,14 @@ public class NoticeController {
 		return "cs_notice";
 	}
 	
+	// Admin의 Notice Insert / 22-11-22 SangwonKim
 	@RequestMapping("/notice_insert_by_admin")
 	public String notice_insert_by_admin(HttpServletRequest request) throws Exception{
 		service.insertAction(request);
 		return "redirect:notice_list";
 	}
 	
+	// Admin의 Notice Update / 22-11-22 SangwonKim
 	@RequestMapping("/notice_update_by_admin")
 	public String notice_update_by_admin(HttpServletRequest request) throws Exception{
 		service.updateAction(request);

@@ -5,12 +5,82 @@
 
 <mapper namespace="com.rb.base.dao.QnaDao">
 
+	<!-- Paging count -->
+	<select id="qnaListAdminRow" resultType="Integer">
+		<choose>
+			<when test="query=='noncomment'">
+				SELECT count(*) as totalCount 
+				FROM qna_write qw 
+				LEFT JOIN qna_write_comment qwc
+					ON qw.qna_write_seq = qwc.qna_write_seq 
+				WHERE qw.qna_write_deletedate is null and qwc.qna_write_comment_seq is null; 
+			</when>
+			<otherwise>
+				SELECT count(*) as totalCount from qna_write 
+				WHERE qna_write_deletedate is null and ${query} like #{content}
+			</otherwise>
+		</choose>
+	</select>
+
+	<!-- all select -->
+	<select id="qnaListAdmin" resultType="com.rb.base.model.QnaDto">
+		<choose>
+			<when test="query=='noncomment'">
+				SELECT * 
+				FROM (SELECT row_number() over(order by qwc.qna_write_comment_seq is null asc, qna_write_seq asc) as rownum, qw.user_id, 
+							qw.qna_write_category, qw.qna_write_title, qw.qna_write_seq, qw.qna_write_initdate, qw.qna_write_updatedate, qw.qna_write_content, 
+							qwc.qna_write_comment_seq, qwc.qna_write_comment_content, qwc.qna_write_comment_initdate, qwc.qna_write_comment_updatedate 
+						FROM qna_write qw 
+						LEFT JOIN qna_write_comment qwc 
+							ON qw.qna_write_seq = qwc.qna_write_seq 
+						WHERE qwc.qna_write_comment_seq is null
+						ORDER BY qwc.qna_write_comment_seq is null DESC, qw.qna_write_seq DESC) A
+				WHERE <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>
+			</when>
+			<otherwise>
+				SELECT * 
+				FROM (SELECT row_number() over(order by qwc.qna_write_comment_seq is null asc, qna_write_seq asc) as rownum, qw.user_id, 
+							qw.qna_write_category, qw.qna_write_title, qw.qna_write_seq, qw.qna_write_initdate, qw.qna_write_updatedate, qw.qna_write_content, 
+							qwc.qna_write_comment_seq, qwc.qna_write_comment_content, qwc.qna_write_comment_initdate, qwc.qna_write_comment_updatedate 
+						FROM qna_write qw 
+						LEFT JOIN qna_write_comment qwc 
+							ON qw.qna_write_seq = qwc.qna_write_seq 
+						WHERE qw.${query} like #{content}
+						ORDER BY qwc.qna_write_comment_seq is null DESC, qw.qna_write_seq DESC) A
+				WHERE <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- Paging count -->
+	<select id="qnaSearchAdminRow" resultType="Integer">
+		SELECT count(*) as totalCount from qna_write 
+		WHERE qna_write_deletedate is null and ${query} like #{content}
+		<!-- and user_id like #{user_id} -->
+	</select>
+	
+	<select id="qnaSearchAdmin" resultType="com.rb.base.model.QnaDto">
+		SELECT * 
+		FROM (
+			SELECT row_number() over(order by qwc.qna_write_comment_seq is null asc, qna_write_seq asc) as rownum, qw.user_id, 
+				qw.qna_write_category, qw.qna_write_title, qw.qna_write_seq, qw.qna_write_initdate, qw.qna_write_updatedate, qw.qna_write_content, 
+				qwc.qna_write_comment_seq, qwc.qna_write_comment_content, qwc.qna_write_comment_initdate, qwc.qna_write_comment_updatedate 
+			FROM qna_write qw 
+			LEFT JOIN qna_write_comment qwc 
+				ON qw.qna_write_seq = qwc.qna_write_seq 
+				WHERE qw.${query} like #{content}
+			ORDER BY qwc.qna_write_comment_seq is null DESC, qw.qna_write_seq DESC) A 
+		WHERE <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>
+	</select>
+	
+
+
 	<!-- Mypage/ User의 QnA 전체 리스트 검색 -->
 	<select id="qnaList" resultType="com.rb.base.model.QnaDto">
 		SELECT qw.qna_write_category, qw.qna_write_title, qw.qna_write_seq, qw.qna_write_initdate, qw.qna_write_updatedate, 
 			qw.qna_write_content, qwc.qna_write_comment_content, qwc.qna_write_comment_initdate, qwc.qna_write_comment_updatedate 
 		FROM qna_write qw left join qna_write_comment qwc on qw.qna_write_seq = qwc.qna_write_comment_seq 
-		WHERE qw.user_id = #{user_id} order by qw.qna_write_seq desc
+		WHERE qw.user_id = #{user_id} order by qw.qna_write_seq DESC
 	</select>
 	
 	<!-- Cs/ User의 QnA Question Insert -->
@@ -26,19 +96,19 @@
 	</update>
 	
 	<!-- Cs/ 관리자의 QnA 전체 리스트 검색 -->
-	<select id="qnaListAdmin" resultType="com.rb.base.model.QnaDto">
+	<select id="qnaListAdmin222" resultType="com.rb.base.model.QnaDto">
 		SELECT qw.user_id, qw.qna_write_category, qw.qna_write_title, qw.qna_write_seq, qw.qna_write_initdate, qw.qna_write_updatedate, qw.qna_write_content, 
 			qwc.qna_write_comment_seq, qwc.qna_write_comment_content, qwc.qna_write_comment_initdate, qwc.qna_write_comment_updatedate 
 		FROM qna_write qw 
 		LEFT JOIN qna_write_comment qwc 
 		ON qw.qna_write_seq = qwc.qna_write_seq 
-		ORDER BY qwc.qna_write_comment_seq is null desc, qw.qna_write_seq desc
+		ORDER BY qwc.qna_write_comment_seq is null DESC, qw.qna_write_seq DESC
 	</select>
 	
 	<!-- Cs/ Admin의 QnA Answer Insert -->
 	<insert id="adminAnswerInsert">
 		INSERT INTO qna_write_comment (admin_id, qna_write_seq, qna_write_comment_content, qna_write_comment_initdate) 
-		VALUES (#{admin_id},#{qna_write_seq},#{qna_write_comment_content},now())
+		VALUES (#{admin_id}, #{qna_write_seq}, #{qna_write_comment_content}, now())
 	</insert>
 	
 	<!-- Cs/ User의 QnA Answer Update -->

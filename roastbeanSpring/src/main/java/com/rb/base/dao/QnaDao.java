@@ -12,8 +12,14 @@ public interface QnaDao {
 	
 	public void userQuestionUpdate(String qna_write_seq, String qna_write_title, String qna_write_content) throws Exception;
 	
-	public List<QnaDto> qnaListAdmin() throws Exception;
+	//////////////////////
 	
+	public int qnaListAdminRow(String query, String content) throws Exception;
+
+	public List<QnaDto> qnaListAdmin(int cPage, int start, int rowCount, String query, String content) throws Exception;
+	
+	//////////////////////
+
 	public void adminAnswerInsert(String admin_id, String qna_write_seq, String qna_write_comment_content) throws Exception;
 	
 	public void adminAnswerUpdate(String qna_write_seq, String qna_write_comment_content) throws Exception;
