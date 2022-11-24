@@ -192,7 +192,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 			cPage = 1;
 		}
 		
-		totalCount = ManageUserListDao.userListRow();
+		totalCount = ManageUserListDao.userListRow(query, content);
 		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
 		
 		rowCount = (totalCount - ((cPage-1)*10));
@@ -219,12 +219,14 @@ public class ManageMainServiceImpl implements ManageMainService {
 		String query = request.getParameter("query");
 		String content = request.getParameter("content");
 		
-		if(query == null) {
+		if(query == null || query.length() == 0) {
 			query = "order_seq";
 		}
-		if(content == null) {
-			content = "";}
-		
+		if(content == null || content.length() == 0) {
+			content = "";
+		}
+		content = '%' + content + '%';	
+		System.out.println("content : "+content);
 		if(tempPage == null || tempPage.length() == 0) {
 			cPage = 1;
 		}
@@ -234,12 +236,14 @@ public class ManageMainServiceImpl implements ManageMainService {
 			cPage = 1;
 		}
 		
-		totalCount = ManageOrderListDao.orderListRow();
+		totalCount = ManageOrderListDao.orderListRow(query, content);
 		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
 		
 		rowCount = (totalCount - ((cPage-1)*10));
-	
+	System.out.println("managemainserviceimpl's orderlist orwCOunt : "+rowCount);
 		int start = rowCount - 9;
+	System.out.println("managemainserviceimpl's orderlist start : "+start);
+	
 		List<OrderDto> orderList = ManageOrderListDao.orderList(cPage, start, rowCount, query, content);
 		model.addAttribute("page", dto);
 		model.addAttribute("manageorderlist", orderList);

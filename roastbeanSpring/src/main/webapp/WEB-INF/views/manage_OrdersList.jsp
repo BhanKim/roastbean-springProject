@@ -43,8 +43,8 @@
 </head>
 <body link="black" vlink="black" alink="navy">
 <!-- ======= Header ======= -->
-<%-- 	<%@include file = "header_manage.jsp" %> --%>
-	<%@include file = "header_innerpage.jsp" %>
+<c:if test="${ADMIN == 'admin'}">
+		<%@include file = "header_minnerpage.jsp" %>
   <!-- End Header -->
 
   <main id="main">
@@ -54,7 +54,7 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Order List</h2>
+          <h2><a href="OrderList">Order List</a></h2>
           <ol>
             <li><a href="ManageMain">ManageMain</a></li>
             <li>Order List</li>
@@ -84,7 +84,7 @@
 		      <option value="product_name"<c:if test="${query=='product_name'}">selected="selected"</c:if>>상품명</option>
 		      <option value="order_date"<c:if test="${query=='order_date'}">selected="selected"</c:if>>주문날짜</option>
 		   </select>&nbsp;&nbsp;&nbsp;
-		   <input type="text" name="content" value="${content }">
+		   <input type="text" name="content" value="${content}">
 		   <input type="submit" value="검색" class="btn" style="background: #F2BCBB; border: 0; padding:3px 12px; color: #fff; transition: 0.4s; border-radius: 50px;">
 		</form>
 		<br>
@@ -178,7 +178,29 @@
 
 
   </main><!-- End #main -->
+</c:if>		
+<c:if test="${ADMIN != 'admin'}">
+		<%@include file = "header_innerpage.jsp" %>
+		<main id="main">
 
+		<!-- ======= Breadcrumbs Section ======= -->
+			 <section class="breadcrumbs">
+			      <div class="container">
+			        <div class="d-flex justify-content-between align-items-center">
+			          <h2>Error</h2>
+			        </div>
+			      </div>
+		    </section><!-- End Breadcrumbs Section -->
+	
+			<!--  ---------------------------------- 정보 쓰기란 시작 ---------------------------------- -->
+			<section class="inner-page">
+				<div class="container">
+						<h2> 잘못된 접근 입니다.</h2>
+						<a href="index">메인 화면으로 돌아가기</a>
+				</div> 
+			</section>
+		</main>
+	</c:if>	
   <!-- ======= Footer ======= -->
 	<%@include file = "footer.jsp" %>
   <!-- End Footer -->

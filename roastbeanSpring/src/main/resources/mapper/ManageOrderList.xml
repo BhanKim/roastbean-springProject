@@ -5,27 +5,19 @@
 
 <mapper namespace="com.rb.base.dao.ManageOrderListDao">
 		
-	<!-- 22-11-23-호식 쿼리문 수정 필요  -->
 	<select id="orderListRow" resultType="Integer">
-		select count(*) as ordertotlaCount from orders;
+		select count(*) as ordertotlaCount from orders where ${query} like #{content} 
 	</select>
-	
-	<!-- <select id="orderList" resultType="com.rb.base.model.OrderDto">
-		select * from ( select row_number() over(order by o.order_seq)
-		as rownum, o.order_seq, o.user_id, o.order_name, p.product_name, o.order_qty, o.order_price, o.order_date
-		from orders o, product p where p.product_id = o.product_id )a 
-		where <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>
-		order by order_seq desc;
-	</select>  -->
 
 	<select id="orderList" resultType="com.rb.base.model.OrderDto">
-		select * from  ( select row_number() over(order by order_seq) as rownum, o.order_seq, o.order_name,o.user_id, p.product_name, o.order_qty,
-		o.order_price, o.order_date from orders as o, product as p where  o.product_id = p.product_id order by o.order_seq desc)A, orders o
-		where o.order_seq=A.order_seq and  A.${query} like CONCAT('%',#{content},'%')
-		 and <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>;
-		<!-- where A.${query} like '${content}'; -->
+		select * from  ( select row_number() over(order by order_date asc)  as rownum,  o.order_seq, o.order_name,o.user_id, p.product_name, o.order_qty,
+		o.order_price, o.order_date from orders as o, product as p 
+		where  o.product_id = p.product_id 
+		order by rownum desc )A, orders o
+		where o.order_seq=A.order_seq and A.${query} like #{content}
+		and <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>;
+
 	</select> 
 
 </mapper>
 
- 
