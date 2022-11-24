@@ -94,7 +94,6 @@
 								alt="Card image cap" id="product-detail">
 						</div>
 					</div>
-					
 					<div class="col-lg-7 mt-5">
 							<div class="">
 								<div class="card-body">
@@ -109,7 +108,7 @@
 									<ul class="list-inline">
 										<li class="list-inline-item"></li>
 									</ul>
-									<b>상품설명:</b>
+									<h6>상품설명:</h6>
 									<p>${mproductdetail.product_info}</p>
 
 									<div class="row">
@@ -126,7 +125,7 @@
 										<div class="col-auto">
 											<ul class="list-inline pb-3">
 												<li class="list-inline-item text-right">
-												<b>카테고리 타입: </b>${mproductdetail.category_type}<br>
+												<b>카테고리 타입: ${mproductdetail.category_type}</b><br>
 												<b>산미 : </b> ${mproductdetail.category_acidity}&nbsp;
 												<b>바디감 : </b> ${mproductdetail.category_body} &nbsp;
 												<b>단맛 : </b> ${mproductdetail.category_sweet} &nbsp;
