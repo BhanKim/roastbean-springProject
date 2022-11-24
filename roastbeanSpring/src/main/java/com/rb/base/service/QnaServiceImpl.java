@@ -108,9 +108,6 @@ public class QnaServiceImpl implements QnaService {
 		String query = request.getParameter("query");
 		String content = request.getParameter("content");
 		
-		System.out.println(query);
-		System.out.println(content);
-		
 		request.setAttribute("page", page);
 		request.setAttribute("query", query);
 		request.setAttribute("content", content);
