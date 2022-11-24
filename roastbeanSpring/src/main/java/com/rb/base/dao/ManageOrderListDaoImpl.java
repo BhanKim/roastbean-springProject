@@ -14,7 +14,7 @@ public class ManageOrderListDaoImpl implements ManageOrderListDao {
 	public static String nameSpace = "com.rb.base.dao.ManageOrderListDao";
 	
 	@Override
-	public int orderListRow() throws Exception {
+	public int orderListRow(String query, String content) throws Exception {
 		return sqlSession.selectOne(nameSpace + ".orderListRow");
 	}
 	@Override

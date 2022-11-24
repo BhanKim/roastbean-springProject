@@ -44,8 +44,8 @@
 </head>
 <body link="black" vlink="black" alink="navy">
 <!-- ======= Header ======= -->
-<%-- 	<%@include file = "header_manage.jsp" %> --%>
-	<%@include file = "header_innerpage.jsp" %>
+<c:if test="${ADMIN == 'admin'}">
+		<%@include file = "header_minnerpage.jsp" %>
   <!-- End Header -->
 
   <main id="main">
@@ -181,7 +181,29 @@
 
 
   </main><!-- End #main -->
+  </c:if>		
+<c:if test="${ADMIN != 'admin'}">
+		<%@include file = "header_innerpage.jsp" %>
+		<main id="main">
 
+		<!-- ======= Breadcrumbs Section ======= -->
+			 <section class="breadcrumbs">
+			      <div class="container">
+			        <div class="d-flex justify-content-between align-items-center">
+			          <h2>Error</h2>
+			        </div>
+			      </div>
+		    </section><!-- End Breadcrumbs Section -->
+	
+			<!--  ---------------------------------- 정보 쓰기란 시작 ---------------------------------- -->
+			<section class="inner-page">
+				<div class="container">
+						<h2> 잘못된 접근 입니다.</h2>
+						<a href="index">메인 화면으로 돌아가기</a>
+				</div> 
+			</section>
+		</main>
+	</c:if>	
   <!-- ======= Footer ======= -->
 	<%@include file = "footer.jsp" %>
   <!-- End Footer -->
