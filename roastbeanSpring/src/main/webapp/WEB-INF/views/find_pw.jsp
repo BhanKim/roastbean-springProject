@@ -125,7 +125,7 @@ $(document).ready(function() {
 								</div>
 								<div class="mb-3">
 									<input type="text" class="form-control" id="user_email"
-										name="user_email" placeholder="Email" maxlength="16"
+										name="user_email" placeholder="Email"
 										aria-describedby="passwordHelpBlock" style="height: 48px;">
 								</div>
 								<div class="mb-3">
