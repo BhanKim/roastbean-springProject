@@ -12,8 +12,6 @@
 		select count(community_initdate) as today_sum_community from community WHERE DATE_FORMAT (community_initdate, '%Y-%m-%d') = curdate();
 	</select>
 	
-	
-	 
 	<!-- /////////////// QNA /////////////// -->
 	
 	<!-- 당일 들어온 Qna 문의수량 구하기  -->

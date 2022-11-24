@@ -50,7 +50,6 @@
 	
 	<!-- 22.11.19 Hosik - Can view manage_main.jsp just got Admin session -->
 	<c:if test="${ADMIN == 'admin'}">
-	<%-- <%@include file="header_manage2.jsp"%> --%>
 		<%@include file = "header_minnerpage.jsp" %>
 	<!-- End Header -->
 
@@ -131,14 +130,14 @@
 									<tr>
 										<td width="300" height="100" style="text-align: center; vertical-align:middle; ">
 											<b>1주일간 가장 많이 팔린 상품</b> 
-											<br>팔린 갯수 : ${week_order_product_order_quantity_NQP_N } 개
+											<br>판매 갯수 : ${week_order_product_order_quantity_NQP_N }
 											<br>${week_order_product_order_quantity_NQP_Q  } 개
 											<br><b><fmt:formatNumber value="${week_order_product_order_quantity_NQP_P }" pattern="#,###"/></b> 원
 										</td>
 										<td width="300" height="100" style="text-align: center; vertical-align:middle; ">
 											<b>1주일간 가장 높은 매출 상픔</b> 
 											<br>${week_order_product_order_price_NQP_N }
-											<br>팔린 갯수 : ${week_order_product_order_price_NQP_Q } 개
+											<br>판매 갯수 : ${week_order_product_order_price_NQP_Q } 개
 											<br><b><fmt:formatNumber value="${week_order_product_order_price_NQP_P }" pattern="#,###"/></b> 원
 										</td>
 									</tr>

@@ -38,13 +38,15 @@
 			
 			<!-- success login -->
 				<ul>
-					<li class="dropdown"><a href="#about"><span>USERLIST</span></a>
-
+					<li class="dropdown"><a href="UserList"><span>USERLIST</span></a>
+					
+					<li class="dropdown"><a href="OrderList"><span>ORDER LIST</span></a>
+					
 					<li class="dropdown"><a href="mpList"><span>PRODUCT</span></a>
 					
 					<li><a class="nav-link scrollto" href="ordercount">CHART</a></li>
 					
-					<li><a class="nav-link scrollto" href="productList">COFFEE SHOP</a></li>
+					<li><a class="nav-link scrollto" href="productList">COFFEE SHOP</a></li> 
 					
 					<c:if test="${ID != 'admin'}">
 						<li class="dropdown"><a href="notice_list"><span>CUSTOMER SERVICE</span></a>
