@@ -42,7 +42,7 @@
 
 					<li class="dropdown"><a href="mpList"><span>PRODUCT</span></a>
 					
-					<li><a class="nav-link scrollto" href="beaninfo">CHART</a></li>
+					<li><a class="nav-link scrollto" href="ordercount">CHART</a></li>
 					
 					<li><a class="nav-link scrollto" href="productList">COFFEE SHOP</a></li>
 					
