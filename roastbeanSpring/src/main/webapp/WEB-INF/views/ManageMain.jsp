@@ -47,9 +47,6 @@
 <body>
 
 	<!-- ======= Header ======= -->
-	<c:if test="${ADMIN != 'admin'}">
-		<%@include file = "header_minnerpage.jsp" %>
-	</c:if>	
 	
 	<!-- 22.11.19 Hosik - Can view manage_main.jsp just got Admin session -->
 	<c:if test="${ADMIN == 'admin'}">
