@@ -40,8 +40,7 @@
 		community_hit, community_group, community_step, community_indent, community_cnt
 		from community as c, `user` as u
 		where u.user_id = c.${b_opt} and community_deletedate is null and community_name != 'admin'  and u.user_nick like #{keyword}
-		order by community_group desc, community_indent asc )A
-		group by rownum order by rownum desc;
+		order by community_group desc, community_indent asc )A;
 	</when>
 	<otherwise>
 		select * from (select row_number() over(order by community_group, community_indent desc)
