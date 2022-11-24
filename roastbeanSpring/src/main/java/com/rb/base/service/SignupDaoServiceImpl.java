@@ -41,6 +41,9 @@ public class SignupDaoServiceImpl implements SignupDaoService {
 		String user_address2 = request.getParameter("user_address2");
 		String user_address3 = request.getParameter("user_address3");
 		String user_birthday = request.getParameter("user_birthday");
+		String user_birthday1 = request.getParameter("user_birthday1");
+		String user_birthday2 = request.getParameter("user_birthday2");
+		String user_birthday3 = request.getParameter("user_birthday3");
 		String user_gender = request.getParameter("user_gender");
 		String user_initdate = request.getParameter("user_initdate");
 		String checkNickDuplication = request.getParameter("checkNickDuplication");
@@ -62,6 +65,9 @@ public class SignupDaoServiceImpl implements SignupDaoService {
 		request.setAttribute("user_address2", user_address2);
 		request.setAttribute("user_address3", user_address3);
 		request.setAttribute("user_birthday", user_birthday);
+		request.setAttribute("user_birthday1", user_birthday1);
+		request.setAttribute("user_birthday2", user_birthday2);
+		request.setAttribute("user_birthday3", user_birthday3);
 		request.setAttribute("user_gender", user_gender);
 		request.setAttribute("user_initdate", user_initdate);
 		request.setAttribute("checkIdDuplication", checkIdDuplication);

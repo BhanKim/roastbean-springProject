@@ -74,5 +74,15 @@ public class SignupController {
 	public String emailCheck(HttpServletRequest request) throws Exception {
 		return service.sendEmail(request) + "";
 	}
+	
+	@RequestMapping("policy_tos")
+	public String policy_tos() throws Exception{
+		return "policy_tos";
+	}
+
+	@RequestMapping("policy_privacy")
+	public String policy_privacy() throws Exception{
+		return "policy_privacy";
+	}
 
 }
