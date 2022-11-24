@@ -148,8 +148,8 @@
 									<tr class="mb-3">
 										<td align="left">Gender</td>
 										<td align="left">
-											<input type="radio" name="user_gender" value="남자"> 남자
-											&emsp;<input type="radio" name="user_gender" value="여자"> 여자
+											<input type="radio" name="user_gender" value="남자" <c:if test="${user_gender == '남자'}">checked="checked"</c:if>> 남자
+											&emsp;<input type="radio" name="user_gender" value="여자" <c:if test="${user_gender == '여자'}">checked="checked"</c:if>> 여자
 										</td>
 									</tr>
 									<tr height="10"></tr>
