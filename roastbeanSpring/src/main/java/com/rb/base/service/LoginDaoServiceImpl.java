@@ -37,6 +37,4 @@ public class LoginDaoServiceImpl implements LoginDaoService {
 		return dao.cartCount(user_id);
 	}
 
-	
-	
 }
