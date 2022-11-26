@@ -95,7 +95,7 @@ public class LoginController {
 	public String logoutdo(HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "redirect:";
+		return "index";
 	}
 	
 
