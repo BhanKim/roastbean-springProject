@@ -79,7 +79,7 @@
 				  		<div class="row">
 					    <div class="col">
 			
-							<table style="margin-left: auto; margin-right: auto; border:none;" border="1"
+							<!-- <table style="margin-left: auto; margin-right: auto; border:none;" border="1"
 									class="table table-sm table-hover">
 									<thead >
 									<tr>
@@ -95,7 +95,7 @@
 										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='notice_list'">NOTICE</td>
 									</tr>
 								</thead>
-							</table>
+							</table> -->
 							<table style="margin-left: auto; margin-right: auto; border:none;" border="1"
 									class="table table-sm table-hover">
 									<thead >
@@ -152,13 +152,13 @@
 											 <br>답장을 기다리고 있는 Qna : ${totalQNA-doneanswerQNA}
 										</td>
 									</tr>
-									  <c:forEach items="${weekList}" var="dto">
+									<c:forEach items="${weekList}" var="dto">
 									<tr>
 										<td>${dto.order_date }</td>
 										<td>판매량 : ${dto.order_qty }/ 매출금액 : ${dto.order_price }</td>
 									</tr>
 									</c:forEach>
-									<%-- <tr>
+									<tr>
 										<td colspan="2">
 											<table>	
 												<c:forEach items="${chartMonth }" var="dtoMonth">
@@ -170,7 +170,7 @@
 												</c:forEach>
 											</table>
 										</td>
-									</tr> --%>
+									</tr>
 								</thead>
 							</table>
 								
