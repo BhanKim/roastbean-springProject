@@ -84,11 +84,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 		request.setAttribute("order_date_sales", ManageMainDao.order_date_sales(request));
 	}
 
-	@Override
-	public void week_data(Model model, HttpServletRequest request) throws Exception {
-		List<ManageMainDto> weekList = ManageMainDao.week_data(request);
-		model.addAttribute("weekList",weekList);
-	}
+	
 	
 	// 오늘부터-7day 까지 매출금액
 	@Override
@@ -102,45 +98,56 @@ public class ManageMainServiceImpl implements ManageMainService {
 	public ManageMainDto order_date_order_quantity_NQP(HttpServletRequest request) throws Exception { 
 		ManageMainDto order_date_order_quantity_NQP = ManageMainDao.order_date_order_quantity_NQP(request);
 		
-		if(order_date_order_quantity_NQP != null) {
+		if(order_date_order_quantity_NQP == null) {
+			request.setAttribute("order_date_order_quantity_NQP_N","금일 판매된 상품이 없습니다.");
+			request.setAttribute("order_date_order_quantity_NQP_Q", 0);
+			request.setAttribute("order_date_order_quantity_NQP_P", 0);
+			return ManageMainDao.order_date_order_quantity_NQP(request);
+		}
 		request.setAttribute("order_date_order_quantity_NQP_N", order_date_order_quantity_NQP.getProduct_name());
 		request.setAttribute("order_date_order_quantity_NQP_Q", order_date_order_quantity_NQP.getOrder_qty());
 		request.setAttribute("order_date_order_quantity_NQP_P", order_date_order_quantity_NQP.getOrder_price());
 		return ManageMainDao.order_date_order_quantity_NQP(request);
-		}else {
-			System.out.println("order_date_order_quantity_NQP NULL!!!!!!!!!!!!!!!!!!!!!");
-			String cName="0";
-			order_date_order_quantity_NQP.setProduct_name(cName);
-			order_date_order_quantity_NQP.setOrder_qty(0);
-			order_date_order_quantity_NQP.setOrder_price(0);
-			String name = order_date_order_quantity_NQP.getProduct_name();
-			System.out.println(name);
-			return ManageMainDao.order_date_order_quantity_NQP(request);
-		}
 	}//order_date_sales_NQP END
-	
-	////////////////////////   1 week   //////////////////////////
 	
 	// 하루동안 가장 높은 매출 제품의 이름,수량,총 판매금액
 	@Override // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
 	public ManageMainDto order_date_order_price_NQP(HttpServletRequest request) throws Exception { 
 		ManageMainDto order_date_order_price_NQP = ManageMainDao.order_date_order_price_NQP(request);
+		
+		if(order_date_order_price_NQP == null) {
+			request.setAttribute("order_date_order_price_NQP_N", "금일 판매된 상품이 없습니다.");
+			request.setAttribute("order_date_order_price_NQP_Q", 0);
+			request.setAttribute("order_date_order_price_NQP_P", 0);
+			return ManageMainDao.order_date_order_quantity_NQP(request);
+		}
 		request.setAttribute("order_date_order_price_NQP_N", order_date_order_price_NQP.getProduct_name());
 		request.setAttribute("order_date_order_price_NQP_Q", order_date_order_price_NQP.getOrder_qty());
 		request.setAttribute("order_date_order_price_NQP_P", order_date_order_price_NQP.getOrder_price());
 		return ManageMainDao.order_date_order_quantity_NQP(request);
-		
 	}//order_date_sales_NQP END
+		
+	////////////////////////   1 week   //////////////////////////
+	
+	
+	@Override
+	public void week_data(Model model, HttpServletRequest request) throws Exception {
+		List<ManageMainDto> weekList = ManageMainDao.week_data(request);
+		model.addAttribute("weekList",weekList);
+	}
 	
 	
 	// 1주일간 가장 높은 매출 상픔의 이름,수량,판매금액
 	@Override	 // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
-	public ManageMainDto week_order_product_order_price_NQP(HttpServletRequest request) throws Exception { 
+	public ManageMainDto week_order_product_order_price_NQP(HttpServletRequest request) throws Exception{
+//		if( ManageMainDao.week_order_product_order_price_NQP(request).equals("")) {
+//		}else {
 		ManageMainDto week_order_product_order_price_NQP = ManageMainDao.week_order_product_order_price_NQP(request);
 		request.setAttribute("week_order_product_order_price_NQP_N", week_order_product_order_price_NQP.getProduct_name());
 		request.setAttribute("week_order_product_order_price_NQP_Q", week_order_product_order_price_NQP.getOrder_qty());
 		request.setAttribute("week_order_product_order_price_NQP_P", week_order_product_order_price_NQP.getOrder_price());
 		return ManageMainDao.week_order_product_order_price_NQP(request);
+		
 	}
 
 	//<!-- 오늘부터 7일전까지 많이 팔린 상품이름, 가격, 갯수 -->

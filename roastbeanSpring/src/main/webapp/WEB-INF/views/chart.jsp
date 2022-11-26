@@ -63,6 +63,8 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 chart2.render();
 }
 </script>
+</head>
+<body>
 <main id="main">
 
     <!-- ======= Breadcrumbs Section ======= -->
@@ -79,7 +81,7 @@ chart2.render();
 
       </div>
     </section><!-- End Breadcrumbs Section -->
-<body>
+
   <!-- ======= Header ======= -->
 	<%@include file = "header_minnerpage.jsp" %>
   <!-- End Header -->
@@ -88,7 +90,7 @@ chart2.render();
 		<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 	<br><br>
 	<hr><br><br>
-		<div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+		<div id="chartContainer2" style="height: 370px; width: 100%; margin-bottom: 50px;"></div>
 
 
 </body>
