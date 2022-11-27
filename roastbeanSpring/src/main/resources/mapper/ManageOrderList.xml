@@ -6,18 +6,25 @@
 <mapper namespace="com.rb.base.dao.ManageOrderListDao">
 		
 	<select id="orderListRow" resultType="Integer">
-		select count(*) as ordertotlaCount from orders where ${query} like #{content} 
+		<choose>
+			<when test="query=='product_name'">
+				select count(*) as ordertotlaCount from product where ${query} like #{content} 
+			</when>
+			<otherwise>
+				select count(*) as ordertotlaCount from orders where ${query} like #{content}
+			</otherwise>
+		</choose>
 	</select>
 
+
 	<select id="orderList" resultType="com.rb.base.model.OrderDto">
-		select * from  ( select row_number() over(order by order_date asc)  as rownum,  o.order_seq, o.order_name,o.user_id, p.product_name, o.order_qty,
+		select * from  ( select row_number() over(order by order_date asc) as rownum,  o.order_seq, o.order_name,o.user_id, p.product_name, o.order_qty,
 		o.order_price, o.order_date from orders as o, product as p 
 		where  o.product_id = p.product_id 
 		order by rownum desc )A, orders o
 		where o.order_seq=A.order_seq and A.${query} like #{content}
 		and <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>;
-
+		
 	</select> 
 
 </mapper>
-

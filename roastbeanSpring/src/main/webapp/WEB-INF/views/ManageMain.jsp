@@ -32,15 +32,26 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <!-- hosik css -->
-  <link href="css/hosikcss.css" rel="stylesheet">
-  <!-- =======================================================
-  * Template Name: Delicious - v4.9.1
-  * Template URL: https://bootstrapmade.com/delicious-free-restaurant-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-
+  
+	<script type="text/javascript">
+		window.onload = function() { 
+		var chart = new CanvasJS.Chart("chartContainer", {
+			animationEnabled: true,
+			exportEnabled: true,
+			title: {
+				text:"7일간 상품 매출 상위 순위"
+			},
+			axisX:{
+			    interval: 1
+			},
+			data: [{
+				type: "column", //change type to bar, line, area, pie, etc
+				dataPoints: ${manageMaindataPoints}
+			}]
+		});
+		chart.render();
+		}
+	</script>
 
 </head>
 
@@ -78,24 +89,11 @@
 				  <div class="container">
 				  		<div class="row">
 					    <div class="col">
+					    
+					    	<div id="chartContainer" style="height: 370px; width: 100%; margin-top: 20px;">
+					    		chart 
+					    	</div>
 			
-							<!-- <table style="margin-left: auto; margin-right: auto; border:none;" border="1"
-									class="table table-sm table-hover">
-									<thead >
-									<tr>
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='mpList'">PRODUCT LIST</td>	
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='manage_chart.jsp'">CHART<br><준비중></td>
-									</tr>
-									<tr>
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href='OrderList'">ORDERS LIST</td>
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='UserList'">USER LIST</td>
-									</tr>
-									<tr>
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#5f5f5f;" onClick="location.href=' # ''">미 정</td>
-										<td width="400" height="60" style="text-align: center; vertical-align:middle; color: #fff; background-color:#F2BCBB;" onClick="location.href='notice_list'">NOTICE</td>
-									</tr>
-								</thead>
-							</table> -->
 							<table style="margin-left: auto; margin-right: auto; border:none;" border="1"
 									class="table table-sm table-hover">
 									<thead >
@@ -154,11 +152,14 @@
 									</tr>
 									<c:forEach items="${weekList}" var="dto">
 									<tr>
-										<td>${dto.order_date }</td>
-										<td>판매량 : ${dto.order_qty }/ 매출금액 : ${dto.order_price }</td>
+										<td style="text-align: center;">${dto.order_date }</td>	
+										<td style="text-align: center;">
+											판매량 : ${dto.order_qty } / 
+											<fmt:formatNumber value="${dto.order_price }" pattern="#,###"/> 원
+									 	</td>
 									</tr>
 									</c:forEach>
-									<tr>
+									<%-- <tr>
 										<td colspan="2">
 											<table>	
 												<c:forEach items="${chartMonth }" var="dtoMonth">
@@ -170,14 +171,15 @@
 												</c:forEach>
 											</table>
 										</td>
-									</tr>
+									</tr> --%>
 								</thead>
 							</table>
-								
+							
 							
 				
 					</div></div></div></div>
 			</div>
+				
 		</section>
 
 		<!--  ---------------------------------- 정보 쓰기란 종료 ----------------------------------  -->
@@ -228,7 +230,7 @@
 
 	<!-- Template Main JS File -->
 	<script src="assets/js/main.js"></script>
-
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 
 </html>
