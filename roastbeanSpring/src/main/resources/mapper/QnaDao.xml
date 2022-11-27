@@ -77,10 +77,10 @@
 
 	<!-- Mypage/ User의 QnA 전체 리스트 검색 -->
 	<select id="qnaList" resultType="com.rb.base.model.QnaDto">
-		SELECT qw.qna_write_category, qw.qna_write_title, qw.qna_write_seq, qw.qna_write_initdate, qw.qna_write_updatedate, 
-			qw.qna_write_content, qwc.qna_write_comment_content, qwc.qna_write_comment_initdate, qwc.qna_write_comment_updatedate 
+		SELECT qw.qna_write_seq, qw.qna_write_category, qw.qna_write_title, qw.qna_write_content, qw.qna_write_initdate, qw.qna_write_updatedate, 
+			qwc.qna_write_comment_content, qwc.qna_write_comment_initdate, qwc.qna_write_comment_updatedate 
 		FROM qna_write qw left join qna_write_comment qwc 
-		on qw.qna_write_seq = qwc.qna_write_seq 
+		on qw.qna_write_seq = qwc.qna_write_seq
 		WHERE qw.user_id = #{user_id} order by qw.qna_write_seq DESC
 	</select>
 	

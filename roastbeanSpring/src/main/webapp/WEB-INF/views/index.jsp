@@ -182,7 +182,7 @@
       </div>
     </section><!-- End Gallery Section -->
 
- 
+ 	<br>
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials">
@@ -201,7 +201,7 @@
                 </div>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  Login &amp; Sign up &amp; Mypage &amp; Design &amp; Customer Service
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
@@ -216,7 +216,7 @@
                 </div>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                  Coummunity Board &amp; Mainpage &amp; Information &amp; Location
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
@@ -232,7 +232,7 @@
                 </div>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                  Producitlist &amp; Cart &amp; ProductDetail &amp; Order
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
@@ -248,11 +248,28 @@
                 </div>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                  Coummunity Board &amp; Recommand Bean &amp; Mainpage
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
             </div><!-- End testimonial item -->
+            
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/indeximg/lhsprofile.png" class="testimonial-img" alt="">
+                <h3>Hosik Lee</h3>
+                <h4>Manage Product &amp; Manage User &amp; Manage Page</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Manage Product &amp; Manage User &amp; Manage Page
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+            
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -261,8 +278,8 @@
     </section><!-- End Testimonials Section -->
 
 
-
-    <!-- ======= Contact Section ======= -->
+<!-- 
+    ======= Contact Section =======
     <section id="contact" class="contact">
       <div class="container">
 
@@ -329,7 +346,10 @@
           <div class="text-center"><button type="submit">Send Message</button></div>
         </form>
       </div>
-    </section><!-- End Contact Section -->
+    </section>End Contact Section
+     -->
+	<br>
+    
   </main><!-- End #main -->
 	
   <!-- ======= Footer ======= -->

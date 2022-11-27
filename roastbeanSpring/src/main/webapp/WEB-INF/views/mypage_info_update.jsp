@@ -113,9 +113,11 @@
 		  		<tr>
 					<td>Tel Number</td>	
 					<td colspan="2">
-						<input class="form-control" type="text" name="user_telno1" value="${userinfo_list.user_telno.substring(0,3)}${user_telno1}" maxlength="3" style="height: 32px;">
-						<input class="form-control" type="text" name="user_telno2" value="${userinfo_list.user_telno.substring(3,7)}${user_telno2}" maxlength="4" style="height: 32px;">
-						<input class="form-control" type="text" name="user_telno3" value="${userinfo_list.user_telno.substring(7,11)}${user_telno3}" maxlength="4" style="height: 32px;">
+						<input class="form-control2" size="4" type="tel" name="user_telno1" value="${userinfo_list.user_telno.substring(0,3)}${user_telno1}" maxlength="3" style="height: 32px;">
+						-
+						<input class="form-control2" size="8" type="tel" name="user_telno2" value="${userinfo_list.user_telno.substring(3,7)}${user_telno2}" maxlength="4" style="height: 32px;">
+						-
+						<input class="form-control2" size="8" type="tel" name="user_telno3" value="${userinfo_list.user_telno.substring(7,11)}${user_telno3}" maxlength="4" style="height: 32px;">
 					</td>
 		  		</tr>
 		  		<tr>
