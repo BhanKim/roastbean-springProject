@@ -1,6 +1,7 @@
 package com.rb.base.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.rb.base.dao.ManageChartDao;
+import com.google.gson.Gson;
+import com.rb.base.dao.ChartDao;
 import com.rb.base.dao.ManageMainDao;
 import com.rb.base.dao.ManageOrderListDao;
 import com.rb.base.dao.ManageUserListDao;
-import com.rb.base.model.ManageChartDto.DataPointModel;
 import com.rb.base.model.ManageMainDto;
 import com.rb.base.model.OrderDto;
 import com.rb.base.model.PageInfo;
@@ -31,7 +32,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 	ManageUserListDao ManageUserListDao;
 	
 	@Autowired
-	ManageChartDao ManageChartDao;
+	ChartDao ManageChartDao;
 	
 	
 	// /////////////////////////////////  Manage Main  /////////////////////////////////
@@ -39,15 +40,15 @@ public class ManageMainServiceImpl implements ManageMainService {
 	
 //////////////////////// Manage Main Chart  //////////////////////////
 	
-	@Autowired
-	public void setCanvasjsChartDao(ManageChartDao ManageChartDao) {
-		this.ManageChartDao = ManageChartDao;
-	}
- 
 	@Override
-	public List<List<DataPointModel>> getCanvasjsChartData() {
-		return ManageChartDao.getCanvasjsChartData();
+	public void manageMainChart(HttpServletRequest request, Model model) throws Exception {
+		
+		Gson gson=new Gson();
+		List<Map<String, Integer>> chartlist = ManageChartDao.manageMainChart();
+		String manageMaindataPoints=gson.toJson(chartlist);
+		model.addAttribute("manageMaindataPoints",manageMaindataPoints);
 	}
+	
 	
 	//////////////////////// New Community //////////////////////////
 	@Override
@@ -175,10 +176,10 @@ public class ManageMainServiceImpl implements ManageMainService {
 	public void userList(HttpServletRequest request, Model model) throws Exception {
 		
 		int cPage = 0; // 시작페이지
-		int pageLength = 5; // 페이징에 표시될 개수
-		int totalCount = 0; // 총 페이징 수
+		int pageLength = 5; // 페이징에 표시될 개수 , select all page block
+		int totalpageCount = 0; // 총 페이징 수
 		int listCount = 10; // 보여지는 게시글 수 페이지에
-		int rowCount = 0; // 총 게시글 갯수
+		int totalCount = 0; // 총 게시글 갯수
 		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
 		String query = request.getParameter("query");
 		String content = request.getParameter("content");
@@ -189,8 +190,8 @@ public class ManageMainServiceImpl implements ManageMainService {
 		}
 		if(content == null) {
 			content = "";}
-		
-		if(tempPage == null || tempPage.length() == 0) {
+		content = '%' + content + '%';
+		if(tempPage == null || tempPage.length() == 0 ) {
 			cPage = 1;
 		}
 		try {
@@ -199,17 +200,19 @@ public class ManageMainServiceImpl implements ManageMainService {
 			cPage = 1;
 		}
 		
-		totalCount = ManageUserListDao.userListRow(query, content);
-		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
+		totalpageCount = ManageUserListDao.userListRow(query, content);
+		PageInfo dto = new PageInfo(cPage, totalpageCount, listCount, pageLength);
+		totalCount = (totalpageCount - ((cPage-1)*listCount));
+		int start = totalCount - 9;
 		
-		rowCount = (totalCount - ((cPage-1)*10));
-					
-		int start = rowCount - 9;
-		List<UserDto> userList = ManageUserListDao.userList(cPage, start, rowCount, query, content);
+		List<UserDto> userList = ManageUserListDao.userList(cPage, start, totalCount, query, content);
+		
+		
 		model.addAttribute("page", dto);
 		model.addAttribute("manageuserlist", userList);
 		request.setAttribute("query", query);
 		request.setAttribute("content", content.replace("%", ""));
+		
 	}//userList END
 
 	
@@ -233,7 +236,6 @@ public class ManageMainServiceImpl implements ManageMainService {
 			content = "";
 		}
 		content = '%' + content + '%';	
-		System.out.println("content : "+content);
 		if(tempPage == null || tempPage.length() == 0) {
 			cPage = 1;
 		}
@@ -247,9 +249,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
 		
 		rowCount = (totalCount - ((cPage-1)*10));
-	System.out.println("managemainserviceimpl's orderlist orwCOunt : "+rowCount);
 		int start = rowCount - 9;
-	System.out.println("managemainserviceimpl's orderlist start : "+start);
 	
 		List<OrderDto> orderList = ManageOrderListDao.orderList(cPage, start, rowCount, query, content);
 		model.addAttribute("page", dto);

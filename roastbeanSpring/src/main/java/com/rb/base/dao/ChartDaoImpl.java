@@ -17,4 +17,9 @@ public class ChartDaoImpl implements ChartDao {
 		return sqlSession.selectList(nameSpace+".ordercount");
 	}
 
+	@Override
+	public List<Map<String, Integer>> manageMainChart() throws Exception {
+		return sqlSession.selectList(nameSpace+".manageMainChart");
+	}
+
 }

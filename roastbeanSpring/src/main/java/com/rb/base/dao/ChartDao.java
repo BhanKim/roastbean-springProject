@@ -6,5 +6,6 @@ import java.util.Map;
 public interface ChartDao {
 
 	public List<Map<String, Integer>> ordercount()throws Exception;
+	public List<Map<String, Integer>> manageMainChart()throws Exception;
 	
 }
