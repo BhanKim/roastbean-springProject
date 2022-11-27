@@ -74,7 +74,7 @@
 		    <div class="col">
 	  <h2>주문 리스트</h2>
 		&nbsp;&nbsp;&nbsp; 
- 	<form action="OrderList">
+ 	<form action="OrderList" method="post">
 		   <br>
 		   검색
 		   <select name="query">
@@ -102,6 +102,7 @@
 		     </tr>
 		</thead>
 		<tbody>
+		
 		     <c:forEach items="${manageorderlist}" var="dto">
 		      <tr style="border:none;"> 
 		         <td style="text-align: center;">${dto.order_seq}</td>
@@ -113,6 +114,8 @@
 		         <td style="text-align: center;">${dto.order_date}</td> 		      
 		      </tr>
 		      </c:forEach>
+		      
+		      
 		      <tr></tr>
 						 <tr>
 						<td align="center" colspan="7">

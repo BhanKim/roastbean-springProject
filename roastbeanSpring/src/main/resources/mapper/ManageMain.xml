@@ -72,13 +72,6 @@
             order by date(order_date) desc
             ;
 	</select>
-<!-- 	
-	<select id="week_data" resultType="com.rb.base.model.ManageMainDto">
-		select  x.order_date, ifnull(y.c,0) as order_qty, ifnull(y.n,0) as order_price from (select a.Date as order_date
-	    from (select curdate() - INTERVAL (a.a) DAY as Date from (select 0 as a union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6) as a) a)x left outer join 
-		(SELECT date(order_date) as d,sum(order_qty) as c , sum(order_price) as n FROM orders  WHERE DATE(order_date) = curdate() group by date(order_date))y on x.order_date= y.d order by x.order_date;
-	</select> -->
-		
 	<!-- 오늘로부터 1주일간 총 판매 금액 -->
 	<select id="order_week_sales" resultType="Integer">
 		select sum(order_price) as order_week_sales from orders WHERE order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate();

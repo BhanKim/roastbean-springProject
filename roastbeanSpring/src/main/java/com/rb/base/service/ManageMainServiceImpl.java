@@ -140,10 +140,14 @@ public class ManageMainServiceImpl implements ManageMainService {
 	
 	// 1주일간 가장 높은 매출 상픔의 이름,수량,판매금액
 	@Override	 // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
-	public ManageMainDto week_order_product_order_price_NQP(HttpServletRequest request) throws Exception{
-//		if( ManageMainDao.week_order_product_order_price_NQP(request).equals("")) {
-//		}else {
+	public ManageMainDto week_order_product_order_price_NQP(HttpServletRequest request) throws Exception{		
 		ManageMainDto week_order_product_order_price_NQP = ManageMainDao.week_order_product_order_price_NQP(request);
+		if(week_order_product_order_price_NQP == null) {
+			request.setAttribute("week_order_product_order_price_NQP_N", "금주에 판매된 상품이 없습니다. ");
+			request.setAttribute("week_order_product_order_price_NQP_Q", 0);
+			request.setAttribute("week_order_product_order_price_NQP_P", 0);
+			return ManageMainDao.week_order_product_order_price_NQP(request);
+		}
 		request.setAttribute("week_order_product_order_price_NQP_N", week_order_product_order_price_NQP.getProduct_name());
 		request.setAttribute("week_order_product_order_price_NQP_Q", week_order_product_order_price_NQP.getOrder_qty());
 		request.setAttribute("week_order_product_order_price_NQP_P", week_order_product_order_price_NQP.getOrder_price());
@@ -154,11 +158,17 @@ public class ManageMainServiceImpl implements ManageMainService {
 	//<!-- 오늘부터 7일전까지 많이 팔린 상품이름, 가격, 갯수 -->
 	@Override	 // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
 	public ManageMainDto week_order_product_order_quantity_NQP(HttpServletRequest request) throws Exception {
-		ManageMainDto week_order_product_order_quantity_NQP = ManageMainDao.week_order_product_order_price_NQP(request);
+		ManageMainDto week_order_product_order_quantity_NQP = ManageMainDao.week_order_product_order_quantity_NQP(request);
+		if(week_order_product_order_quantity_NQP == null) {
+			request.setAttribute("week_order_product_order_quantity_NQP_N", "금주에 판매된 상품이 없습니다. ");
+			request.setAttribute("week_order_product_order_quantity_NQP_Q", 0);
+			request.setAttribute("week_order_product_order_quantity_NQP_P", 0);
+			return ManageMainDao.week_order_product_order_quantity_NQP(request);
+		}
 		request.setAttribute("week_order_product_order_quantity_NQP_N", week_order_product_order_quantity_NQP.getProduct_name());
 		request.setAttribute("week_order_product_order_quantity_NQP_Q", week_order_product_order_quantity_NQP.getOrder_qty());
 		request.setAttribute("week_order_product_order_quantity_NQP_P", week_order_product_order_quantity_NQP.getOrder_price());
-		return ManageMainDao.week_order_product_order_price_NQP(request);
+		return ManageMainDao.week_order_product_order_quantity_NQP(request);
 	}
 
 	
@@ -179,7 +189,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 		int pageLength = 5; // 페이징에 표시될 개수 , select all page block
 		int totalpageCount = 0; // 총 페이징 수
 		int listCount = 10; // 보여지는 게시글 수 페이지에
-		int totalCount = 0; // 총 게시글 갯수
+		int rowCount = 0; // 총 게시글 갯수
 		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
 		String query = request.getParameter("query");
 		String content = request.getParameter("content");
@@ -202,12 +212,13 @@ public class ManageMainServiceImpl implements ManageMainService {
 		
 		totalpageCount = ManageUserListDao.userListRow(query, content);
 		PageInfo dto = new PageInfo(cPage, totalpageCount, listCount, pageLength);
-		totalCount = (totalpageCount - ((cPage-1)*listCount));
-		int start = totalCount - 9;
+		rowCount = (totalpageCount - ((cPage-1)*listCount))-1;
+		int start = rowCount - 9;
+		if(start < 0) {
+			start = 0;
+		}
 		
-		List<UserDto> userList = ManageUserListDao.userList(cPage, start, totalCount, query, content);
-		
-		
+		List<UserDto> userList = ManageUserListDao.userList(cPage, start, rowCount, query, content);
 		model.addAttribute("page", dto);
 		model.addAttribute("manageuserlist", userList);
 		request.setAttribute("query", query);
@@ -248,8 +259,11 @@ public class ManageMainServiceImpl implements ManageMainService {
 		totalCount = ManageOrderListDao.orderListRow(query, content);
 		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
 		
-		rowCount = (totalCount - ((cPage-1)*10));
+		rowCount = (totalCount - ((cPage-1)*listCount))-1;
 		int start = rowCount - 9;
+		if(start < 0) {
+			start = 0;
+		}
 	
 		List<OrderDto> orderList = ManageOrderListDao.orderList(cPage, start, rowCount, query, content);
 		model.addAttribute("page", dto);

@@ -128,8 +128,8 @@
 									<tr>
 										<td width="300" height="100" style="text-align: center; vertical-align:middle; ">
 											<b>1주일간 가장 많이 팔린 상품</b> 
-											<br>판매 갯수 : ${week_order_product_order_quantity_NQP_N }
-											<br>${week_order_product_order_quantity_NQP_Q  } 개
+											<br>${week_order_product_order_quantity_NQP_N }
+											<br>판매 갯수 : ${week_order_product_order_quantity_NQP_Q  } 개
 											<br><b><fmt:formatNumber value="${week_order_product_order_quantity_NQP_P }" pattern="#,###"/></b> 원
 										</td>
 										<td width="300" height="100" style="text-align: center; vertical-align:middle; ">
@@ -150,7 +150,7 @@
 											 <br>답장을 기다리고 있는 Qna : ${totalQNA-doneanswerQNA}
 										</td>
 									</tr>
-									<c:forEach items="${weekList}" var="dto">
+									<%-- <c:forEach items="${weekList}" var="dto">
 									<tr>
 										<td style="text-align: center;">${dto.order_date }</td>	
 										<td style="text-align: center;">
@@ -158,20 +158,7 @@
 											<fmt:formatNumber value="${dto.order_price }" pattern="#,###"/> 원
 									 	</td>
 									</tr>
-									</c:forEach>
-									<%-- <tr>
-										<td colspan="2">
-											<table>	
-												<c:forEach items="${chartMonth }" var="dtoMonth">
-													<tr>
-														<td>차트 잠정 미정. </td>
-														<td>${dtoMonth.month } </td>
-														<td>${dtoMonth.month_total_salesPrice } </td>
-													</tr>
-												</c:forEach>
-											</table>
-										</td>
-									</tr> --%>
+									</c:forEach> --%>
 								</thead>
 							</table>
 							
