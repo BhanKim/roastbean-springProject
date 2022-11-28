@@ -20,19 +20,19 @@ public class ManageController {
 	@RequestMapping("/ManageMain")
 	public String ManageMain(HttpServletRequest request, Model model)throws Exception{
 		
-		service.order_date_sales(request);
-		service.order_week_sales(request);
-		service.order_date_order_quantity_NQP(request);  
-		service.order_date_order_price_NQP(request);	
-		service.week_order_product_order_price_NQP(request); //ok
-		service.week_order_product_order_quantity_NQP(request);//ok
-		service.monthly_statistics(request);
-		service.count_new_users(request);
-		service.todayNewQNA(request);
-		service.totalQNA(request);
-		service.doneanswerQNA(request);
-		service.today_sum_community(request);
-		service.week_data(model, request);
+//		service.order_date_sales(request);
+//		service.order_week_sales(request);
+//		service.order_date_order_quantity_NQP(request);  
+//		service.order_date_order_price_NQP(request);	
+//		service.week_order_product_order_price_NQP(request); //ok
+//		service.week_order_product_order_quantity_NQP(request);//ok
+//		service.monthly_statistics(request);
+//		service.count_new_users(request);
+//		service.todayNewQNA(request);
+//		service.totalQNA(request);
+//		service.doneanswerQNA(request);
+//		service.today_sum_community(request);
+//		service.week_data(model, request);
 		return "ManageMain";
 	}//ManageMain End
 	
