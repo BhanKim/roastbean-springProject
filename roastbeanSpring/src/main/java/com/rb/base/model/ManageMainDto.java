@@ -9,6 +9,7 @@ public class ManageMainDto {
 	int order_price;
 	Timestamp order_date;	
 	
+	
 	public ManageMainDto() {
 		// TODO Auto-generated constructor stub
 	}
@@ -36,6 +37,7 @@ public class ManageMainDto {
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
+	
 	
 	public int getOrder_qty() {
 		return order_qty;

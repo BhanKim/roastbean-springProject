@@ -25,7 +25,6 @@ public class ChartDaoServiceImpl implements ChartDaoService {
 		Gson gson=new Gson();
 		List<Map<String, Integer>> chartlist=chartdao.ordercount();
 		String dataPoints=gson.toJson(chartlist);
-		System.out.println(chartlist+"chartlist");
 		model.addAttribute("dataPoints",dataPoints);
 	}
 

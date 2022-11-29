@@ -8,7 +8,7 @@
 		
 		
 		<!-- /////////////// NEW  Community  /////////////// -->	
-	 <select id="today_sum_community" resultType="Integer">	
+	<select id="today_sum_community" resultType="Integer">	
 		select count(community_initdate) as today_sum_community from community WHERE DATE_FORMAT (community_initdate, '%Y-%m-%d') = curdate();
 	</select>
 	
@@ -43,13 +43,20 @@
 		
 	<!-- 오늘 많이 팔린 상품이름, 가격, 갯수  -->	
 	<select id="order_date_order_quantity_NQP" resultType="com.rb.base.model.ManageMainDto">
-		select p.product_name, sum(o.order_qty) as order_qty, sum(o.order_price) as order_price from orders o, product p where p.product_id = o.product_id and order_date=curdate() group by product_name order by order_qty desc limit 1;
+		select p.product_name, sum(o.order_qty) as order_qty, sum(o.order_price) as order_price
+		from orders o, product p 
+		where p.product_id = o.product_id and order_date=curdate() 
+		group by product_name 
+		order by order_qty desc limit 1;
 	</select>
 	
 		
 	<!-- 오늘 높은 매출 상품이름, 가격, 갯수  -->
 	<select id="order_date_order_price_NQP" resultType="com.rb.base.model.ManageMainDto">
-		select p.product_name, sum(o.order_qty) as order_qty, sum(o.order_price) as order_price from orders o, product p where p.product_id = o.product_id and order_date=curdate() group by product_name order by order_price desc limit 1;
+		select p.product_name, sum(o.order_qty) as order_qty, sum(o.order_price) as order_price 
+		from orders o, product p 
+		where p.product_id = o.product_id and order_date=curdate() 
+		group by product_name order by order_price desc limit 1;
 	</select>
 		
 		
@@ -57,11 +64,14 @@
 	<!-- /////////////// 1week /////////////// -->
 	
 	<select id="week_data" resultType="com.rb.base.model.ManageMainDto">
-		select  x.order_date, ifnull(y.c,0) as order_qty, ifnull(y.n,0) as order_price from (select a.Date as order_date
-	    from (select curdate() - INTERVAL (a.a) DAY as Date from (select 0 as a union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6) as a) a)x left outer join 
-		(SELECT date(order_date) as d,sum(order_qty) as c , sum(order_price) as n FROM orders  WHERE DATE(order_date) = curdate() group by date(order_date))y on x.order_date= y.d order by x.order_date;
+		select date(order_date) as order_date, ifnull(sum(order_qty),0) as order_qty, ifnull(sum(order_price),0) as order_price
+	from orders 
+		where DATE_FORMAT(order_date , '%Y-%m-%d')
+			BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate()
+            group by date(order_date)
+            order by date(order_date) desc
+            ;
 	</select>
-		
 	<!-- 오늘로부터 1주일간 총 판매 금액 -->
 	<select id="order_week_sales" resultType="Integer">
 		select sum(order_price) as order_week_sales from orders WHERE order_date BETWEEN DATE_ADD(curdate(),INTERVAL -1 WEEK ) AND curdate();

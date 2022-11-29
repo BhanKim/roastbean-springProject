@@ -1,6 +1,7 @@
 package com.rb.base.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.rb.base.dao.ManageChartDao;
+import com.google.gson.Gson;
+import com.rb.base.dao.ChartDao;
 import com.rb.base.dao.ManageMainDao;
 import com.rb.base.dao.ManageOrderListDao;
 import com.rb.base.dao.ManageUserListDao;
-import com.rb.base.model.ManageChartDto.DataPointModel;
 import com.rb.base.model.ManageMainDto;
 import com.rb.base.model.OrderDto;
 import com.rb.base.model.PageInfo;
@@ -31,7 +32,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 	ManageUserListDao ManageUserListDao;
 	
 	@Autowired
-	ManageChartDao ManageChartDao;
+	ChartDao ManageChartDao;
 	
 	
 	// /////////////////////////////////  Manage Main  /////////////////////////////////
@@ -39,15 +40,15 @@ public class ManageMainServiceImpl implements ManageMainService {
 	
 //////////////////////// Manage Main Chart  //////////////////////////
 	
-	@Autowired
-	public void setCanvasjsChartDao(ManageChartDao ManageChartDao) {
-		this.ManageChartDao = ManageChartDao;
-	}
- 
 	@Override
-	public List<List<DataPointModel>> getCanvasjsChartData() {
-		return ManageChartDao.getCanvasjsChartData();
+	public void manageMainChart(HttpServletRequest request, Model model) throws Exception {
+		
+		Gson gson=new Gson();
+		List<Map<String, Integer>> chartlist = ManageChartDao.manageMainChart();
+		String manageMaindataPoints=gson.toJson(chartlist);
+		model.addAttribute("manageMaindataPoints",manageMaindataPoints);
 	}
+	
 	
 	//////////////////////// New Community //////////////////////////
 	@Override
@@ -84,11 +85,7 @@ public class ManageMainServiceImpl implements ManageMainService {
 		request.setAttribute("order_date_sales", ManageMainDao.order_date_sales(request));
 	}
 
-	@Override
-	public void week_data(Model model, HttpServletRequest request) throws Exception {
-		List<ManageMainDto> weekList = ManageMainDao.week_data(request);
-		model.addAttribute("weekList",weekList);
-	}
+	
 	
 	// 오늘부터-7day 까지 매출금액
 	@Override
@@ -102,55 +99,76 @@ public class ManageMainServiceImpl implements ManageMainService {
 	public ManageMainDto order_date_order_quantity_NQP(HttpServletRequest request) throws Exception { 
 		ManageMainDto order_date_order_quantity_NQP = ManageMainDao.order_date_order_quantity_NQP(request);
 		
-		if(order_date_order_quantity_NQP != null) {
+		if(order_date_order_quantity_NQP == null) {
+			request.setAttribute("order_date_order_quantity_NQP_N","금일 판매된 상품이 없습니다.");
+			request.setAttribute("order_date_order_quantity_NQP_Q", 0);
+			request.setAttribute("order_date_order_quantity_NQP_P", 0);
+			return ManageMainDao.order_date_order_quantity_NQP(request);
+		}
 		request.setAttribute("order_date_order_quantity_NQP_N", order_date_order_quantity_NQP.getProduct_name());
 		request.setAttribute("order_date_order_quantity_NQP_Q", order_date_order_quantity_NQP.getOrder_qty());
 		request.setAttribute("order_date_order_quantity_NQP_P", order_date_order_quantity_NQP.getOrder_price());
 		return ManageMainDao.order_date_order_quantity_NQP(request);
-		}else {
-			System.out.println("order_date_order_quantity_NQP NULL!!!!!!!!!!!!!!!!!!!!!");
-			String cName="0";
-			order_date_order_quantity_NQP.setProduct_name(cName);
-			order_date_order_quantity_NQP.setOrder_qty(0);
-			order_date_order_quantity_NQP.setOrder_price(0);
-			String name = order_date_order_quantity_NQP.getProduct_name();
-			System.out.println(name);
-			return ManageMainDao.order_date_order_quantity_NQP(request);
-		}
 	}//order_date_sales_NQP END
-	
-	////////////////////////   1 week   //////////////////////////
 	
 	// 하루동안 가장 높은 매출 제품의 이름,수량,총 판매금액
 	@Override // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
 	public ManageMainDto order_date_order_price_NQP(HttpServletRequest request) throws Exception { 
 		ManageMainDto order_date_order_price_NQP = ManageMainDao.order_date_order_price_NQP(request);
+		
+		if(order_date_order_price_NQP == null) {
+			request.setAttribute("order_date_order_price_NQP_N", "금일 판매된 상품이 없습니다.");
+			request.setAttribute("order_date_order_price_NQP_Q", 0);
+			request.setAttribute("order_date_order_price_NQP_P", 0);
+			return ManageMainDao.order_date_order_quantity_NQP(request);
+		}
 		request.setAttribute("order_date_order_price_NQP_N", order_date_order_price_NQP.getProduct_name());
 		request.setAttribute("order_date_order_price_NQP_Q", order_date_order_price_NQP.getOrder_qty());
 		request.setAttribute("order_date_order_price_NQP_P", order_date_order_price_NQP.getOrder_price());
 		return ManageMainDao.order_date_order_quantity_NQP(request);
-		
 	}//order_date_sales_NQP END
+		
+	////////////////////////   1 week   //////////////////////////
+	
+	
+	@Override
+	public void week_data(Model model, HttpServletRequest request) throws Exception {
+		List<ManageMainDto> weekList = ManageMainDao.week_data(request);
+		model.addAttribute("weekList",weekList);
+	}
 	
 	
 	// 1주일간 가장 높은 매출 상픔의 이름,수량,판매금액
 	@Override	 // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
-	public ManageMainDto week_order_product_order_price_NQP(HttpServletRequest request) throws Exception { 
+	public ManageMainDto week_order_product_order_price_NQP(HttpServletRequest request) throws Exception{		
 		ManageMainDto week_order_product_order_price_NQP = ManageMainDao.week_order_product_order_price_NQP(request);
+		if(week_order_product_order_price_NQP == null) {
+			request.setAttribute("week_order_product_order_price_NQP_N", "금주에 판매된 상품이 없습니다. ");
+			request.setAttribute("week_order_product_order_price_NQP_Q", 0);
+			request.setAttribute("week_order_product_order_price_NQP_P", 0);
+			return ManageMainDao.week_order_product_order_price_NQP(request);
+		}
 		request.setAttribute("week_order_product_order_price_NQP_N", week_order_product_order_price_NQP.getProduct_name());
 		request.setAttribute("week_order_product_order_price_NQP_Q", week_order_product_order_price_NQP.getOrder_qty());
 		request.setAttribute("week_order_product_order_price_NQP_P", week_order_product_order_price_NQP.getOrder_price());
 		return ManageMainDao.week_order_product_order_price_NQP(request);
+		
 	}
 
 	//<!-- 오늘부터 7일전까지 많이 팔린 상품이름, 가격, 갯수 -->
 	@Override	 // 22-11-23 호식 안쓸예정, 쿼리문 수정예정입니다 
 	public ManageMainDto week_order_product_order_quantity_NQP(HttpServletRequest request) throws Exception {
-		ManageMainDto week_order_product_order_quantity_NQP = ManageMainDao.week_order_product_order_price_NQP(request);
+		ManageMainDto week_order_product_order_quantity_NQP = ManageMainDao.week_order_product_order_quantity_NQP(request);
+		if(week_order_product_order_quantity_NQP == null) {
+			request.setAttribute("week_order_product_order_quantity_NQP_N", "금주에 판매된 상품이 없습니다. ");
+			request.setAttribute("week_order_product_order_quantity_NQP_Q", 0);
+			request.setAttribute("week_order_product_order_quantity_NQP_P", 0);
+			return ManageMainDao.week_order_product_order_quantity_NQP(request);
+		}
 		request.setAttribute("week_order_product_order_quantity_NQP_N", week_order_product_order_quantity_NQP.getProduct_name());
 		request.setAttribute("week_order_product_order_quantity_NQP_Q", week_order_product_order_quantity_NQP.getOrder_qty());
 		request.setAttribute("week_order_product_order_quantity_NQP_P", week_order_product_order_quantity_NQP.getOrder_price());
-		return ManageMainDao.week_order_product_order_price_NQP(request);
+		return ManageMainDao.week_order_product_order_quantity_NQP(request);
 	}
 
 	
@@ -168,8 +186,8 @@ public class ManageMainServiceImpl implements ManageMainService {
 	public void userList(HttpServletRequest request, Model model) throws Exception {
 		
 		int cPage = 0; // 시작페이지
-		int pageLength = 5; // 페이징에 표시될 개수
-		int totalCount = 0; // 총 페이징 수
+		int pageLength = 5; // 페이징에 표시될 개수 , select all page block
+		int totalpageCount = 0; // 총 페이징 수
 		int listCount = 10; // 보여지는 게시글 수 페이지에
 		int rowCount = 0; // 총 게시글 갯수
 		String tempPage = request.getParameter("page"); // JSP 페이지 값 넣어주는 것
@@ -182,8 +200,8 @@ public class ManageMainServiceImpl implements ManageMainService {
 		}
 		if(content == null) {
 			content = "";}
-		
-		if(tempPage == null || tempPage.length() == 0) {
+		content = '%' + content + '%';
+		if(tempPage == null || tempPage.length() == 0 ) {
 			cPage = 1;
 		}
 		try {
@@ -192,17 +210,20 @@ public class ManageMainServiceImpl implements ManageMainService {
 			cPage = 1;
 		}
 		
-		totalCount = ManageUserListDao.userListRow(query, content);
-		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
-		
-		rowCount = (totalCount - ((cPage-1)*10));
-					
+		totalpageCount = ManageUserListDao.userListRow(query, content);
+		PageInfo dto = new PageInfo(cPage, totalpageCount, listCount, pageLength);
+		rowCount = (totalpageCount - ((cPage-1)*listCount))-1;
 		int start = rowCount - 9;
+		if(start < 0) {
+			start = 0;
+		}
+		
 		List<UserDto> userList = ManageUserListDao.userList(cPage, start, rowCount, query, content);
 		model.addAttribute("page", dto);
 		model.addAttribute("manageuserlist", userList);
 		request.setAttribute("query", query);
 		request.setAttribute("content", content.replace("%", ""));
+		
 	}//userList END
 
 	
@@ -226,7 +247,6 @@ public class ManageMainServiceImpl implements ManageMainService {
 			content = "";
 		}
 		content = '%' + content + '%';	
-		System.out.println("content : "+content);
 		if(tempPage == null || tempPage.length() == 0) {
 			cPage = 1;
 		}
@@ -239,10 +259,11 @@ public class ManageMainServiceImpl implements ManageMainService {
 		totalCount = ManageOrderListDao.orderListRow(query, content);
 		PageInfo dto = new PageInfo(cPage, totalCount, listCount, pageLength);
 		
-		rowCount = (totalCount - ((cPage-1)*10));
-	System.out.println("managemainserviceimpl's orderlist orwCOunt : "+rowCount);
+		rowCount = (totalCount - ((cPage-1)*listCount))-1;
 		int start = rowCount - 9;
-	System.out.println("managemainserviceimpl's orderlist start : "+start);
+		if(start < 0) {
+			start = 0;
+		}
 	
 		List<OrderDto> orderList = ManageOrderListDao.orderList(cPage, start, rowCount, query, content);
 		model.addAttribute("page", dto);

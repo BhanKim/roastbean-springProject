@@ -7,21 +7,22 @@
 		
 		<!-- 22-11-23-호식 쿼리문 수정 필요  -->
 	<select id="userListRow" resultType="Integer">
-		select count(*) as usertotalCount from user where user_id != 'admin' and user_deletedate is null;
+		select count(*) as totalCount from user 
+		where user_id != 'admin' 
+		and user_deletedate is null 
+		and ${query} like '${content}' 
+		;
 	</select>
 	
 	<select id="userList" resultType="com.rb.base.model.UserDto">
-
-        <!-- select * from  ( select row_number() over(order by user_name) as rownum, 
-		user_id, user_name, user_birthday, user_gender, user_email, user_telno
-		from `user` where user_deletedate is null order by user_name desc)A
-		 where A.${query} like CONCAT('%',#{content},'%') -->
-		select * from  ( select row_number() over(order by user_name) as rownum, 
-		user_id, user_name, user_birthday, user_gender, user_email, user_telno
-		from `user` where user_deletedate is null order by user_name desc)A, `user` u
-        where A.user_name=u.user_name and A.${query} like CONCAT('%',#{content},'%') 
-        and <![CDATA[rownum <= #{rowCount}]]> and <![CDATA[rownum >= #{start}]]>;
+       
+       select user_id, user_name, user_birthday, user_gender, user_email, user_telno
+		from `user` where user_deletedate is null 
+        and ${query} like #{content}
+        order by ${query} desc
+        limit ${start}, 10
         ;
+       
 	</select>
 	
 </mapper>

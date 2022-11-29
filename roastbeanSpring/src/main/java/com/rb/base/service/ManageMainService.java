@@ -1,21 +1,17 @@
 package com.rb.base.service;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
 import com.rb.base.model.ManageMainDto;
-import com.rb.base.model.OrderDto;
-import com.rb.base.model.ManageChartDto.DataPointModel;
 
 public interface ManageMainService { // controller 가 아는 녀석 
 	
 	
 	// /////////////////////////////////  Manage Main Chart /////////////////////////////////
-	List<List<DataPointModel>> getCanvasjsChartData();
 	
+	public void manageMainChart(HttpServletRequest request, Model model) throws Exception;
 	
 	// /////////////////////////////////  Manage Main  /////////////////////////////////
 	//New Users
@@ -51,6 +47,10 @@ public interface ManageMainService { // controller 가 아는 녀석
 	///////////////////////////////// manage_orderList /////////////////////////////////
 	
 	public void orderList(HttpServletRequest request, Model model) throws Exception;
+
+	
+	
+	
 	
 	
 }//class end 

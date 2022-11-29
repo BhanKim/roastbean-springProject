@@ -21,6 +21,9 @@ public class SignupController {
 	
 	@RequestMapping("/signup")
 	public String signup(HttpServletRequest request) throws Exception{
+//		HttpSession session = request.getSession();
+//		session.setAttribute("CARTCOUNT", 0);
+
 		return "signup";
 	}
 	
@@ -52,7 +55,7 @@ public class SignupController {
 		HttpSession session = request.getSession();
 		session.setAttribute("ID", request.getParameter("user_id"));
 		session.setAttribute("NICK", request.getParameter("user_nick"));
-		session.setAttribute("CARTCOUNT", 0);
+//		session.setAttribute("CARTCOUNT", "0");
 		return "index";
 	}
 
@@ -64,7 +67,7 @@ public class SignupController {
 		session.setAttribute("ID", request.getParameter("user_email"));
 		session.setAttribute("NICK", request.getParameter("user_nick"));
 		session.setAttribute("API", "1");
-		session.setAttribute("CARTCOUNT", 0);
+//		session.setAttribute("CARTCOUNT", "0");
 		return "index";
 	}
 	
