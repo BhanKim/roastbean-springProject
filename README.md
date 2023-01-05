@@ -1,2 +1,2 @@
-# roastbean-springProject
-Spring project
+RoastBean Spring project
+Spring Boot
